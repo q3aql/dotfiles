@@ -80,6 +80,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 # Run rofi options
 bindsym $mod+x exec --no-startup-id rofi -show run
 bindsym $mod+c exec --no-startup-id rofi -show window
+bindsym $mod+o exec --no-startup-id "rofi -modi drun,run -show drun"
 
 # Run applications
 bindsym $mod+b exec --no-startup-id firefox

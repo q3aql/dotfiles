@@ -1,0 +1,33 @@
+SYSTEM:
+
+sudo apt-get install i3 i3status i3blocks i3-wm i3pystatus i3lock i3lock-fancy compton
+
+THEMES:
+
+sudo apt-get install arc-theme breeze-cursor-theme fonts-noto
+
+APPAREANCE:
+
+sudo apt-get install lxappearance nitrogen lxrandr
+
+TOOLS:
+
+sudo apt-get install pnmixer conky xterm exa fish cat zsh dmenu fzf apcalc rofi picom
+
+Note: Also install alacritty
+
+NETWORK:
+
+sudo apt-get install connman connman-gtk connman-ui connman-vpn
+
+APPS:
+
+sudo apt-get install firefox engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany
+
+CODE:
+
+sudo apt-get install git nodejs node-base python3 npm
+
+OTHER:
+
+sudo apt-get install make cmake gcc cargo neofetch screenfetch lm-sensors xfce4-screenshooter

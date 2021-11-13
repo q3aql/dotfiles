@@ -6,7 +6,9 @@ import xml.etree.ElementTree as ET
 import requests
 
 # Forecast URL.
-YR_URL = "https://www.yr.no/place/Sverige/%C3%96sterg%C3%B6tland/Link%C3%B6ping/forecast.xml"
+#YR_URL = "https://www.yr.no/place/Sverige/%C3%96sterg%C3%B6tland/Link%C3%B6ping/forecast.xml"
+#YR_URL = "https://www.yr.no/place/Spain/Valencia/Valencia/forecast.xml"
+YR_URL = "https://www.yr.no/place/Spain/Valencia/X%C3%A0tiva/forecast.xml"
 
 # Good to have data + funky emojicons.
 FORECAST_CACHE_FILE = os.path.dirname(os.path.realpath(__file__)) + "/forecast.xml"
@@ -109,7 +111,8 @@ def main():
 
     # Print the sun rise and set time.
     if rise_fall_available:
-        print("[" + sun_rise_time + " 🌅 " + sun_set_time + "]", end=" ")
+        #print("[" + sun_rise_time + " 🌅 " + sun_set_time + "]", end=" ")
+        print("[""WE""]", end=" ")
 
     # Print the precipitation (if there is any).
     if precipitation != "0":

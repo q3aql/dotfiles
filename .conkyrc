@@ -1,0 +1,137 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+	
+	update_interval = 1,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	out_to_console = false,
+	override_utf8_locale = true,
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 32768,
+	imlib_cache_size = 0,
+	own_window = true,
+	own_window_transparent = true,
+	own_window_type = 'normal',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	background = true,
+	border_inner_margin = 0,
+	border_outer_margin = 0,
+	xinerama_head = 0,
+	alignment = 'top_right',
+	gap_x = 21,
+	gap_y = 56,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	use_xft = true,
+	font = 'Noto Sans Regular:size=9.8',
+	xftalpha = 0.8,
+	uppercase = false,
+	default_color = 'aaaaaa',
+	own_window_colour = '#000000',
+	minimum_width = 215, minimum_height = 0,
+	maximum_width = 215,
+	alignment = 'top_right',
+};
+
+conky.text = [[
+#
+SYSTEM ${hr 1}
+
+Host: $alignr Devuan 4 (Chimaera)
+Kernel: $alignr $alignr ${execi 40 kernel-version}
+Uptime: $alignr $uptime
+Threats: $alignr ${execi 20 ls -1 ${HOME}/.clamTools/qtn/ | wc -l} (on quarantine)
+#Telegram: $alignr ${execi 5 cat ${HOME}/.conkynotifications/telegram} message(s)
+#Whatsapp: $alignr ${execi 5 cat ${HOME}/.conkynotifications/whatsapp} chats with msg
+
+CPU/GPU ${hr 1}
+
+CPU: $alignr Ryzen 5 2600X (x64) (${running_processes})
+Speed: $alignr ${execi 3 lscpu | grep "CPU MHz" | tr -s " " | cut -d " " -f 3} MHz
+GPU: $alignr RX 5500 XT (${execi 3 sensors | grep power1 | tr -s " " | cut -d " " -f 2}W)
+
+NETWORK ${hr 1}
+
+#ESSID: $alignr ${execi 15 wicd-cli -d --wireless | grep -i essid | cut -d ":" -f 2 | cut -d " " -f 2} (${execi 30 wicd-cli -d --wireless | grep -i "encryption method" | cut -d ":" -f 2 | cut -d " " -f 2})
+ESSID: $alignr ${execi 15 connmanctl services | grep "*A" | tr -s " " | cut -d " " -f 2}
+Link Signal: $alignr ${execi 15 iwconfig wlxc46e1f24d377 | grep "Link Quality" | tail -1 | cut -d "=" -f 2 | cut -d "/" -f 1}%
+State: $alignr ${execi 3 connmanctl state | grep "State =" | cut -d "=" -f 2}
+Public IP: $alignr ${execi 30 show-pIP.sh -RT}
+Local IP: $alignr ${addr wlxc46e1f24d377}
+Download: $alignr ${downspeed wlxc46e1f24d377}
+#${downspeedgraph wlxc46e1f24d377 16,240 aaaaaa aaaaaa}
+#${execi 4 randombar1.sh}
+Upload: $alignr ${upspeed wlxc46e1f24d377}
+#${upspeedgraph wlxc46e1f24d377 16,240 aaaaaa aaaaaa}
+#${execi 20 randombar2.sh}
+
+PERFORMANCE ${hr 1}
+
+CPU $alignr ${execi 3 cpuinfo.sh -p} ($alignr${execi 4 sensors | grep Tdie | head -1 | cut -d " " -f 10} / ${execi 4 sensors | grep edge | tail -1 | cut -d " " -f 10})
+${execi 3 cpuinfo.sh -b}
+RAM   ${execi 3 meminfo.sh -a}/${execi 30 meminfo.sh -t} $alignr ${execi 3 meminfo.sh -p}
+${execi 3 meminfo.sh -b}
+
+HDD ${hr 1}
+#${diskiograph 16,240}
+
+${execi 2 randombar.sh}
+Read (sdb): ${execi 2 hdd-stats.sh -RT} / $diskio_read
+Write (sdb): ${execi 2 hdd-stats.sh -WT} / $diskio_write
+
+/home  ${execi 10 hddinfo.sh /home -u}/${execi 60 hddinfo.sh /home -t} $alignr ${execi 5 hddinfo.sh /home -p}
+${execi 5 hddinfo.sh /home -b}
+/  ${execi 10 hddinfo.sh /dev/sdb1 -u}/${execi 60 hddinfo.sh /dev/sdb1 -t} $alignr ${execi 5 hddinfo.sh /dev/sdb1 -p}
+${execi 5 hddinfo.sh /dev/sdb1 -b}
+/data  ${execi 10 hddinfo.sh /data -u}/${execi 60 hddinfo.sh /data -t} $alignr ${execi 5 hddinfo.sh /data -p}
+${execi 5 hddinfo.sh /data -b}
+/tmp  ${execi 10 hddinfo.sh /mnt/ramdisk -u}/${execi 60 hddinfo.sh /mnt/ramdisk -t} $alignr ${execi 5 hddinfo.sh /mnt/ramdisk -p}
+${execi 5 hddinfo.sh /mnt/ramdisk -b}
+#swap $alignr ${swap}/${swapmax}
+#${swapbar}
+
+PROCESSES ${hr 1}
+
+NAME $alignr CPU MEM
+${top name 1} $alignr ${top cpu 1}${top mem 1}
+${top name 2} $alignr ${top cpu 2}${top mem 2}
+${top name 3} $alignr ${top cpu 3}${top mem 3}
+${top name 4} $alignr ${top cpu 4}${top mem 4}
+${top name 5} $alignr ${top cpu 5}${top mem 5}
+${top name 6} $alignr ${top cpu 6}${top mem 6}
+#${top name 7} $alignr ${top cpu 6}${top mem 6}
+#${top name 8} $alignr ${top cpu 6}${top mem 6}
+#${top name 9} $alignr ${top cpu 6}${top mem 6}
+
+]];

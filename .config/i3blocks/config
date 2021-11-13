@@ -39,5 +39,6 @@ interval=2
 signal=1
 
 [TIME_DATE]
-command=date +" %a, %d %b - %H:%M:%S"
+command=date +" %a, %d %b - %H:%M"\ \  
 interval=1
+

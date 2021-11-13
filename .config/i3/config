@@ -239,6 +239,7 @@ bindsym $mod+r mode "resize"
 bar {
   position top
   status_command i3blocks
+  tray_output DisplayPort-0
   colors {
     separator #AAAAAA
     background #222133

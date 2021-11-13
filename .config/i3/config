@@ -33,17 +33,15 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id connman-gtk --tray &
 #exec --no-startup-id nm-applet
 
-# Picom
-#exec_always --no-startup-id picom &
-
 # Applet for Audio
 exec --no-startup-id pnmixer -t &
 
 # Configure screens and resolution
 exec --no-startup-id ~/.config/i3/startxrandr.sh
 
-# Load compton
-exec --no-startup-id compton &
+# Load compton or picom
+#exec --no-startup-id compton &
+exec --no-startup-id picom &
 
 # Configure wallpaper
 exec --no-startup-id nitrogen --set-centered ~/wallpapers/abstract.png

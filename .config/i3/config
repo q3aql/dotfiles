@@ -37,11 +37,11 @@ exec --no-startup-id connman-gtk --tray &
 exec --no-startup-id pnmixer -t &
 
 # Configure screens and resolution
-exec --no-startup-id ~/.config/i3/startxrandr.sh
+exec --no-startup-id ~/.config/i3/startxrandr.sh &
 
 # Load compton or picom
 #exec --no-startup-id compton &
-exec --no-startup-id picom &
+exec --no-startup-id "sleep 15 && picom &"
 
 # Configure wallpaper
 exec --no-startup-id nitrogen --set-centered ~/wallpapers/abstract.png

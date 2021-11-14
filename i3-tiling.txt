@@ -30,4 +30,4 @@ sudo apt-get install git nodejs node-base python3 npm
 
 OTHER:
 
-sudo apt-get install make cmake gcc cargo neofetch screenfetch lm-sensors xfce4-screenshooter
+sudo apt-get install make cmake gcc cargo neofetch screenfetch lm-sensors xfce4-screenshooter xscreensaver

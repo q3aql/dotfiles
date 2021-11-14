@@ -44,7 +44,10 @@ exec --no-startup-id ~/.config/i3/startxrandr.sh &
 exec --no-startup-id "sleep 15 && picom &"
 
 # Configure wallpaper
-exec --no-startup-id nitrogen --set-centered ~/wallpapers/abstract.png
+exec --no-startup-id "sleep 3 && nitrogen --set-centered ~/wallpapers/abstract.png"
+
+# Configure xscreensaver
+exec --no-startup-id "sleep 5 && xscreensaver &"
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -168,8 +171,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # i3-gaps config
-#gaps inner 10
-#gaps outer 10
+#gaps inner 6
+#gaps outer 2
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

@@ -27,7 +27,7 @@ fi
 # Install dependencies
 apt update
 apt upgrade -y
-apt install make gcc autoconf cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 cargo -y
+apt install make gcc autoconf cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3 cargo git -y
 
 #Build and install i3-gaps
 cd /tmp

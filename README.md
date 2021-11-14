@@ -38,7 +38,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 
   * **`Install configuration (dotfiles):`**
   
-    * Clone repository and run the scripts for installation:
+    * Clone repository and copy files to your home:
 
       ```shell
       $ git clone https://github.com/q3aql/dotfiles

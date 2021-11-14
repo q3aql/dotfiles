@@ -79,6 +79,16 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
       exec --no-startup-id "sleep 3 && nitrogen --set-centered ~/wallpapers/abstract.png"
       ````
 
+  * **`Enable Gaps:`**
+  
+    * My config work on vanilla i3wm and gaps are disabled.
+    * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:
+    
+      ```shell
+      #gaps inner 6
+      #gaps outer 2
+      ````
+
   * **`Battery Indicator:`**
   
     * By default, the battery indicator is disabled on i3blocks top bar.

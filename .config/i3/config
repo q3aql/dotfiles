@@ -87,6 +87,10 @@ bindsym $mod+p exec --no-startup-id xfce4-screenshooter
 bindsym $mod+g exec --no-startup-id geany
 bindsym $mod+m exec --no-startup-id telegram
 bindsym $mod+z exec --no-startup-id signal
+bindsym $mod+u exec --no-startup-id uxterm
+bindsym $mod+t exec --no-startup-id xterm
+bindsym $mod+i exec --no-startup-id lxappearance
+
 
 # change focus
 bindsym $mod+j focus left
@@ -162,6 +166,10 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+# i3-gaps config
+#gaps inner 10
+#gaps outer 10
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.

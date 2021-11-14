@@ -12,7 +12,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
       ```shell
       $ sudo apt-get install i3 i3status i3blocks i3-wm i3pystatus i3lock i3lock-fancy \
         compton arc-theme breeze-cursor-theme fonts-noto papirus-icon-theme lxappearance \
-        nitrogen lxrandr pnmixer conky xterm exa fish cat zsh dmenu fzf apcalc rofi picom \
+        nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
         engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
         python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors \
         xfce4-screenshooter xscreensaver
@@ -94,22 +94,22 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 
 My list of extra combinations:
 
-    - Win + d = Open Dmenu
-    - Win + x = Open Rofi (run mode)
-    - Win + c = Open Rofi (window mode)
-    - Win + o = Open Rofi (drun mode)
-    - Win + b = Open Firefox
-    - Win + n = Open PCManFM
-    - Win + p = Open Screenshot
-    - Win + g = Open Geany
-    - Win + m = Open Telegram 
-    - Win + z = Open Signal 
-    - Win + u = Open UXterm
-    - Win + t = Open Xterm
-    - Win + i = Open LXAppearance
-    - Win + Ctrl + Shift + e = Poweroff screen
-    - Win + Shit + e = Logout
-    - Win + Backspace = Open menu Logout/Lock/Reboot/Shutdown
+    - `Win + d` = Open Dmenu
+    - `Win + x` = Open Rofi (run mode)
+    - `Win + c` = Open Rofi (window mode)
+    - `Win + o` = Open Rofi (drun mode)
+    - `Win + b` = Open Firefox
+    - `Win + n` = Open PCManFM
+    - `Win + p` = Open Screenshot
+    - `Win + g` = Open Geany
+    - `Win + m` = Open Telegram 
+    - `Win + z` = Open Signal 
+    - `Win + u` = Open UXterm
+    - `Win + t` = Open Xterm
+    - `Win + i` = Open LXAppearance
+    - `Win + Ctrl + Shift + e` = Poweroff screen
+    - `Win + Shit + e` = Logout
+    - `Win + Backspace` = Open menu Logout/Lock/Reboot/Shutdown
 
 ### External links:
 

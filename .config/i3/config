@@ -39,8 +39,8 @@ exec --no-startup-id pnmixer -t &
 # Configure screens and resolution
 exec --no-startup-id ~/.config/i3/startxrandr.sh &
 
-# Load compton or picom
-#exec --no-startup-id compton &
+# Load compton or picom (Compositor)
+#exec --no-startup-id "sleep 15 && compton &"
 exec --no-startup-id "sleep 15 && picom &"
 
 # Configure wallpaper

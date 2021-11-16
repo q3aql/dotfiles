@@ -10,7 +10,7 @@ Xft.lcdfilter: lcdfilter
 
 XTerm*renderFont: true
 XTerm*faceName: xft:Mononoki Nerd Font
-XTerm*faceSize: 11
+XTerm*faceSize: 10
 XTerm*utf8: 2
 XTerm*locale: true
 

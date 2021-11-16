@@ -114,7 +114,7 @@ My list of extra combinations:
     - Win + g = Open Geany
     - Win + m = Open Telegram 
     - Win + z = Open Signal 
-    - Win + u = Open UXterm
+    - Win + u = Open LXRandr
     - Win + t = Open Xterm
     - Win + i = Open LXAppearance
     - Win + Ctrl + Shift + e = Poweroff screen

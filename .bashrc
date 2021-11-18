@@ -126,7 +126,7 @@ neofetch --color_blocks off
 echo ""
 #zsh
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 . "$HOME/.cargo/env"
 source ~/.bash_completion/alacritty

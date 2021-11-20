@@ -1,7 +1,7 @@
-dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
-============================================================
+dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
+=======================================================================
 
-![i3WM](examples/screenshot.png)
+* [Instructions for i3WM configuration](README-i3.md)
 
 ### Installation:
 
@@ -10,30 +10,26 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
     * Open the terminal and type the following commands:
     
       ```shell
-      $ sudo apt-get install i3 i3status i3blocks i3-wm i3pystatus i3lock i3lock-fancy \
-        compton arc-theme breeze-cursor-theme fonts-noto papirus-icon-theme lxappearance \
-        nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
-        engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
-        python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors \
+      $ sudo apt-get install spectrwm compton arc-theme breeze-cursor-theme \
+        fonts-noto papirus-icon-theme lxappearance nitrogen lxrandr pnmixer \
+        conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom engrampa \
+        xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
+        python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
         xfce4-screenshooter xscreensaver
       ````
-    * I use `Connman` instead of `NetWorkManager` (don't install if you prefer NetWorkManager):
+    * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
 
       ```shell
       $ sudo apt-get install connman connman-gtk connman-ui connman-vpn
       ````
       
-  * **`Install i3-gaps and alacritty:`**
-  
-    * Clone repository and run the scripts for installation:
-
+    * For install `alacritty`, type this commands:
+    
       ```shell
       $ git clone https://github.com/q3aql/dotfiles
       $ cd dotfiles
       $ chmod +x alacritty-install.sh
-      $ chmod +x i3-gaps-install.sh
       $ sudo ./alacritty-install.sh
-      $ sudo ./i3-gaps-install.sh
       ````
 
   * **`Install configuration (dotfiles):`**
@@ -51,21 +47,22 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 
   * **`Network Manager (Connman or NetWorkManager):`**
   
-    * By default is enabled Connman as network manager:
-    * If you prefer NetWorkManager, edit the file `~/.config/i3/config`:
+    * By default is enabled `NetWorkManager` as network manager:
+    * If you prefer Connman, edit the file `~/.config/spectrwm/spectrwm.conf`:
     
       ```shell
-      exec --no-startup-id connman-gtk --tray &
-      #exec --no-startup-id nm-applet
+      # Choose between NetworkManager or Connman
+      program[connection]   = nm-connection-editor
+      #program[connection]   = connman-gtk --no-icon
+      bind[connection]      = MOD+c
       ````
 
   * **`Monitor & resolution:`**
   
     * The configuration load my monitor configuration:
-    * Use the command `xrandr` for show your config & edit the file `~/.config/i3/startxrandr.sh`:
+    * Use the command `xrandr` for show your config & edit the file `~/.config/spectrwm/startxrandr.sh`:
     
       ```shell
-      sleep 2
       xrandr --output DisplayPort-0 --mode 1280x1024 -r 75.02
       xrandr --output DisplayPort-1 --mode 1280x1024 -r 75.02 --rotate left --right-of DisplayPort-0
       ````
@@ -73,57 +70,51 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
   * **`Wallpaper:`**
   
     * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
-    * Edit  `~/.config/i3/config` for set your favorite wallpaper:
+    * Edit  `~/.config/spectrwm/startwallpaper.sh` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-centered ~/wallpapers/abstract.png"
+      sleep 3
+      nitrogen --set-centered ~/wallpapers/abstract.png
       ````
 
-  * **`Enable Gaps:`**
+  * **`Compositor (Compton or Picom):`**
   
-    * My config work on vanilla i3wm and gaps are disabled.
-    * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:
+    * By default, the config load `Picom` compositor.
+    * You can change it editing the lines on `~/.config/spectrwm/startcompositor.sh` file:
     
       ```shell
-      #gaps inner 6
-      #gaps outer 2
-      ````
-
-  * **`Battery Indicator:`**
-  
-    * By default, the battery indicator is disabled on i3blocks top bar.
-    * You can enable it editing the lines on `~/.config/i3blocks/config` file:
-    
-      ```shell
-      #[BATTERY]
-      #command=~/.config/i3blocks/battery/battery_info.sh
-      #interval=3
+      # Load compton or picom (Compositor)
+      sleep 15
+      #compton &
+      picom &
       ````
 
 ### Keys configuration:
 
 My list of extra combinations:
 
-    - Win + d = Open Dmenu
-    - Win + x = Open Rofi (run mode)
-    - Win + c = Open Rofi (window mode)
-    - Win + o = Open Rofi (drun mode)
-    - Win + b = Open Firefox
+    - Win + d = Open Rofi Theme selector
+    - Win + x = Close Window
+    - Win + w = Minimize Window
+    - Win + Shift + w = Maximize/Search Window
+    - Win + c = Open network configuration
+    - Win + v = Open volume configuration (Pavucontrol)
+    - Win + Return = Open terminal (Alacritty)
     - Win + n = Open PCManFM
-    - Win + p = Open Screenshot
-    - Win + g = Open Geany
-    - Win + m = Open Telegram 
-    - Win + z = Open Signal 
-    - Win + u = Open LXRandr
-    - Win + t = Open Xterm
+    - Win + p = Open Rofi (exec program)
+    - Win + o = Open Rofi (exec menu program)
+    - Win + z = Open Wallpaper selector (Nitrogen)
+    - Win + x = Open LXRandr
+    - Win + u = Open Xterm
     - Win + i = Open LXAppearance
-    - Win + Ctrl + Shift + e = Poweroff screen
-    - Win + Shit + e = Logout
-    - Win + Backspace = Open menu Logout/Lock/Reboot/Shutdown
+    - Win + s = Open Xfce4-Screenshot
+    - Win + Delete = Poweroff screen
+    - Win + Shift + Delete = Close session
 
 ### External links:
 
 * [Antonio Sarosi](https://github.com/antoniosarosi/dotfiles/)
+* [Derek Taylor](https://gitlab.com/dwt1/dotfiles/)
 * [i3-style](https://github.com/altdesktop/i3-style)
 * [addy-dclxvi](https://github.com/addy-dclxvi/i3-starterpack)
 * [i3-gaps](https://github.com/Airblader/i3)

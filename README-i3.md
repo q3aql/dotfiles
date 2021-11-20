@@ -53,12 +53,12 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 
   * **`Network Manager (Connman or NetWorkManager):`**
   
-    * By default is enabled `Connman` as network manager:
+    * By default is enabled `NetWorkManager` as network manager:
     * If you prefer NetWorkManager, edit the file `~/.config/i3/config`:
     
       ```shell
-      exec --no-startup-id connman-gtk --tray &
-      #exec --no-startup-id nm-applet
+      #exec --no-startup-id connman-gtk --tray &
+      exec --no-startup-id nm-applet &
       ````
 
   * **`Monitor & resolution:`**

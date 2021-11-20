@@ -1,7 +1,9 @@
 dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 ============================================================
 
-![i3WM](examples/screenshot.png)
+* [Instructions for Spectrwm configuration](README.md)
+
+![i3WM](examples/i3wm.png)
 
 ### Installation:
 

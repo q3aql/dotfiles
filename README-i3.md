@@ -127,6 +127,7 @@ My list of extra combinations:
 
 * [Antonio Sarosi](https://github.com/antoniosarosi/dotfiles/)
 * [Derek Taylor](https://gitlab.com/dwt1/dotfiles/)
+* [TWB0109](https://github.com/TWB0109/PDots)
 * [i3-style](https://github.com/altdesktop/i3-style)
 * [addy-dclxvi](https://github.com/addy-dclxvi/i3-starterpack)
 * [i3-gaps](https://github.com/Airblader/i3)

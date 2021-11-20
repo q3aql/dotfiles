@@ -9,20 +9,51 @@ hdd() {
 
 ## RAM
 mem() {
-  mem=`free | awk '/Mem/ {printf "%dM/%dM\n", $3 / 1024.0, $2 / 1024.0 }'`
-  echo -e "$mem"
+  # Disable show meminfo 
+  #mem=`free | awk '/Mem/ {printf "%dM/%dM\n", $3 / 1024.0, $2 / 1024.0 }'`
+  #echo -e "$mem"
+
+  # Enable meminfo in GiB
+  memfile="/proc/meminfo"
+  size="G" # Change to M for MiB
+
+  # Variables
+  memTotal=$(cat ${memfile} | grep -i "memtotal:" | head -1 | tr -s " " | cut -d " " -f 2)
+  memActive=$(cat ${memfile} | grep -i "memavailable:" | head -1 | tr -s " " | cut -d " " -f 2)
+  memActive=$(expr ${memTotal} - ${memActive})
+
+  # Variables to calculate
+  memTotalM=$(expr ${memTotal} / 1024 )
+  memActiveM=$(expr ${memActive} / 1024)
+  memTotalG=$(calc ${memTotalM} / 1024 | tr -s " " | cut -c1-5)
+  memActiveG=$(calc ${memActiveM} / 1024 | tr -s " " | cut -c1-5)
+
+  # Variables to show
+  if [ "${size}" == "G" ] ; then
+	  showMemTotal="${memTotalG}G"
+	  showMemActive="${memActiveG}G"
+  elif [ "${size}" == "M" ] ; then
+	  showMemTotal="${memTotalM}M"
+	  showMemActive="${memActiveM}M"
+  else
+	  showMemTotal="${memTotalG}G"
+	  showMemActive="${memActiveG}G"
+  fi
+
+  show_mem_bar=$(echo ${showMemActive} /${showMemTotal})
+  echo -e ${show_mem_bar} | tr -s " "
 }
 
 ## DATE AND TIME
 date_today() {
   day_hour=$(date "+%a,%d %h [%H:%M]")
-  echo "${day_hour}"
+  echo -e "${day_hour}"
 }
 
 ## DATE AND TIME (CUT)
 date_today_cut() {
   day_hour=$(date "+%H:%M")
-  echo "${day_hour}"
+  echo -e "${day_hour}"
 }
 
 # KERNEL
@@ -50,7 +81,7 @@ kernel() {
   kernelVersion=${kernelVersion}${kernelVersionTempDot}
   # Apply arch
   kernelVersion=${kernelVersion}
-  echo "Linux ${kernelVersion}"
+  echo -e "Linux ${kernelVersion}"
 }
 
 ## CPU

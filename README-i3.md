@@ -17,7 +17,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
         nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
         engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
         python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
-        xfce4-screenshooter xscreensaver
+        xfce4-screenshooter xscreensaver alsa-utils
       ````
     * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
 

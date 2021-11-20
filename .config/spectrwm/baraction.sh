@@ -46,7 +46,8 @@ mem() {
 
 ## DATE AND TIME
 date_today() {
-  day_hour=$(date "+%a,%d %h [%H:%M]")
+  #day_hour=$(date "+%a,%d %h %H:%M")
+  day_hour=$(date "+%d %h %H:%M")
   echo -e "${day_hour}"
 }
 
@@ -110,8 +111,8 @@ SLEEP_SEC=3
 # So I would love to add more functions to this script but it makes the 
 # echo output too long to display correctly.
 while :; do
-    echo "+@fg=5; $(kernel) +@fg=0; | +@fg=1; $(cpu) +@fg=0; | +@fg=2; $(mem) +@fg=0; | +@fg=3; $(hdd) +@fg=0; | +@fg=4; $(vol) +@fg=0; | +@fg=5; $(date_today_cut) +@fg=0;" 
-    #echo "+@fg=5; $(kernel) +@fg=0; | +@fg=1; $(cpu) +@fg=0; | +@fg=2; $(mem) +@fg=0; | +@fg=3; $(hdd) +@fg=0; | +@fg=4; $(vol) +@fg=0; | +@fg=5; $(date_today) +@fg=0;" 
+    #echo "+@fg=5; $(kernel) +@fg=0; | +@fg=1; $(cpu) +@fg=0; | +@fg=2; $(mem) +@fg=0; | +@fg=3; $(hdd) +@fg=0; | +@fg=4; $(vol) +@fg=0; | +@fg=5; $(date_today_cut) +@fg=0;" 
+    echo "+@fg=5; $(kernel) +@fg=0; | +@fg=1; $(cpu) +@fg=0; | +@fg=2; $(mem) +@fg=0; | +@fg=3; $(hdd) +@fg=0; | +@fg=4; $(vol) +@fg=0; | +@fg=5; $(date_today) +@fg=0;" 
     #echo "+@fg=5; +@fn=1;+@fn=0; $(kernel) +@fg=0; | +@fg=1; +@fn=1;💻+@fn=0; $(cpu) +@fg=0; | +@fg=2; +@fn=1;💾+@fn=0; $(mem) +@fg=0; | +@fg=3; +@fn=1;💿+@fn=0; $(hdd) +@fg=0; | +@fg=4; +@fn=1;🔈+@fn=0; $(vol) +@fg=0; |"
 	sleep $SLEEP_SEC
 done

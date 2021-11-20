@@ -1,0 +1,71 @@
+.token.function {
+  color: #b4b4b9;
+}
+
+.token.brackets {
+  color: #f8f8ff;
+}
+
+.token.punctuation {
+  color: #f8f8ff;
+}
+
+.token.variable, .token.function-variable, .token.this, .token.key, .token.builtin {
+  color: #99a4bc;
+}
+
+.token.variable .dollar {
+  color: #b4b4b9;
+}
+
+.token.string {
+  color: #dfdfe5;
+}
+
+.token.comment {
+  color: #787882;
+  font-style: italic;
+}
+
+.token.comment .doc-block {
+  color: #ddcfbf;
+}
+
+.token.scope {
+  color: #b4b4b9;
+  font-weight: 700;
+}
+
+.token.class-name {
+  color: #b4b4b9;
+}
+
+.token.delimiter.important {
+  color: #dfdfe5;
+  font-weight: normal;
+}
+
+.token.keyword.keyword-protected, .token.keyword.keyword-public, .token.keyword.keyword-private, .token.keyword.keyword-parent, .token.keyword.keyword-array, .token.keyword.keyword-NULL, .token.keyword.keyword-use, .token.keyword.keyword-namespace {
+  color: #ddcfbf;
+  font-weight: normal;
+}
+
+.token.boolean, .token.php-boolean, .token.number {
+  color: #ff3600;
+}
+
+.token.php-functions {
+  color: #ddcfbf;
+}
+
+.token.property {
+  color: #b4b4b9;
+}
+
+.token.operator {
+  color: #ff761a;
+}
+
+.token.keyword {
+  color: #ffc552;
+}

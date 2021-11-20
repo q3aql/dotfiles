@@ -1,0 +1,7 @@
+snipSnippetHeaderKeyword: 'yellow'
+snipSnippetFooterKeyword: '@snipSnippetHeaderKeyword'
+snipTabStop: '@Identifier'
+snipTabStopDefault: 'blue_gray - i'
+snipMirror: '@snipTabStop'
+snipSnippetTrigger: '@String'
+snipSnippetDocContextString: '@Comment'

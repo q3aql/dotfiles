@@ -14,7 +14,7 @@ dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
       ```shell
       $ sudo apt-get install spectrwm compton arc-theme breeze-cursor-theme \
         fonts-noto papirus-icon-theme lxappearance nitrogen lxrandr pnmixer \
-        conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom engrampa \
+        conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom engrampa ristretto \
         xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
         python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
         xfce4-screenshooter xscreensaver alsa-utils pulseaudio-utils light xbacklight

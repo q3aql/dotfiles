@@ -119,6 +119,7 @@ if ! shopt -oq posix; then
 fi
 
 PATH=${PATH}:/opt/qt515/bin
+clear
 echo ""
 echo ""
 #screenfetch -p

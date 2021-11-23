@@ -25,7 +25,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
       $ sudo apt-get install connman connman-gtk connman-ui connman-vpn
       ````
       
-  * **`Install i3-gaps and alacritty:`**
+  * **`Install alacritty and i3-gaps (Optional):`**
   
     * Clone repository and run the scripts for installation:
 
@@ -33,8 +33,11 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
       $ git clone https://github.com/q3aql/dotfiles
       $ cd dotfiles
       $ chmod +x alacritty-install.sh
-      $ chmod +x i3-gaps-install.sh
       $ sudo ./alacritty-install.sh
+      ````
+      
+      ```shell
+      $ chmod +x i3-gaps-install.sh
       $ sudo ./i3-gaps-install.sh
       ````
 
@@ -78,10 +81,10 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
     * Edit  `~/.config/i3/config` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-centered ~/wallpapers/abstract.png"
+      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
       ````
 
-  * **`Enable Gaps:`**
+  * **`Enable Gaps (Optional):`**
   
     * My config work on vanilla i3wm and gaps are disabled.
     * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:

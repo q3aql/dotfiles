@@ -76,7 +76,7 @@ dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
     
       ```shell
       sleep 3
-      nitrogen --set-centered ~/wallpapers/abstract.png
+      nitrogen --set-scaled ~/wallpapers/abstract.png
       ````
 
   * **`Compositor (Compton or Picom):`**

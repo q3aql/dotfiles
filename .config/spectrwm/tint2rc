@@ -24,17 +24,17 @@
 
 
 # Panel
-panel_monitor = all
+#panel_monitor = all
 panel_position = top right horizontal
-panel_size = 10% 25
+panel_size = 13% 25
 panel_margin = 0 1
-panel_padding = 7 0 7
+panel_padding = 0 0 0
 panel_dock = 0
 #wm_menu = 0
 panel_layer = top
-#panel_background_id = 1
+#panel_background_id = 0
 background_color = #282A36 100
-border_color = #282A36 100
+border_color = #282A36 0
 
 # Panel Autohide
 #autohide = 1
@@ -73,11 +73,11 @@ task_font_color = #282A36 100
 task_active_font_color = #282A36 100
 task_urgent_font_color = #282A36 100
 task_iconified_font_color = #282A36 100
-font_shadow = 0
+#font_shadow = 0
 
 # System Tray
 systray = 1
-systray_padding = 0 4 5
+systray_padding = 0 2 2
 systray_sort = ascending
 systray_background_id = 0
 systray_icon_size = 16

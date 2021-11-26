@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sleep 5
+sleep 1
 
 # Clipboard (Use Win + Shift + t to show it)
 diodon &
@@ -9,5 +9,5 @@ diodon &
 pnmixer -t &
 
 # Network Tray (Use Win + Shift + t to show it)
-nm-applet &
-#connman-gtk --tray &
+#nm-applet &
+connman-gtk --tray &

@@ -13,7 +13,7 @@ dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
     
       ```shell
       $ sudo apt-get install spectrwm compton arc-theme breeze-cursor-theme \
-        fonts-noto papirus-icon-theme lxappearance nitrogen lxrandr pnmixer \
+        fonts-noto papirus-icon-theme lxappearance nitrogen lxrandr pnmixer tint2 \
         conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom engrampa ristretto \
         xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
         python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
@@ -50,13 +50,19 @@ dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer Connman, edit the file `~/.config/spectrwm/spectrwm.conf`:
+    * If you prefer Connman, edit the file `~/.config/spectrwm/spectrwm.conf` and `autostart.sh`:
     
       ```shell
       # Choose between NetworkManager or Connman
       program[connection]   = nm-connection-editor
       #program[connection]   = connman-gtk --no-icon
       bind[connection]      = MOD+c
+      ````
+
+      ```shell
+      # Network Tray (Use Win + Shift + t to show it)
+      #nm-applet &
+      connman-gtk --tray &
       ````
 
   * **`Monitor & resolution:`**
@@ -99,6 +105,7 @@ My list of extra combinations:
     - Win + x = Close Window
     - Win + w = Minimize Window
     - Win + Shift + w = Maximize/Search Window
+    - Win + Shift + t = Show/Hide Tray
     - Win + c = Open network configuration
     - Win + v = Open volume configuration (Pavucontrol)
     - Win + Return = Open terminal (Alacritty)

@@ -61,8 +61,8 @@ dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
 
       ```shell
       # Network Tray (Use Win + Shift + t to show it)
-      #nm-applet &
-      connman-gtk --tray &
+      nm-applet &
+      #connman-gtk --tray &
       ````
 
   * **`Monitor & resolution:`**

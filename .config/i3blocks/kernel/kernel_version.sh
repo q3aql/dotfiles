@@ -28,5 +28,6 @@ kernelVersion=${kernelVersion}${kernelVersionTempDot}
 
 # Apply arch
 kernelVersion=${kernelVersion}-${archCommand}
-echo "Kernel: Linux ${kernelVersion} "
+#echo "Kernel: Linux ${kernelVersion} "
+echo "Linux ${kernelVersion} "
 

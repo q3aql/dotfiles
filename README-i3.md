@@ -109,22 +109,26 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 
 My list of extra combinations:
 
-    - Win + d = Open Dmenu
-    - Win + x = Open Rofi (run mode)
-    - Win + c = Open Rofi (window mode)
-    - Win + o = Open Rofi (drun mode)
-    - Win + b = Open Firefox
-    - Win + n = Open PCManFM
-    - Win + p = Open Screenshot
-    - Win + g = Open Geany
-    - Win + m = Open Telegram 
-    - Win + z = Open Signal 
-    - Win + u = Open LXRandr
-    - Win + t = Open Xterm
-    - Win + i = Open LXAppearance
-    - Win + Ctrl + Shift + e = Poweroff screen
-    - Win + Shit + e = Logout
-    - Win + Backspace = Open menu Logout/Lock/Reboot/Shutdown
+    - Super + d = Open Dmenu
+    - Super + p = Open Rofi (run mode)
+    - Super + q = Open Rofi (window mode)
+    - Super + o = Open Rofi (drun mode)
+    - Super + b = Open Firefox
+    - Super + n = Open PCManFM
+    - Super + t = Open Rofi Theme Selector
+    - Super + g = Open Geany
+    - Super + m = Open Telegram 
+    - Super + z = Open Nitrogen 
+    - Super + x = Open LXRandr
+    - Super + u = Open Xterm
+    - Super + i = Open LXAppearance
+    - Super + c = Open NetWorkManager
+    - Volume-Up = Volume +5
+    - Volume-Down = Volume -5
+    - VolumeMute = Mute Volume
+    - Super + Ctrl + Shift + e = Poweroff screen
+    - Super + Shit + e = Logout
+    - Super + Backspace = Open menu Logout/Lock/Reboot/Shutdown
 
 ### External links:
 

@@ -101,24 +101,24 @@ dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
 
 My list of extra combinations:
 
-    - Win + d = Open Rofi Theme selector
-    - Win + x = Close Window
-    - Win + w = Minimize Window
-    - Win + Shift + w = Maximize/Search Window
-    - Win + Shift + t = Show/Hide Tray
-    - Win + c = Open network configuration
-    - Win + v = Open volume configuration (Pavucontrol)
-    - Win + Return = Open terminal (Alacritty)
-    - Win + n = Open PCManFM
-    - Win + p = Open Rofi (exec program)
-    - Win + o = Open Rofi (exec menu program)
-    - Win + z = Open Wallpaper selector (Nitrogen)
-    - Win + x = Open LXRandr
-    - Win + u = Open Xterm
-    - Win + i = Open LXAppearance
-    - Win + s = Open Xfce4-Screenshot
-    - Win + Delete = Poweroff screen
-    - Win + Shift + Delete = Close session
+    - Super + d = Open Rofi Theme selector
+    - Super + x = Close Window
+    - Super + w = Minimize Window
+    - Super + Shift + w = Maximize/Search Window
+    - Super + Shift + t = Show/Hide Tray
+    - Super + c = Open network configuration
+    - Super + v = Open volume configuration (Pavucontrol)
+    - Super + Return = Open terminal (Alacritty)
+    - Super + n = Open PCManFM
+    - Super + p = Open Rofi (exec program)
+    - Super + o = Open Rofi (exec menu program)
+    - Super + z = Open Wallpaper selector (Nitrogen)
+    - Super + x = Open LXRandr
+    - Super + u = Open Xterm
+    - Super + i = Open LXAppearance
+    - Super + s = Open Xfce4-Screenshot
+    - Super + Delete = Poweroff screen
+    - Super + Shift + Delete = Close session
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume

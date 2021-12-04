@@ -9,5 +9,5 @@ diodon &
 pnmixer -t &
 
 # Network Tray (Use Win + Shift + t to show it)
-#nm-applet &
-connman-gtk --tray &
+nm-applet &
+#connman-gtk --tray &

@@ -11,39 +11,44 @@
 [KERNEL]
 command=~/.config/i3blocks/kernel/kernel_version.sh
 interval=300
-color=#FEC925
+color=#7ECEF1
+
+[CPU]
+#full_text= CPU:  0.00% @ +00.0°C 
+command=~/.config/i3blocks/cpu/cpu_info.sh
+interval=2
+color=#C16BD8
+
+[MEM]
+command=free -h | awk '/Mem:/ { printf("  %5s / %s \n", $3, $2) }'
+interval=1
+color=#BBDD96
 
 [DISK]
-command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
+command=df -h / | awk '/\//{ printf(" %4s / %s \n", $4, $2) }'
 interval=2
-color=#C9E3DB
+color=#A66167
 
 #[BATTERY]
 #command=~/.config/i3blocks/battery/battery_info.sh
 #interval=3
 
-[CPU]
-full_text= CPU:  0.00% @ +00.0°C 
-command=~/.config/i3blocks/cpu/cpu_info.sh
-interval=2
-color=#00B4EB
-
-[MEM]
-command=free -h | awk '/Mem:/ { printf(" 🐏 %5s/%s \n", $3, $2) }'
-interval=1
-color=#FEC925
-
-[SOUND_BURST]
-command=~/.config/i3blocks/sound/sound_burst.sh
-interval=once
+#[SOUND_BURST]
+#command=~/.config/i3blocks/sound/sound_burst.sh
+#command=amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }' | sed 's/on://g'
+#interval=once
+#color=#C3CD72
 
 [SOUND]
-full_text= 🔇:  0% 
-command=~/.config/i3blocks/sound/sound_info.sh
+#full_text= 🔇:  0% 
+#command=~/.config/i3blocks/sound/sound_info.sh
+command=amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }' | sed 's/on://g'
 interval=2
 signal=1
+color=#C3CD72
 
 [TIME_DATE]
 command=date +" %a, %d %b - %H:%M"\ \  
 interval=1
+color=#7ECEF1
 

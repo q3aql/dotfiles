@@ -1,0 +1,77 @@
+# github.com/rafi i3status config
+
+# i3status configuration file
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+	colors = true
+  color_separator = "#664477"
+  markup = "pango"
+	#color_good = "#664477"
+	#color_bad = "#EE2828"
+	#color_degraded = "#B25714"
+	interval = 2
+}
+
+order += "read_file kernel"
+order += "cpu_usage"
+order += "cpu_temperature 0"
+#order += "load"
+order += "memory"
+order += "disk /"
+#order += "ethernet eth0"
+order += "volume master"
+order += "tztime local"
+#order += "ipv6"
+#order += "run_watch DHCP"
+#order += "run_watch VPN"
+#order += "wireless wlan0"
+
+read_file kernel {
+  format = " <span color='#7ECEF1'>%content</span> "
+  path = "/proc/version"
+  max_characters = 20
+}
+
+volume master {
+#	format = " ♪: %volume  "
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+	# termsyn font
+	format = " <span color='#D1B803'>VOL: %volume</span> "
+}
+
+#load {
+  #	format = " Δ: %1min "
+	# termsyn font
+  #format = " Load: %1min"
+#}
+
+cpu_usage {
+	format = " <span color='#C16BD8'>CPU: %usage</span> "
+}
+
+cpu_temperature 0 {
+  format = " <span color='#C19DB5'>%degrees °C</span> "
+	max_threshold = 80
+}
+
+disk "/" {
+	format = " <span color='#EA6006'>%avail / %total</span> " 
+}
+
+memory {
+  format = " <span color='#BBDD96'>%used / %total</span> "
+}
+
+tztime local {
+#	format = " %h-%d %H:%M ☰ "
+	# termsyn font
+  format = " %h-%d, %H:%M "
+}

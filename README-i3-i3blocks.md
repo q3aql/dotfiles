@@ -7,7 +7,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 
-![i3WM](examples/i3wm-i3status.png)
+![i3WM](examples/i3wm.png)
 
 ### Installation:
 
@@ -54,6 +54,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
       $ cd dotfiles
       $ cp -rfv .* ~/
       $ cp -rfv * ~/
+      $ cp -rfv ~/.config/i3/config.i3blocks ~/.config/i3/
       ````
 
 ### Configuration:
@@ -85,7 +86,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
     * Edit  `~/.config/i3/config` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jpg"
+      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
       ````
 
   * **`Enable Gaps (Optional):`**

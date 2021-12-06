@@ -1,7 +1,11 @@
 dotfiles - My tiling Spectrwm & i3 WM Configuration (for Devuan/Debian)
 =======================================================================
 
-* [Instructions for i3WM configuration](README-i3.md)
+### My configurations:
+
+* [spectrwm](README.md)
+* [i3 + i3status](README-i3.md)
+* [i3 + i3blocks](README-i3-i3blocks.md)
 
 ![spectrwm](examples/spectrwm.png)
 

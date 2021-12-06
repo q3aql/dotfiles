@@ -1,4 +1,4 @@
-dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
+dotfiles - My tiling i3 + polybar configuration (for Devuan/Debian)
 ====================================================================
 
 ### My configurations:
@@ -8,7 +8,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 * [i3 + polybar](README-i3-polybar.md)
 
-![i3WM](examples/i3wm-i3status.png)
+![i3WM](examples/i3wm-polybar.png)
 
 ### Installation:
 
@@ -22,7 +22,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
         nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
         engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
         python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
-        xfce4-screenshooter xscreensaver alsa-utils ristretto
+        xfce4-screenshooter xscreensaver alsa-utils ristretto polybar
       ````
     * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
 
@@ -55,6 +55,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
       $ cd dotfiles
       $ cp -rfv .* ~/
       $ cp -rfv * ~/
+      $ cp -rfv ~/.config/i3/config.polybar ~/.config/i3/config
       ````
 
 ### Configuration:
@@ -86,7 +87,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
     * Edit  `~/.config/i3/config` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jpg"
+      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
       ````
 
   * **`Enable Gaps (Optional):`**

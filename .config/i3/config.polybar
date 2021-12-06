@@ -44,7 +44,7 @@ exec --no-startup-id ~/.config/i3/startxrandr.sh &
 exec --no-startup-id "sleep 15 && picom &"
 
 # Configure wallpaper
-exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
+exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jpg"
 
 # Configure xscreensaver
 exec --no-startup-id "sleep 5 && xscreensaver &"
@@ -283,9 +283,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   position top
-  #i3bar_command $HOME/.config/polybar/launch.sh
+  i3bar_command $HOME/.config/polybar/launch.sh
   #status_command i3status
-  status_command i3blocks
+  #status_command i3blocks
   #tray_output DisplayPort-0
   colors {
     separator #AAAAAA

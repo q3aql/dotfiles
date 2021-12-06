@@ -1,11 +1,12 @@
-dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
-============================================================
+dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
+====================================================================
 
 ### My configurations:
 
 * [spectrwm](README.md)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
+* [i3 + polybar](README-i3-polybar.md)
 
 ![i3WM](examples/i3wm.png)
 
@@ -54,7 +55,7 @@ dotfiles - My tiling i3 WM Configuration (for Devuan/Debian)
       $ cd dotfiles
       $ cp -rfv .* ~/
       $ cp -rfv * ~/
-      $ cp -rfv ~/.config/i3/config.i3blocks ~/.config/i3/
+      $ cp -rfv ~/.config/i3/config.i3blocks ~/.config/i3/config
       ````
 
 ### Configuration:

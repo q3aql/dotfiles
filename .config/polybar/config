@@ -38,7 +38,7 @@ monitor = ${env:MONITOR:}
 ;monitor = ${env:MONITOR:DisplayPort-0}
 ;monitor = ${env:MONITOR:DisplayPort-1}
 width = 100%
-height = 25
+height = 26
 ;override-redirect = true
 ;offset-x = 25%
 ;offset-y = 0%
@@ -53,7 +53,7 @@ underline = #664477
 line-size = 3
 line-color = #f004477
 
-border-size = 1
+border-size = 0
 ;border-color = #664477
 ;border-color = #00000000
 ;border-color = ${glob.background}

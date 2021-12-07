@@ -4,6 +4,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
 ### My configurations:
 
 * [spectrwm](README.md)
+* [spectrwm + polybar](README-spectrwm-polybar.md)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 * [i3 + polybar](README-i3-polybar.md)

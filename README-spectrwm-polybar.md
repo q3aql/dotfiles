@@ -1,5 +1,5 @@
-dotfiles - My tiling spectrwm & i3 configuration (for Devuan/Debian)
-====================================================================
+dotfiles - My tiling spectrwm + polybar configuration (for Devuan/Debian)
+=========================================================================
 
 ### My configurations:
 
@@ -9,7 +9,7 @@ dotfiles - My tiling spectrwm & i3 configuration (for Devuan/Debian)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 * [i3 + polybar](README-i3-polybar.md)
 
-![spectrwm](examples/spectrwm.png)
+![spectrwm](examples/spectrwm-polybar.png)
 
 ### Installation:
 
@@ -49,6 +49,7 @@ dotfiles - My tiling spectrwm & i3 configuration (for Devuan/Debian)
       $ cd dotfiles
       $ cp -rfv .* ~/
       $ cp -rfv * ~/
+      $ cp -rfv ~/.config/spectrwm/spectrwm-polybar.conf ~/.config/spectrwm/spectrwm.conf
       ````
 
 ### Configuration:
@@ -111,7 +112,6 @@ My list of extra combinations:
     - Super + x = Close Window
     - Super + w = Minimize Window
     - Super + Shift + w = Maximize/Search Window
-    - Super + Shift + t = Show/Hide Tray (Run by default on Workspace 7)
     - Super + c = Open network configuration
     - Super + v = Open volume configuration (Pavucontrol)
     - Super + Return = Open terminal (Alacritty)

@@ -1,5 +1,5 @@
-dotfiles - My tiling spectrwm & i3 configuration (for Devuan/Debian)
-====================================================================
+dotfiles - My tiling spectrwm & i3 configurations (for Devuan/Debian)
+=====================================================================
 
 ### My configurations:
 

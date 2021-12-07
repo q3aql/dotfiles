@@ -39,7 +39,7 @@ monitor = ${env:MONITOR:}
 ;monitor = ${env:MONITOR:DisplayPort-1}
 width = 100%
 height = 26
-override-redirect = true
+;override-redirect = true
 ;offset-x = 25%
 ;offset-y = 0%
 radius = 0.0
@@ -50,7 +50,7 @@ background = #222133
 foreground = #ADBAC7
 underline = #664477
 
-line-size = 3
+line-size = 2
 line-color = #f004477
 
 border-size = 0
@@ -227,10 +227,10 @@ format-foreground = #C14F3F
 
 [module/i3]
 type = internal/i3
-format = <label-state> <label-mode>
+;format = <label-state> <label-mode>
 ;index-sort = true
 ;wrapping-scroll = false
-;strip-wsnumbers = true
+strip-wsnumbers = true
 
 ; Only show workspaces on the same output as the bar
  pin-workspaces = true
@@ -241,25 +241,25 @@ label-mode-background = ${glob.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-foreground = #ADBAC7
-label-focused-background = #664477
-label-focused-underline = ${glob.background}
-label-focused-padding = ${glob.padding}
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline = #6790eb
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 ;label-unfocused = %name%
-;label-unfocused-padding = ${glob.padding}
+label-unfocused-padding = 1
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
+label-visible-padding = 1
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%
 label-urgent-foreground = ${glob.red}
-label-urgent-padding = ${glob.padding}
+label-urgent-padding = 1
 
 ; Separator in between workspaces
 ; label-separator = |

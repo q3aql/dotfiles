@@ -105,27 +105,27 @@ window#waybar.chromium {
 
 #custom-disk {
     color: #C14F3F;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
 #custom-kernel {
     color: #51A6E3;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
 #custom-cpu {
     color: #B63CEC;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
 #custom-memory {
     color: #CADD8A;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
 #custom-clock {
     color: #51A6E3;
-    margin: 0 2px;
+    margin: 0 1px;
 }
 
 #battery {
@@ -242,7 +242,7 @@ label:focus {
 
 #language {
     color: #00b093;
-    padding: 0 2px;
-    margin: 0 2px;
+    padding: 0 1px;
+    margin: 0 1px;
     min-width: 16px;
 }

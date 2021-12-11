@@ -292,6 +292,15 @@ input * {
       #xkb_variant "colemak"
   }
 
+# Load GTK3 for Wayland apps (Arc+Papirus Theme)
+set $gnome-schema org.gnome.desktop.interface
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'Arc-Dark'
+    gsettings set $gnome-schema icon-theme 'Papirus-Dark'
+    gsettings set $gnome-schema cursor-theme 'Adwaita'
+    gsettings set $gnome-schema font-name 'Sans 10'
+}
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {

@@ -4,7 +4,8 @@
     "height": 28, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    // "modules-left": ["sway/workspaces", "sway/mode", "custom/media"],
+    "modules-left": ["sway/workspaces"],
     // "modules-center": ["sway/window"],
     //"modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"],
     "modules-right": ["custom/kernel",  "custom/cpu", "custom/memory", "custom/disk", "pulseaudio", "sway/language", "network", "custom/clock", "tray"],
@@ -24,6 +25,22 @@
     //         "default": ""
     //     }
     // },
+    "sway/workspaces": {
+         "all-outputs": false,
+         //"format": "{name}: {icon}",
+         "format": "{name}",
+         "format-icons": {
+         //    "1": "",
+         //    "2": "",
+         //    "3": "",
+         //    "4": "",
+         //    "5": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+     },
+
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -72,7 +89,7 @@
     },
     "tray": {
         // "icon-size": 21,
-        "spacing": 20
+        "spacing": 5
     },
     "clock": {
         // "timezone": "America/New_York",

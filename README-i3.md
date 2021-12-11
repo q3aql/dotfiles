@@ -8,8 +8,9 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 * [i3 + polybar](README-i3-polybar.md)
+* [sway](README-sway.md)
 
-![i3WM](examples/i3wm-i3status.png)
+![i3-i3status](examples/i3wm-i3status.png)
 
 ### Installation:
 
@@ -83,7 +84,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
 
   * **`Wallpaper:`**
   
-    * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
+    * By default, the config load wallpaper on `~/wallpapers/dark-city.jpg`:
     * Edit  `~/.config/i3/config` for set your favorite wallpaper:
     
       ```shell
@@ -100,17 +101,6 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
       #gaps outer 2
       ````
 
-  * **`Battery Indicator:`**
-  
-    * By default, the battery indicator is disabled on i3blocks top bar.
-    * You can enable it editing the lines on `~/.config/i3blocks/config` file:
-    
-      ```shell
-      #[BATTERY]
-      #command=~/.config/i3blocks/battery/battery_info.sh
-      #interval=3
-      ````
-      
 ### Keys configuration:
 
 My list of extra combinations:

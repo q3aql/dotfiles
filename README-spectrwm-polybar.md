@@ -8,8 +8,9 @@ dotfiles - My tiling spectrwm + polybar configuration (for Devuan/Debian)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 * [i3 + polybar](README-i3-polybar.md)
+* [sway](README-sway.md)
 
-![spectrwm](examples/spectrwm-polybar.png)
+![spectrwm-polybar](examples/spectrwm-polybar.png)
 
 ### Installation:
 

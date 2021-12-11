@@ -1,4 +1,4 @@
-dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
+dotfiles - My tiling sway configuration (for Devuan/Debian)
 ====================================================================
 
 ### My configurations:
@@ -10,7 +10,7 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
 * [i3 + polybar](README-i3-polybar.md)
 * [sway](README-sway.md)
 
-![i3-i3blocks](examples/i3wm.png)
+![sway](examples/sway.png)
 
 ### Installation:
 
@@ -19,12 +19,14 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
     * Open the terminal and type the following commands:
     
       ```shell
-      $ sudo apt-get install i3 i3status i3blocks i3-wm i3pystatus i3lock i3lock-fancy \
-        compton arc-theme breeze-cursor-theme fonts-noto papirus-icon-theme lxappearance \
-        nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
-        engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
-        python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
-        xfce4-screenshooter xscreensaver alsa-utils ristretto
+      $ sudo apt-get install sway swaybg wlr-randr wdisplays wofi meson waybar \
+        wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
+        libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin \
+        xdg-desktop-portal-wlr wf-recorder arc-theme breeze-cursor-theme fonts-noto \
+        papirus-icon-theme lxappearance weston slurp grim jq wl-clipboard pnmixer conky \
+        xterm exa fish bat zsh dmenu fzf apcalc rofi engrampa xarchiver mpv ffmpeg \
+        pcmanfm ranger vlc vim geany git nodejs node-base python3 npm make cmake gcc cargo \
+        neofetch screenfetch lm-sensors pavucontrol xscreensaver alsa-utils ristretto
       ````
     * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
 
@@ -32,7 +34,7 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
       $ sudo apt-get install connman connman-gtk connman-ui connman-vpn
       ````
       
-  * **`Install alacritty and i3-gaps (Optional):`**
+  * **`Install alacritty:`**
   
     * Clone repository and run the scripts for installation:
 
@@ -43,11 +45,6 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
       $ sudo ./alacritty-install.sh
       ````
       
-      ```shell
-      $ chmod +x i3-gaps-install.sh
-      $ sudo ./i3-gaps-install.sh
-      ````
-
   * **`Install configuration (dotfiles):`**
   
     * Clone repository and copy files to your home:
@@ -57,7 +54,6 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
       $ cd dotfiles
       $ cp -rfv .* ~/
       $ cp -rfv * ~/
-      $ cp -rfv ~/.config/i3/config.i3blocks ~/.config/i3/config
       ````
 
 ### Configuration:
@@ -75,59 +71,52 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
   * **`Monitor & resolution:`**
   
     * The configuration load my monitor configuration:
-    * Use the command `xrandr` for show your config & edit the file `~/.config/i3/startxrandr.sh`:
+    * Use the command `wlr-randr` for show your config & edit the file `~/.config/sway/startwlrrandr.sh`:
     
       ```shell
       sleep 2
-      xrandr --output DisplayPort-0 --mode 1280x1024 -r 75.02
-      xrandr --output DisplayPort-1 --mode 1280x1024 -r 75.02 --rotate left --right-of DisplayPort-0
+      wlr-randr --output DP-1 --custom-mode 1280x1024@75Hz --pos 288,0
+      wlr-randr --output DP-2 --custom-mode 1280x1024@75Hz --transform 90 --pos 1568,0
       ````
 
   * **`Wallpaper:`**
   
-    * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
-    * Edit  `~/.config/i3/config` for set your favorite wallpaper:
+    * By default, the config load wallpaper on `~/wallpapers/dark-city.jpg`:
+    * Edit  `~/.config/sway/config` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
+      exec --no-startup-id "swaybg -i ~/wallpapers/dark-city.jpg -m fill"
       ````
 
-  * **`Enable Gaps (Optional):`**
+  * **`Layout:`**
   
-    * My config work on vanilla i3wm and gaps are disabled.
-    * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:
+    * By default, the config load my spanish layout.:
+    * Edit  `~/.config/sway/config` for set your configuration:
     
       ```shell
-      #gaps inner 6
-      #gaps outer 2
+      # Input layout
+      input * {
+        #xkb_layout "us"
+        xkb_layout "es"
+        #xkb_variant "colemak"
+      }
       ````
 
-  * **`Battery Indicator:`**
-  
-    * By default, the battery indicator is disabled on i3blocks top bar.
-    * You can enable it editing the lines on `~/.config/i3blocks/config` file:
-    
-      ```shell
-      #[BATTERY]
-      #command=~/.config/i3blocks/battery/battery_info.sh
-      #interval=3
-      ````
-      
 ### Keys configuration:
 
 My list of extra combinations:
 
     - Super + d = Open Dmenu
-    - Super + p = Open Rofi (run mode)
+    - Super + p = Open Wofi (run mode)
     - Super + q = Open Rofi (window mode)
-    - Super + o = Open Rofi (drun mode)
+    - Super + o = Open Wofi (drun mode)
     - Super + b = Open Firefox
     - Super + n = Open PCManFM
-    - Super + t = Open Rofi Theme Selector
+    - Super + t = Open Wayland-Screenshooter
     - Super + g = Open Geany
     - Super + m = Open Telegram 
-    - Super + z = Open Nitrogen 
-    - Super + x = Open LXRandr
+    - Super + z = Open Wf-Recorder (Screen video recorder) 
+    - Super + x = Open Wdisplays
     - Super + u = Open Xterm
     - Super + i = Open LXAppearance
     - Super + c = Open NetWorkManager
@@ -136,7 +125,7 @@ My list of extra combinations:
     - VolumeMute = Mute Volume
     - Super + Ctrl + Shift + e = Poweroff screen
     - Super + Shit + e = Logout
-    - Super + Backspace = Open menu Logout/Lock/Reboot/Shutdown
+    - Super + Backspace = Open menu Logout/Reboot/Shutdown
 
 ### External links:
 

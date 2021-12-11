@@ -1,5 +1,5 @@
-dotfiles - My tiling spectrwm & i3 configurations (for Devuan/Debian)
-=====================================================================
+dotfiles - My tiling spectrwm, i3 & sway configurations (for Devuan/Debian)
+===========================================================================
 
 ### My configurations:
 
@@ -8,6 +8,7 @@ dotfiles - My tiling spectrwm & i3 configurations (for Devuan/Debian)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
 * [i3 + polybar](README-i3-polybar.md)
+* [sway](README-sway.md)
 
 ![spectrwm](examples/spectrwm.png)
 

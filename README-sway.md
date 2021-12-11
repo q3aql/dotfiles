@@ -61,7 +61,7 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer NetWorkManager, edit the file `~/.config/i3/config`:
+    * If you prefer NetWorkManager, edit the file `~/.config/sway/config`:
     
       ```shell
       #exec --no-startup-id connman-gtk --tray &

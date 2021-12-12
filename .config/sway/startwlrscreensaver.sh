@@ -9,6 +9,9 @@ monitorThree="" # Third monitor
 # Load script for load monitors config quickly from resume
 LoadConfigResume="${HOME}/.config/sway/startwlrrandr.sh"
 
+# StateFile variable
+stateFile="${HOME}/.config/sway/screen-state"
+
 # Function for sleep monitors
 function sleepMonitors() {
   # Check monitor 3
@@ -32,6 +35,7 @@ function sleepMonitors() {
     echo "Sleep monitor 1"
     wlr-randr --output ${monitorOne} --off
   fi
+  echo "sleep" > ${stateFile}
 }
 
 # Function for resume monitors
@@ -59,6 +63,7 @@ function resumeMonitors() {
   fi
   # Load monitors config quickly
   bash ${LoadConfigResume} screensaver
+  echo "resume" > ${stateFile}
 }
 
 # Boot parameters

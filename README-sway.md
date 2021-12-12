@@ -19,7 +19,7 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
     * Open the terminal and type the following commands:
     
       ```shell
-      $ sudo apt-get install sway swaybg wlr-randr wdisplays wofi meson waybar \
+      $ sudo apt-get install sway swaybg swayidle wlr-randr wdisplays wofi meson waybar \
         wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
         libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin \
         xdg-desktop-portal-wlr wf-recorder arc-theme breeze-cursor-theme fonts-noto \

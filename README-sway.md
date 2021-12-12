@@ -74,12 +74,24 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
     * Use the command `wlr-randr` for show your config & edit the file `~/.config/sway/startwlrrandr.sh`:
     
       ```shell
-      sleep 2
       wlr-randr --output DP-1 --custom-mode 1280x1024@75Hz --pos 288,0
       wlr-randr --output DP-2 --custom-mode 1280x1024@75Hz --transform 90 --pos 1568,0
       ````
 
-  * **`Wallpaper:`**
+  * **`Screensaver:`**
+  
+    * The configuration file use my monitor configuration and set the time in 15 minutes:
+    * Use the command `wlr-randr` for show your monitors & edit the file `~/.config/sway/startwlrscreensaver.sh`:
+    
+      ```shell
+      # Basic configuration variables
+      ScreensaverTime="900" # 15 minutes
+      monitorOne="DP-1" # First monitor
+      monitorTwo="DP-2" # Second monitor
+      monitorThree="" # Third monitor
+      ````
+
+ * **`Wallpaper:`**
   
     * By default, the config load wallpaper on `~/wallpapers/dark-city.jpg`:
     * Edit  `~/.config/sway/config` for set your favorite wallpaper:
@@ -123,8 +135,8 @@ My list of extra combinations:
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
-    - Super + Ctrl + Shift + e = Poweroff screen
-    - Super + Shit + e = Logout
+    - Super + Ctrl + Shift + l = Poweroff/Start screen (Screensaver step needed)
+    - Super + Shift + e = Logout
     - Super + Backspace = Open menu Logout/Reboot/Shutdown
 
 ### External links:

@@ -124,7 +124,7 @@ My list of extra combinations:
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
     - Super + Ctrl + Shift + e = Poweroff screen
-    - Super + Shit + e = Logout
+    - Super + Shift + e = Logout
     - Super + Backspace = Open menu Logout/Lock/Reboot/Shutdown
 
 ### External links:

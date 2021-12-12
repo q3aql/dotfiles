@@ -40,8 +40,8 @@ exec --no-startup-id ~/.config/sway/startwlrrandr.sh &
 # Configure wallpaper
 exec --no-startup-id "swaybg -i ~/wallpapers/dark-city.jpg -m fill"
 
-# Configure xscreensaver (don't work on Wayland)
-exec --no-startup-id "sleep 5 && xscreensaver &"
+# Start Screensaver (Also Super+Ctrl+Shift+l to poweroff/start screen)
+exec --no-startup-id ~/.config/sway/startwlrscreensaver.sh
 
 # Clipboard (Diodon)
 exec --no-startup-id diodon &
@@ -118,14 +118,14 @@ bindsym $mod+Ctrl+Shift+l exec --no-startup-id $swaylockwall
 
 # close session
 #bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym Mod1+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'"
+bindsym Mod1+Shift+e exec "swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit Sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'"
 
 # shutdown / restart / suspend...
 set $mode_system System (l) lock, (e) logout, (r) reboot, (CTRL+s) shutdown
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id $swaylockwall, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym r exec --no-startup-id /sbin/reboot, mode "default"
     bindsym Ctrl+s exec --no-startup-id /sbin/poweroff, mode "default"
 

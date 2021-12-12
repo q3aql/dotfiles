@@ -1,15 +1,12 @@
 #!/bin/bash
 
-scan_rel=0
+# Ignore sleep when run script from startwlrscreensaver.sh
+if [ "${1}" == "screensaver" ] ; then
+  echo "Load monitor configuration quickly"
+else
+  sleep 2
+fi
 
-sleep 2
-#while [ ${scan_rel} -eq 0 ] ; do
-  # Primer monitor
-  #wlr-randr --output DP-1 --custom-mode 1280x1024@75Hz --pos 288,0
-  # Segundo monitor
-  #wlr-randr --output DP-2 --custom-mode 1280x1024@75Hz --transform 90 --pos 1568,0
-  #sleep 2
-#done
-sleep 2
+# Configuration for your monitor(s). Use wlr-randr and/or wdisplays for help
 wlr-randr --output DP-1 --custom-mode 1280x1024@75Hz --pos 288,0
 wlr-randr --output DP-2 --custom-mode 1280x1024@75Hz --transform 90 --pos 1568,0

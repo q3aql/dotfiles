@@ -1,19 +1,29 @@
 #!/bin/bash
 
-###############################################################
-# down-daemon (down-screen) - Daemon to shutdown the screen   #
-# Date: 19-11-2020                                            #
-# Author: q3aql                                               #
-# Contact: q3aql@duck.com                                     #
-###############################################################
-VERSION="1.0"
-M_DATE="191120"
+######################################################
+# down-screen - Script for sleep and resume monitors #
+# Date: 12-12-2021                                   #
+# Author: q3aql                                      #
+# Contact: q3aql@duck.com                            #
+######################################################
 
-# Variable
-endProcess=0
+# Load script for sleep and resume monitors
+LoadScriptScreensaver="${HOME}/.config/sway/startwlrscreensaver.sh"
 
-# Run screensaver
-sleep 3
-echo "* Forcing screen to shutdown..."
-#xset dpms force off
-xscreensaver-command -prev
+# Create or read init file
+stateFile="${HOME}/.config/sway/screen-state"
+if [ -f ${stateFile} ] ; then
+  echo "Screen State file detected"
+else
+  echo "resume" > ${stateFile}
+fi
+
+# Boot parameters
+current_state=$(cat ${stateFile})
+if [ "${current_state}" == "resume" ] ; then
+  bash "${LoadScriptScreensaver}" sleep
+  echo "sleep" > ${stateFile}
+elif [ "${current_state}" == "sleep" ] ; then
+  bash "${LoadScriptScreensaver}" resume
+  echo "resume" > ${stateFile}
+fi

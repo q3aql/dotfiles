@@ -94,7 +94,7 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Devuan/Debian)
 
  * **`Set Screensaver (Optional):`**
 
-    * The configuration file set 'xautolock' with 20 minutes as screensaver:
+    * The configuration file set `xautolock` with 20 minutes as screensaver:
     * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/spectrwm/startscreensaver.sh`:
 
       ```shell

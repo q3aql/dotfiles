@@ -80,12 +80,12 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
 
   * **`Screensaver:`**
   
-    * The configuration file use my monitor configuration and set the time in 15 minutes:
+    * The configuration file use my monitor configuration and set the time in 20 minutes:
     * Use the command `wlr-randr` for show your monitors & edit the file `~/.config/sway/startwlrscreensaver.sh`:
     
       ```shell
       # Basic configuration variables
-      ScreensaverTime="900" # 15 minutes
+      ScreensaverTime="1200" # 20 minutes
       monitorOne="DP-1" # First monitor
       monitorTwo="DP-2" # Second monitor
       monitorThree="" # Third monitor

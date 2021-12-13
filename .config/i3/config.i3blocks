@@ -46,8 +46,8 @@ exec --no-startup-id "sleep 15 && picom &"
 # Configure wallpaper
 exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
 
-# Configure xscreensaver
-exec --no-startup-id "sleep 5 && xscreensaver &"
+# Configure screensaver
+exec --no-startup-id ~/.config/i3/startscreensaver.sh &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

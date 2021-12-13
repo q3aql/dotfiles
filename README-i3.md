@@ -24,7 +24,7 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
         nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
         engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
         python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
-        xfce4-screenshooter xscreensaver alsa-utils ristretto
+        xfce4-screenshooter xscreensaver alsa-utils ristretto xautolock
       ````
     * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
 
@@ -91,7 +91,18 @@ dotfiles - My tiling i3 + i3status configuration (for Devuan/Debian)
       exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jpg"
       ````
 
-  * **`Enable Gaps (Optional):`**
+ * **`Set Screensaver (Optional):`**
+
+    * The configuration file set `xautolock` with 20 minutes as screensaver:
+    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/i3/startscreensaver.sh`:
+
+      ```shell
+      # Basic configuration variables
+      ScreensaverProgram="xautolock" # Options: xautolock or xscreensaver
+      ScreensaverTime="20" # 20 minutes (only for xautolock)
+      ````
+
+* **`Enable Gaps (Optional):`**
   
     * My config work on vanilla i3wm and gaps are disabled.
     * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:

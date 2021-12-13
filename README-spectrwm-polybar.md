@@ -19,7 +19,7 @@ dotfiles - My tiling spectrwm + polybar configuration (for Devuan/Debian)
     * Open the terminal and type the following commands:
     
       ```shell
-      $ sudo apt-get install spectrwm compton arc-theme breeze-cursor-theme \
+      $ sudo apt-get install spectrwm compton arc-theme breeze-cursor-theme xautolock \
         fonts-noto papirus-icon-theme lxappearance nitrogen lxrandr pnmixer tint2 \
         conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom engrampa ristretto \
         xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
@@ -91,6 +91,17 @@ dotfiles - My tiling spectrwm + polybar configuration (for Devuan/Debian)
       ```shell
       sleep 3
       nitrogen --set-scaled ~/wallpapers/abstract.png
+      ````
+
+ * **`Set Screensaver (Optional):`**
+
+    * The configuration file set 'xautolock' with 20 minutes as screensaver:
+    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/spectrwm/startscreensaver.sh`:
+
+      ```shell
+      # Basic configuration variables
+      ScreensaverProgram="xautolock" # Options: xautolock or xscreensaver
+      ScreensaverTime="20" # 20 minutes (only for xautolock)
       ````
 
   * **`Compositor (Compton or Picom):`**

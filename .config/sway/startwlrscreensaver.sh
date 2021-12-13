@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Basic configuration variables
-ScreensaverTime="900" # 15 minutes
+ScreensaverTime="1200" # 20 minutes
 monitorOne="DP-1" # First monitor
 monitorTwo="DP-2" # Second monitor
 monitorThree="" # Third monitor
@@ -71,6 +71,7 @@ if [ -z "${1}" ] ; then
   # Kill previous process
   echo "Trying to kill previous process"
   killall -9 swayidle
+  sleep 3
   # Init swayidle command
   swayidle timeout ${ScreensaverTime} "bash ${0} sleep" resume "bash ${0} resume"
 elif [ "${1}" == "sleep" ] ; then

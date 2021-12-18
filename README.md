@@ -57,7 +57,7 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer Connman, edit the file `~/.config/spectrwm/spectrwm.conf` and `autostart.sh`:
+    * If you prefer `Connman`, edit the file `~/.config/spectrwm/spectrwm.conf` and `autostart.sh`:
     
       ```shell
       # Choose between NetworkManager or Connman

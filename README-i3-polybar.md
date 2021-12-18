@@ -65,7 +65,7 @@ dotfiles - My tiling i3 + polybar configuration (for Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer NetWorkManager, edit the file `~/.config/i3/config`:
+    * If you prefer `Connman`, edit the file `~/.config/i3/config`:
     
       ```shell
       #exec --no-startup-id connman-gtk --tray &

@@ -21,7 +21,7 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
       ```shell
       $ sudo apt-get install sway swaybg swayidle wlr-randr wdisplays wofi meson waybar \
         wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
-        libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin \
+        libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin x11-xserver-utils \
         xdg-desktop-portal-wlr wf-recorder arc-theme breeze-cursor-theme fonts-noto \
         papirus-icon-theme lxappearance weston slurp grim jq wl-clipboard pnmixer conky \
         xterm exa fish bat zsh dmenu fzf apcalc rofi engrampa xarchiver mpv ffmpeg \

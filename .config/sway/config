@@ -90,7 +90,8 @@ bindsym $mod+p exec --no-startup-id wofi --show run
 bindsym $mod+g exec --no-startup-id geany
 bindsym $mod+m exec --no-startup-id telegram
 bindsym $mod+z exec --no-startup-id alacritty -e wf-recorder
-bindsym $mod+u exec --no-startup-id xterm
+#bindsym $mod+u exec --no-startup-id xterm
+bindsym $mod+u exec --no-startup-id ~/.config/sway/xterm-wayland
 bindsym $mod+t exec --no-startup-id ~/.config/sway/wayland-screenshot
 bindsym $mod+i exec --no-startup-id lxappearance
 

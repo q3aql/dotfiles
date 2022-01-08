@@ -46,14 +46,12 @@ radius = 0.0
 fixed-center = true
 
 ;background = ${glob.background}
-;background = #222133
-background = #2b303b
+background = #222133
 foreground = #ADBAC7
 underline = #664477
 
 line-size = 2
-;line-color = #f004477
-line-color = #9fa8af
+line-color = #f004477
 
 border-size = 0
 ;border-color = #664477
@@ -76,8 +74,7 @@ modules-left = i3
 modules-right = kernel cpu meminfo diskinfo pulseaudio wlan eth0 date
 tray-position = right
 ;tray-margin = 0
-;tray-background = #222133 
-tray-background = #2b303b 
+tray-background = #222133 
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -182,9 +179,8 @@ label-monitor = %name%
 
 label-active = %name%
 label-active-foreground = ${colors.foreground}
-;label-active-background = ${colors.background}
-label-active-background = #42516d
-label-active-underline= #dbdbdb
+label-active-background = ${colors.background}
+label-active-underline= #6790eb
 label-active-padding = 2
 
 label-occupied = %name%
@@ -247,9 +243,8 @@ label-mode-background = ${glob.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %name%
 label-focused-foreground = ${colors.foreground}
-;label-focused-background = ${colors.background}
-label-focused-background = #42516d
-label-focused-underline = #dbdbdb
+label-focused-background = ${colors.background}
+label-focused-underline = #6790eb
 label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor

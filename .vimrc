@@ -12,6 +12,13 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 :packadd onedark.vim
 :colorscheme onedark
 
+" Change fonts for Windows
+":set guifont=Consolas:h11:cANSI
+
+" Hide menu/toolbar of GVIM
+":set guioptions -=m
+:set guioptions -=T
+
 " Helps force plug-ins to load correctly when it is turned back on below.
 filetype off
 

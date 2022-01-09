@@ -61,7 +61,7 @@ floating_modifier $mod
 
 # New windows without borders
 #new_window 1pixel
-new_window pixel 3
+new_window pixel 2
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal

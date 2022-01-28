@@ -18,6 +18,8 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 " Hide menu/toolbar of GVIM
 ":set guioptions -=m
 :set guioptions -=T
+:set guioptions -=r
+:set guioptions -=L
 
 " Helps force plug-ins to load correctly when it is turned back on below.
 filetype off

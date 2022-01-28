@@ -87,14 +87,37 @@ kernel() {
 
 ## CPU
 cpu() {
-  TEMP=$(sensors | grep 'Package id 0:\|Tdie' | grep ':[ ]*+[0-9]*.[0-9]*°C' -o | grep '+[0-9]*.[0-9]*°C' -o)
-  read cpu a b c previdle rest < /proc/stat
-  prevtotal=$((a+b+c+previdle))
-  sleep 0.5
-  read cpu a b c idle rest < /proc/stat
-  total=$((a+b+c+idle))
-  cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
-  echo -e "CPU: $cpu% @ ${TEMP}"
+  check_sensor=$(sensors | grep "Tdie:" 2> /dev/null)
+  if [ -z "${check_sensor}" ] ; then
+    check_sensor=$(sensors | grep "Tctl:" 2> /dev/null)
+    if [ -z "${check_sensor}" ] ; then
+      read cpu a b c previdle rest < /proc/stat
+      prevtotal=$((a+b+c+previdle))
+      sleep 0.5
+      read cpu a b c idle rest < /proc/stat
+      total=$((a+b+c+idle))
+      cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
+      echo -e "CPU: $cpu%"
+    else
+     TEMP=$(sensors | grep 'Package id 0:\|Tctl' | grep ':[ ]*+[0-9]*.[0-9]*°C' -o | grep '+[0-9]*.[0-9]*°C' -o)
+      read cpu a b c previdle rest < /proc/stat
+      prevtotal=$((a+b+c+previdle))
+      sleep 0.5
+      read cpu a b c idle rest < /proc/stat
+      total=$((a+b+c+idle))
+      cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
+      echo -e "CPU: $cpu% @ ${TEMP}"
+    fi
+  else
+    TEMP=$(sensors | grep 'Package id 0:\|Tdie' | grep ':[ ]*+[0-9]*.[0-9]*°C' -o | grep '+[0-9]*.[0-9]*°C' -o)
+    read cpu a b c previdle rest < /proc/stat
+    prevtotal=$((a+b+c+previdle))
+    sleep 0.5
+    read cpu a b c idle rest < /proc/stat
+    total=$((a+b+c+idle))
+    cpu=$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))
+    echo -e "CPU: $cpu% @ ${TEMP}"
+  fi
 }
 
 ## VOLUME

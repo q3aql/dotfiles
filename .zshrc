@@ -255,11 +255,9 @@ SPROMPT='zsh: korrigiere '%R' nach '%r'? ([Y]es/[N]o/[E]dit/[A]bort) '
 [ -f ~/.alias/alias-autoliv ] && source ~/.alias/alias-autoliv
 [ -f ~/.alias/alias-fs20 ] && source ~/.alias/alias-fs20
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+source ~/.p10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-fpath+=${ZDOTDIR:-~}/.zsh_functions

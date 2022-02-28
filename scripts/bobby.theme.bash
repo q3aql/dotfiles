@@ -5,8 +5,6 @@ case "$TERM" in
 esac
 
 if [ "$color_prompt" = yes ]; then
-  echo "⌚" &> /dev/null
-  echo $?
   PS1="\n\[\033[01;36m\] \D{%Y-%m-%d} \t\[\033[00m\] "
   #
   #PS1+="\[\033[00;31m\]o\[\033[00m\]  " # Activate this one if the one below fails

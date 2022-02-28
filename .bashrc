@@ -59,8 +59,6 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-  echo "⌚" &> /dev/null
-  echo $?
   PS1="\n\[\033[01;36m\] \D{%Y-%m-%d} \t\[\033[00m\] "
   #
   #PS1+="\[\033[00;31m\]o\[\033[00m\]  " # Activate this one if the one below fails
@@ -90,8 +88,6 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-  echo "⌚" &> /dev/null
-  echo $?
   PS1="\n\[\033[01;36m\] \D{%Y-%m-%d} \t\[\033[00m\] "
   #
   #PS1+="\[\033[00;31m\]o\[\033[00m\]  " # Activate this one if the one below fails

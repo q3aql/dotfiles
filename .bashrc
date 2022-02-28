@@ -59,16 +59,50 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[01;33m\](\t)\[\033[00m\]\[\033[01;31m\]:\[\033[00m\]\[\033[01;32m\](\u@\h)\[\033[00m\]\[\033[01;31m\]:\[\033[00m\]\[\033[01;34m\](\W)\[\033[00m\]\$ '
+  echo "⌚" &> /dev/null
+  echo $?
+  PS1="\n\[\033[01;36m\] \D{%Y-%m-%d} \t\[\033[00m\] "
+  #
+  #PS1+="\[\033[00;31m\]o\[\033[00m\]  " # Activate this one if the one below fails
+  PS1+="\[\033[00;31m\]⌚\[\033[00m\]  "
+  #
+  PS1+="\[\033[00;35m\]\u@\h\[\033[00m\] "
+  PS1+="in "
+  PS1+="\[\033[00;32m\]\w\n\[\033[00m\]"
+  #
+  #PS1+="\[\033[00;36m\]o\[\033[00m\] \[\033[00;32m\]→\[\033[00m\] " # Activate this one if the one below fails
+  PS1+="\[\033[00;36m\]○\[\033[00m\] \[\033[00;32m\]→\[\033[00m\] "
 else
-    PS1='(\t):(\u@\h):(\W)\$ '
+  PS1="\n \D{%Y-%m-%d} \t "
+  #
+  PS1+="o  "
+  #PS1+="⌚  " # Activate this line if there is symbol support
+  #
+  PS1+="\u@\h "
+  PS1+="in "
+  PS1+="\w\n"
+  #
+  PS1+="o → "
+  #PS1+="○ → " # Activate this line if there is symbol support
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  echo "⌚" &> /dev/null
+  echo $?
+  PS1="\n\[\033[01;36m\] \D{%Y-%m-%d} \t\[\033[00m\] "
+  #
+  #PS1+="\[\033[00;31m\]o\[\033[00m\]  " # Activate this one if the one below fails
+  PS1+="\[\033[00;31m\]⌚\[\033[00m\]  "
+  #
+  PS1+="\[\033[00;35m\]\u@\h\[\033[00m\] "
+  PS1+="in "
+  PS1+="\[\033[00;32m\]\w\n\[\033[00m\]"
+  #
+  #PS1+="\[\033[00;36m\]o\[\033[00m\] \[\033[00;32m\]→\[\033[00m\] " # Activate this one if the one below fails
+  PS1+="\[\033[00;36m\]○\[\033[00m\] \[\033[00;32m\]→\[\033[00m\] "
     ;;
 *)
     ;;
@@ -77,7 +111,7 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    #alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
@@ -110,12 +144,10 @@ if ! shopt -oq posix; then
 fi
 
 PATH=${PATH}:/opt/qt515/bin
-echo ""
-echo ""
-#screenfetch -p
-neofetch --color_blocks off
-echo ""
-#zsh
+#echo ""
+#echo ""
+#neofetch --color_blocks off
+#echo ""
 
 [ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
 
@@ -128,83 +160,6 @@ case $- in
     *) return;;
 esac
 
-# Path to the bash it configuration
-export BASH_IT="${HOME}/.bash_it"
-
-# Lock and Load a custom theme file.
-# Leave empty to disable theming.
-# location /.bash_it/themes/
-export BASH_IT_THEME='bobby'
-
-# Some themes can show whether `sudo` has a current token or not.
-# Set `$THEME_CHECK_SUDO` to `true` to check every prompt:
-#THEME_CHECK_SUDO='true'
-
-# (Advanced): Change this to the name of your remote repo if you
-# cloned bash-it with a remote other than origin such as `bash-it`.
-# export BASH_IT_REMOTE='bash-it'
-
-# (Advanced): Change this to the name of the main development branch if
-# you renamed it or if it was changed for some reason
-# export BASH_IT_DEVELOPMENT_BRANCH='master'
-
-# Your place for hosting Git repos. I use this for private repos.
-export GIT_HOSTING='git@git.domain.com'
-
-# Don't check mail when opening terminal.
-unset MAILCHECK
-
-# Change this to your console based IRC client of choice.
-export IRC_CLIENT='irssi'
-
-# Set this to the command you use for todo.txt-cli
-export TODO="t"
-
-# Set this to the location of your work or project folders
-#BASH_IT_PROJECT_PATHS="${HOME}/Projects:/Volumes/work/src"
-
-# Set this to false to turn off version control status checking within the prompt for all themes
-export SCM_CHECK=true
-# Set to actual location of gitstatus directory if installed
-#export SCM_GIT_GITSTATUS_DIR="$HOME/gitstatus"
-# per default gitstatus uses 2 times as many threads as CPU cores, you can change this here if you must
-#export GITSTATUS_NUM_THREADS=8
-
-# Set Xterm/screen/Tmux title with only a short hostname.
-# Uncomment this (or set SHORT_HOSTNAME to something else),
-# Will otherwise fall back on $HOSTNAME.
-#export SHORT_HOSTNAME=$(hostname -s)
-
-# Set Xterm/screen/Tmux title with only a short username.
-# Uncomment this (or set SHORT_USER to something else),
-# Will otherwise fall back on $USER.
-#export SHORT_USER=${USER:0:8}
-
-# If your theme use command duration, uncomment this to
-# enable display of last command duration.
-#export BASH_IT_COMMAND_DURATION=true
-# You can choose the minimum time in seconds before
-# command duration is displayed.
-#export COMMAND_DURATION_MIN_SECONDS=1
-
-# Set Xterm/screen/Tmux title with shortened command and directory.
-# Uncomment this to set.
-#export SHORT_TERM_LINE=true
-
-# Set vcprompt executable path for scm advance info in prompt (demula theme)
-# https://github.com/djl/vcprompt
-#export VCPROMPT_EXECUTABLE=~/.vcprompt/bin/vcprompt
-
-# (Advanced): Uncomment this to make Bash-it reload itself automatically
-# after enabling or disabling aliases, plugins, and completions.
-# export BASH_IT_AUTOMATIC_RELOAD_AFTER_CONFIG_CHANGE=1
-
-# Uncomment this to make Bash-it create alias reload.
-# export BASH_IT_RELOAD_LEGACY=1
-
-# Load Bash It
-source "$BASH_IT"/bash_it.sh
-
 # some more ls aliases
 alias grep='grep --color=auto'
 alias cat='batcat --style=plain --paging=never'
@@ -213,3 +168,46 @@ alias tree='exa -T'
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+
+#os_system="Devuan 4"
+os_system=$(lsb_release -d | tr -s " " | cut -d ":" -f 2)
+os_system=$(echo ${os_system})
+kernel=$(uname -r)
+uptime=$(uptime | tr -s " " | cut -d "," -f 1)
+uptime=$(echo ${uptime})
+#shell="5.1.4" # Run bash --version
+shell=$(bash --version | head -1 | tr -s " " | cut -d " " -f 4 | cut -d "(" -f 1 | cut -d "-" -f 1)
+resolution=$(xrandr | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
+user_loaded=$(whoami)
+home_user="${HOME}"
+cpu_model=$(lscpu | grep "Model name:" | tr -s " " | cut -d ":" -f 2)
+cpu_model=$(echo ${cpu_model})
+mem_total=$(lsmem | grep "Total online memory:" | tr -s " " | cut -d ":" -f 2)
+mem_total=$(echo ${mem_total})
+arch_system="${HOSTTYPE}"
+hostname="${HOSTNAME}"
+session_type="${XDG_SESSION_TYPE}"
+
+clear
+echo -e "                                       "
+echo -e "\e[31m         :.         .:      \e[0m"
+echo -e "\e[31m      .=:             :=.   \e[0m"
+echo -e "\e[31m     -+                 =-  \e[0m   \e[33mOS: \e[0m\e[35m${os_system}\e[0m"
+echo -e "\e[31m    :#                   *- \e[0m   \e[33mHost: \e[0m\e[35m${hostname}\e[0m"
+echo -e "\e[31m    @=                   :@ \e[0m   \e[33mKernel: \e[0m\e[35m${kernel}\e[0m"
+echo -e "\e[31m   .@-                   :@:\e[0m   \e[33mUptime: \e[0m\e[35m${uptime}\e[0m"
+echo -e "\e[31m    @*                   *@.\e[0m   \e[33mShell: \e[0m\e[35mbash ${shell}\e[0m"
+echo -e "\e[31m    #@*      :=++:      =@# \e[0m   \e[33mResolution: \e[0m\e[35m${resolution}\e[0m"
+echo -e "\e[31m     #@#:     *@#     .#@%  \e[0m   \e[33mUser: \e[0m\e[35m${user_loaded}\e[0m"
+echo -e "\e[31m      =%@%=:  *@*  :=%@@+   \e[0m   \e[33mHome: \e[0m\e[35m${home_user}\e[0m"
+echo -e "\e[31m        -#@@@@@@@@@@@%+     \e[0m   \e[33mSession: \e[0m\e[35m${session_type}\e[0m"
+echo -e "\e[31m           .=+%@@+=-.       \e[0m   \e[33mArch: \e[0m\e[35m${arch_system}\e[0m"
+echo -e "\e[31m              *@#           \e[0m   \e[33mCPU: \e[0m\e[35m${cpu_model}\e[0m"
+echo -e "\e[31m              +@*           \e[0m   \e[33mMemory: \e[0m\e[35m${mem_total}\e[0m"
+echo -e "\e[31m              :@:           \e[0m"
+echo -e "\e[31m               %            \e[0m"
+echo -e "\e[31m                            \e[0m"
+echo -e "\e[32m # Bienvenido al terminal de ${user_loaded}\e[0m"
+echo -e -n "\e[35m # Cargando el terminal / \e[0m"
+echo "" 
+

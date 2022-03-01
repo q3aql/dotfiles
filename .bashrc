@@ -75,6 +75,7 @@ else
   #
   PS1+="o  "
   #PS1+="⌚  " # Activate this line if there is symbol support
+  PS1+="○  " # Activate this line if there is symbol support
   #
   PS1+="\u@\h "
   PS1+="in "
@@ -91,7 +92,8 @@ xterm*|rxvt*)
   PS1="\n\[\033[01;36m\] \D{%Y-%m-%d} \t\[\033[00m\] "
   #
   #PS1+="\[\033[00;31m\]o\[\033[00m\]  " # Activate this one if the one below fails
-  PS1+="\[\033[00;31m\]⌚\[\033[00m\]  "
+  #PS1+="\[\033[00;31m\]⌚\[\033[00m\]  "
+  PS1+="\[\033[00;31m\]○\[\033[00m\]  "
   #
   PS1+="\[\033[00;35m\]\u@\h\[\033[00m\] "
   PS1+="in "

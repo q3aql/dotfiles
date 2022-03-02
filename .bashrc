@@ -174,7 +174,7 @@ echo -e "\e[31m              +@*           \e[0m   \e[33mMemory: \e[0m\e[35m${me
 echo -e "\e[31m              :@:           \e[0m"
 echo -e "\e[31m               %            \e[0m"
 echo -e "\e[31m                            \e[0m"
-echo -e "\e[32m # Bienvenido al terminal de ${user_loaded}\e[0m"
-echo -e -n "\e[35m # Cargando el terminal / \e[0m"
+echo -e "\e[32m # Welcome to terminal of ${user_loaded}\e[0m"
+echo -e -n "\e[35m # Loading terminal / \e[0m"
 echo "" 
 

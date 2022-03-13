@@ -2,16 +2,16 @@
 
 ##########################################################################
 # systemctl-wrapper - Wrapper for sysv init scripts simulating systemctl #
-# Autor: Quique Molina                                                   # 
-# Contacto: emolina@prosodie.com                                         #
-# Licencia: GPL 2.0                                                      #
+# Author: q3aql                                                          # 
+# Contact: q3aql@duck.com                                                #
+# License: GPL 2.0                                                       #
 # ########################################################################
 VERSION=1.0
 
-# Variable con scripts de arranque
+# Variable with start-up scripts
 path_scripts="/etc/init.d"
 
-# Funcion para simular las units y sockets de systemctl
+# Function to simulate the units and sockets of systemctl
 function systemctl_units() {
   list_units=$(ls -1 ${path_scripts})
   echo "UNIT"
@@ -20,7 +20,7 @@ function systemctl_units() {
   done
 }
 
-# Comprobar si existe el directorio de scripts
+# Check if the scripts directory exists
 function check_dir_scripts() {
   if [ -d "${path_scripts}" ] ; then
     echo > /dev/null
@@ -34,7 +34,7 @@ function check_dir_scripts() {
   fi
 }
 
-# Function para mostrar la ayuda
+# Function to display help
 function systemctl_help() {
 echo ""
 echo "systemctl [OPTIONS...] {COMMAND} ..."
@@ -63,88 +63,88 @@ echo "  reboot                          Shut down and reboot the system"
 echo ""
 }
 
-# Function para mostrar la version
+# Function to display the version
 function systemctl_version() {
   echo ""
   echo "systemctl (wrapper) v${VERSION} for sysvinit scripts"
   echo ""
 }
 
-# Funcion para el mapeo de comandos
+# Function for command mapping
 function systemctl_map() {
-  # Mapeo del comando start
+  # Mapping of the start command
   if [ "${1}" == "start" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" start
     else
       echo "Failed to start ${2}: Unit not found."
     fi
-  # Mapeo del comando enable
+  # Mapping of the enable command
   elif [ "${1}" == "enable" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" start
     else
       echo "Failed to enable ${2}: Unit not found."
     fi
-  # Mapeo del comando stop
+  # Mapping of the stop command
   elif [ "${1}" == "stop" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" stop
     else
       echo "Failed to stop ${2}: Unit not found."
     fi
-  # Mapeo del comando disable
+  # Mapping of the disable command
   elif [ "${1}" == "disable" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" stop
     else
       echo "Failed to disable ${2}: Unit not found."
     fi
-  # Mapeo del comando reload
+  # Mapping of the reload command
   elif [ "${1}" == "reload" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" reload
     else
       echo "Failed to reload ${2}: Unit not found."
     fi
-  # Mapeo del comando restart
+  # Mapping of the restart command
   elif [ "${1}" == "restart" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" restart
     else
       echo "Failed to restart ${2}: Unit not found."
     fi
-  # Mapeo del comando status
+  # Mapping of the status command
   elif [ "${1}" == "status" ] ; then
     if [ -f "${path_scripts}/${2}" ] ; then
       "${path_scripts}/${2}" status
     else
       echo "Failed to status ${2}: Unit not found."
     fi
-  # Mapeo del comando list-units
+  # Mapping of the list-units command
   elif [ "${1}" == "list-units" ] ; then
     systemctl_units
-  # Mapeo del comando list-sockets
+  # Mapping of the list-sockets command
   elif [ "${1}" == "list-sockets" ] ; then
-    systemctl_units
-  # Mapeo del comando list-unit-files
+    netstat -putan | grep LISTEN
+  # Mapping of the list-unit-files command
   elif [ "${1}" == "list-unit-files" ] ; then
     systemctl_units
-  # Mapeo del comando help
+  # Mapping of the help command
   elif [ "${1}" == "--help" ] ; then
     systemctl_help
   elif [ "${1}" == "-h" ] ; then
     systemctl_help
-  # Mapeo del comando version
+  # Mapping of the version command
   elif [ "${1}" == "--version" ] ; then
     systemctl_version
-  # Mapeo del comando reboot
+  # Mapping of the reboot command
   elif [ "${1}" == "reboot" ] ; then
     reboot
-  # Mapeo del comando halt
+  # Mapping of the halt command
   elif [ "${1}" == "halt" ] ; then
     halt
-  # Mapeo del comando poweroff
+  # Mapping of the poweroff command
   elif [ "${1}" == "poweroff" ] ; then
     poweroff
   else
@@ -152,7 +152,7 @@ function systemctl_map() {
   fi
 }
 
-# Iniciar el script
+# Start the script
 check_dir_scripts
 if [ -z "${1}" ] ; then
   systemctl_units

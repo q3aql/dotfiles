@@ -54,6 +54,14 @@ echo -e "${blue} # wireless-iwctl${end}"
 echo -e "${purple} ################${end}"
 echo -e ""
 
+# CHECK WID PROCESS
+check_iwd=$(ps -e | grep " iwd")
+if [ -z ${check_iwd} ] ; then
+  echo -e "${purple} # Running iwd process${end}"
+  systemctl start iwd
+  sleep 2
+fi
+
 # CONFIGURE WIFI CONNECTTION
 if [ "${wireless}" == "yes" ] ; then
   echo -e "${blue} # Connecting ${interface} to SSID ${wireless_ssid}${end}"

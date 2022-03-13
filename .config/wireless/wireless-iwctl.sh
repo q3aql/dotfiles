@@ -56,7 +56,7 @@ echo -e ""
 
 # CHECK WID PROCESS
 check_iwd=$(ps -e | grep " iwd")
-if [ -z ${check_iwd} ] ; then
+if [ -z "${check_iwd}" ] ; then
   echo -e "${purple} # Running iwd process${end}"
   systemctl start iwd
   sleep 2

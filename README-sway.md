@@ -1,5 +1,5 @@
-dotfiles - My tiling sway configuration (for Devuan/Debian)
-====================================================================
+dotfiles - My tiling sway configuration (for Arch/Devuan/Debian)
+================================================================
 
 ### My configurations:
 
@@ -16,34 +16,7 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
 
   * **`Install dependencies:`**
   
-    * Open the terminal and type the following commands:
-    
-      ```shell
-      $ sudo apt-get install sway swaybg swayidle wlr-randr wdisplays wofi meson waybar \
-        wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
-        libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin x11-xserver-utils \
-        xdg-desktop-portal-wlr wf-recorder arc-theme breeze-cursor-theme fonts-noto \
-        papirus-icon-theme lxappearance weston slurp grim jq wl-clipboard pnmixer conky \
-        xterm exa fish bat zsh dmenu fzf apcalc rofi engrampa xarchiver mpv ffmpeg \
-        pcmanfm ranger vlc vim geany git nodejs node-base python3 npm make cmake gcc cargo \
-        neofetch screenfetch lm-sensors pavucontrol xscreensaver alsa-utils ristretto
-      ````
-    * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
-
-      ```shell
-      $ sudo apt-get install connman connman-gtk connman-ui connman-vpn
-      ````
-      
-  * **`Install alacritty:`**
-  
-    * Clone repository and run the scripts for installation:
-
-      ```shell
-      $ git clone https://github.com/q3aql/dotfiles
-      $ cd dotfiles
-      $ chmod +x alacritty-install.sh
-      $ sudo ./alacritty-install.sh
-      ````
+    * Read [`How install dependencies on Arch and Devuan/Debian`](Dependencies.md)
       
   * **`Install configuration (dotfiles):`**
   
@@ -52,8 +25,8 @@ dotfiles - My tiling sway configuration (for Devuan/Debian)
       ```shell
       $ git clone https://github.com/q3aql/dotfiles
       $ cd dotfiles
-      $ cp -rfv .* ~/
-      $ cp -rfv * ~/
+      $ chmod +x install-config.sh
+      $ ./install-config.sh
       ````
 
 ### Configuration:

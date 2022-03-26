@@ -1,5 +1,5 @@
-dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
-====================================================================
+dotfiles - My tiling i3 + i3blocks configuration (for Arch/Devuan/Debian)
+========================================================================
 
 ### My configurations:
 
@@ -16,37 +16,7 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
 
   * **`Install dependencies:`**
   
-    * Open the terminal and type the following commands:
-    
-      ```shell
-      $ sudo apt-get install i3 i3status i3blocks i3-wm i3pystatus i3lock i3lock-fancy \
-        compton arc-theme breeze-cursor-theme fonts-noto papirus-icon-theme lxappearance \
-        nitrogen lxrandr pnmixer conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom \
-        engrampa xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base \
-        python3 npm make cmake gcc cargo neofetch screenfetch lm-sensors pavucontrol \
-        xfce4-screenshooter xscreensaver alsa-utils ristretto xautolock
-      ````
-    * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
-
-      ```shell
-      $ sudo apt-get install connman connman-gtk connman-ui connman-vpn
-      ````
-      
-  * **`Install alacritty and i3-gaps (Optional):`**
-  
-    * Clone repository and run the scripts for installation:
-
-      ```shell
-      $ git clone https://github.com/q3aql/dotfiles
-      $ cd dotfiles
-      $ chmod +x alacritty-install.sh
-      $ sudo ./alacritty-install.sh
-      ````
-      
-      ```shell
-      $ chmod +x i3-gaps-install.sh
-      $ sudo ./i3-gaps-install.sh
-      ````
+    * Read [`How install dependencies on Arch and Devuan/Debian`](Dependencies.md)
 
   * **`Install configuration (dotfiles):`**
   
@@ -55,8 +25,8 @@ dotfiles - My tiling i3 + i3blocks configuration (for Devuan/Debian)
       ```shell
       $ git clone https://github.com/q3aql/dotfiles
       $ cd dotfiles
-      $ cp -rfv .* ~/
-      $ cp -rfv * ~/
+      $ chmod +x install-config.sh
+      $ ./install-config.sh
       $ cp -rfv ~/.config/i3/config.i3blocks ~/.config/i3/config
       ````
 

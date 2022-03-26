@@ -18,9 +18,9 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
   conky xterm exa fish bat zsh dmenu fzf calc rofi wofi picom engrampa ristretto \
   xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs alsa-utils arandr \
   python3 npm make cmake gcc cargo neofetch screenfetch lm_sensors pavucontrol \
-  xfce4-screenshooter xscreensaver alsa-utils pulseaudio-utils light xorg-xbacklight \
+  xfce4-screenshooter xscreensaver alsa-utils pulseaudio-alsa light xorg-xbacklight \
   xorg-xrandr sway swaybg swayidle wofi meson waybar wayland-protocols xorg-xwayland \
-  wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots
+  wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots pulseaudio
   ````
       
   ```shell

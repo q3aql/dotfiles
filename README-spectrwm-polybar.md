@@ -3,12 +3,12 @@ dotfiles - My tiling spectrwm + polybar configuration (for Arch/Devuan/Debian)
 
 ### My configurations:
 
-* [spectrwm](README.md)
-* [spectrwm + polybar](README-spectrwm-polybar.md)
+* [i3 + polybar](README-i3-polybar.md)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
-* [i3 + polybar](README-i3-polybar.md)
 * [sway](README-sway.md)
+* [spectrwm](README-spectrwm.md)
+* [spectrwm + polybar](README-spectrwm-polybar.md)
 
 ![spectrwm-polybar](examples/spectrwm-polybar.png)
 

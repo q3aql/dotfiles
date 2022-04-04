@@ -3,14 +3,14 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
 
 ### My configurations:
 
-* [spectrwm](README.md)
-* [spectrwm + polybar](README-spectrwm-polybar.md)
+* [i3 + polybar](README-i3-polybar.md)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)
-* [i3 + polybar](README-i3-polybar.md)
 * [sway](README-sway.md)
+* [spectrwm](README-spectrwm.md)
+* [spectrwm + polybar](README-spectrwm-polybar.md)
 
-![spectrwm](examples/spectrwm.png)
+![i3-i3status](examples/i3wm-i3status.png)
 
 ### Installation:
 
@@ -34,45 +34,37 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer `Connman`, edit the file `~/.config/spectrwm/spectrwm.conf` and `autostart.sh`:
+    * If you prefer `Connman`, edit the file `~/.config/i3/config`:
     
       ```shell
-      # Choose between NetworkManager or Connman
-      program[connection]   = nm-connection-editor
-      #program[connection]   = connman-gtk --no-icon
-      bind[connection]      = MOD+c
-      ````
-
-      ```shell
-      # Network Tray (Use Win + Shift + t to show it)
-      nm-applet &
-      #connman-gtk --tray &
+      #exec --no-startup-id connman-gtk --tray &
+      exec --no-startup-id nm-applet &
       ````
 
   * **`Monitor & resolution:`**
   
     * The configuration load my monitor configuration:
-    * Use the command `xrandr` for show your config & edit the file `~/.config/spectrwm/startxrandr.sh`:
+    * Use the command `xrandr` for show your config & edit the file `~/.config/i3/startxrandr.sh`:
     
       ```shell
+      sleep 2
       xrandr --output DisplayPort-0 --mode 1280x1024 -r 75.02
       xrandr --output DisplayPort-1 --mode 1280x1024 -r 75.02 --rotate left --right-of DisplayPort-0
       ````
 
   * **`Wallpaper:`**
   
-    * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
-    * Edit  `~/.config/spectrwm/startwallpaper.sh` for set your favorite wallpaper:
+    * By default, the config load wallpaper on `~/wallpapers/dark-city.jpg`:
+    * Edit  `~/.config/i3/config` for set your favorite wallpaper:
     
       ```shell
-      sleep 3
-      nitrogen --set-scaled ~/wallpapers/abstract.png
+      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jpg"
       ````
 
  * **`Set Screensaver (Optional):`**
 
     * The configuration file set `xautolock` with 20 minutes as screensaver:
-    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/spectrwm/startscreensaver.sh`:
+    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/i3/startscreensaver.sh`:
 
       ```shell
       # Basic configuration variables
@@ -80,45 +72,40 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
       ScreensaverTime="20" # 20 minutes (only for xautolock)
       ````
 
-  * **`Compositor (Compton or Picom):`**
+* **`Enable Gaps (Optional):`**
   
-    * By default, the config load `Picom` compositor.
-    * You can change it editing the lines on `~/.config/spectrwm/startcompositor.sh` file:
+    * My config work on vanilla i3wm and gaps are disabled.
+    * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:
     
       ```shell
-      # Load compton or picom (Compositor)
-      sleep 15
-      #compton &
-      picom &
+      #gaps inner 6
+      #gaps outer 2
       ````
 
 ### Keys configuration:
 
 My list of extra combinations:
 
-    - Super + d = Open Rofi Theme selector
-    - Super + x = Close Window
-    - Super + w = Minimize Window
-    - Super + Shift + w = Maximize/Search Window
-    - Super + Shift + t = Show/Hide Tray (Run by default on Workspace 7)
-    - Super + c = Open network configuration
-    - Super + v = Open volume configuration (Pavucontrol)
-    - Super + Return = Open terminal (Alacritty)
+    - Super + d = Open Dmenu
+    - Super + p = Open Rofi (run mode)
+    - Super + q = Open Rofi (window mode)
+    - Super + o = Open Rofi (drun mode)
+    - Super + b = Open Firefox
     - Super + n = Open PCManFM
-    - Super + p = Open Rofi (exec program)
-    - Super + o = Open Rofi (exec menu program)
-    - Super + z = Open Wallpaper selector (Nitrogen)
+    - Super + t = Open Rofi Theme Selector
+    - Super + g = Open Geany
+    - Super + m = Open Telegram 
+    - Super + z = Open Nitrogen 
     - Super + x = Open LXRandr
     - Super + u = Open Xterm
     - Super + i = Open LXAppearance
-    - Super + s = Open Xfce4-Screenshot
-    - Super + Delete = Poweroff screen
-    - Super + Shift + Delete = Close session
+    - Super + c = Open NetWorkManager
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
-    - BrightnessUp = Brightness +10
-    - BrightnessDown = Brightness -10
+    - Super + Ctrl + Shift + e = Poweroff screen
+    - Super + Shift + e = Logout
+    - Super + Backspace = Open menu Logout/Lock/Reboot/Shutdown
 
 ### External links:
 

@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Change to UUID disk (use blkid)
+UUID_disk="b596b8a5-14b6-4a5f-95d7-f54a2db2a36a"
+
+# Run commands
+disk_detected=$(blkid | grep "${UUID_disk}" | cut -d ":" -f 1 | cut -c 1-8)
+check_exist=$(ls ${disk_detected} 2>/dev/null)
+if [ -z "${check_exist}" ] ; then
+  echo "# Disk ${disk_detected} not found"
+else
+  echo "# Touch disk ${disk_detected}"
+  /bin/touch ${disk_detected}
+fi
+
+#####################################
+
+# Change to UUID disk (use blkid)
+UUID_disk="7292ea59-dd30-4367-a0c4-e6031f0ce9b5"
+
+# Run commands
+disk_detected=$(blkid | grep "${UUID_disk}" | cut -d ":" -f 1 | cut -c 1-8)
+check_exist=$(ls ${disk_detected} 2>/dev/null)
+if [ -z "${check_exist}" ] ; then
+  echo "# Disk ${disk_detected} not found"
+else
+  echo "# Touch disk ${disk_detected}"
+  /bin/touch ${disk_detected}
+fi
+
+#####################################
+
+# Change to UUID disk (use blkid)
+UUID_disk="c7872a31-abc7-4585-ae99-eddf76f07455"
+
+# Run commands
+disk_detected=$(blkid | grep "${UUID_disk}" | cut -d ":" -f 1 | cut -c 1-8)
+check_exist=$(ls ${disk_detected} 2>/dev/null)
+if [ -z "${check_exist}" ] ; then
+  echo "# Disk ${disk_detected} not found"
+else
+  echo "# Touch disk ${disk_detected}"
+  /bin/touch ${disk_detected}
+fi
+

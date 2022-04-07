@@ -12,14 +12,21 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 :packadd onedark.vim
 :colorscheme onedark
 
+" vim hardcodes background color erase even if the terminfo file does
+" not contain bce (not to mention that libvte based terminals
+" incorrectly contain bce in their terminfo files). This causes
+" incorrect background rendering when using a color theme with a
+" background color.
+let &t_ut=''
+
 " Change fonts for Windows
 ":set guifont=Consolas:h11:cANSI
 
 " Hide menu/toolbar of GVIM
 ":set guioptions -=m
-:set guioptions -=T
-:set guioptions -=r
-:set guioptions -=L
+":set guioptions -=T
+":set guioptions -=r
+":set guioptions -=L
 
 " Helps force plug-ins to load correctly when it is turned back on below.
 filetype off

@@ -118,8 +118,13 @@ PATH=${PATH}:/opt/qt515/bin
 
 [ -f ${HOME}/.fzf.bash ] && source ${HOME}/.fzf.bash
 
-. "$HOME/.cargo/env"
-source ~/.bash_completion/alacritty
+if [ -f $HOME/.cargo/env ] ; then
+  . "$HOME/.cargo/env"
+fi
+
+if [ -f ~/.bash_completion/alacritty ] ; then
+  source ~/.bash_completion/alacritty
+fi
 
 # If not running interactively, don't do anything
 case $- in

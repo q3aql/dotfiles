@@ -13,14 +13,15 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
 ### Install dependencies on Arch Linux:
 
   ```shell
-  $ sudo pacman -S spectrwm compton arc-gtk-theme xautolock alacritty i3-gaps i3status \
+  $ sudo pacman -S spectrwm compton arc-gtk-theme xautolock kitty i3-gaps i3status \
   i3blocks i3lock noto-fonts papirus-icon-theme lxappearance nitrogen lxrandr tint2 \
   conky xterm exa fish bat zsh dmenu fzf calc rofi wofi picom engrampa ristretto \
   xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs alsa-utils arandr \
   python3 npm make cmake gcc cargo neofetch screenfetch lm_sensors pavucontrol \
   xfce4-screenshooter xscreensaver alsa-utils pulseaudio-alsa light xorg-xbacklight \
   xorg-xrandr sway swaybg swayidle wofi meson waybar wayland-protocols xorg-xwayland \
-  wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots pulseaudio
+  wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots pulseaudio \
+  alacritty
   ````
       
   ```shell
@@ -43,7 +44,7 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
     
   ```shell
   $ sudo apt-get install spectrwm i3 i3status i3blocks i3-wm i3pystatus i3lock i3lock-fancy \
-  compton arc-theme breeze-cursor-theme xautolock x11-xserver-utils arandr \
+  compton arc-theme breeze-cursor-theme xautolock x11-xserver-utils arandr kitty \
   fonts-noto papirus-icon-theme lxappearance nitrogen lxrandr pnmixer tint2 \
   conky xterm exa fish bat zsh dmenu fzf apcalc rofi picom engrampa ristretto \
   xarchiver mpv ffmpeg pcmanfm ranger vlc vim geany git nodejs node-base polybar \
@@ -55,7 +56,7 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
   xdg-desktop-portal-wlr wf-recorder weston
   ````
       
-  * For install `alacritty`, type this commands:
+  * For install `alacritty`, type this commands `(Optional)`:
    
   ```shell
   $ git clone https://github.com/q3aql/dotfiles

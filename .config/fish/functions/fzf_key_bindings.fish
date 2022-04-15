@@ -1,1 +1,0 @@
-/home/q3aql/.fzf/shell/key-bindings.fish

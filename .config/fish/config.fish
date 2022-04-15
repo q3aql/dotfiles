@@ -1,27 +1,75 @@
+# Set term color
 set TERM xterm-256color
 
-set os_system (lsb_release -d | tr -s " " | cut -d ":" -f 2)
-set os_system (echo {$os_system} | cut -f 2)
+# some aliases
+alias grep='grep --color=auto'
+if test -f /usr/bin/batcat
+  alias cat='batcat --style=plain --paging=never'
+else if test -f /usr/bin/bat
+  alias cat='bat --style=plain --paging=never'
+end
+if test -f /usr/bin/exa
+  alias ls='exa --group-directories-first'
+  alias tree='exa -T'
+else
+  alias ls="ls --color=auto"
+end
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Load terminal
+echo ""
+echo -e -n "\e[32m# Preparing to start \e[0m\e[35mfish\e[0m \e[32mshell...\e[0m"
+
+if test -f /usr/bin/lsb_release
+  set os_system (lsb_release -d 2> /dev/null | tr -s " " | cut -d ":" -f 2)
+  set os_system (echo {$os_system} | cut -f 2)
+else
+  set os_system (uname -o)
+end
 set kernel (uname -r)
-set uptime (uptime | tr -s " " | cut -d "," -f 1)
-set uptime (echo {$uptime} | cut -f 2)
+if test -f /usr/bin/uptime
+  set uptime (uptime | tr -s " " | cut -d "," -f 1)
+  set uptime (echo {$uptime} | cut -f 2)
+else
+  set uptime "Unknown"
+end
 #set shell="3.1.2" # Run fish --version
 set shell (fish --version | cut -d " " -f 3)
-set resolution (xrandr 2> /dev/null | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
+if test -f /usr/bin/xrandr
+  set resolution (xrandr 2> /dev/null | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
+else
+  set resolution "No display"
+end
 set user_loaded (whoami)
 set home_user {$HOME}
-set cpu_model (lscpu | grep "Model name:" | tr -s " " | cut -d ":" -f 2)
-set cpu_model (echo {$cpu_model} | tr -s " ")
-set mem_total (lsmem | grep "Total online memory:" | tr -s " " | cut -d ":" -f 2)
-set mem_total (echo {$mem_total} | cut -f 2)
+if test -f /proc/cpuinfo
+  set cpu_model (cat /proc/cpuinfo | grep -i "model name" | head -1 | tr -s " " | cut -d ":" -f 2)
+  set cpu_model (echo $cpu_model)
+else if test -f /usr/bin/lscpu
+  set cpu_model (lscpu | grep -i "Model name:" | tr -s " " | cut -d ":" -f 2)
+  set cpu_model (echo {$cpu_model} | tr -s " ")
+else
+  set cpu_model "Unknown"
+end
+
+if test -f /proc/meminfo
+  set mem_total_kb (cat /proc/meminfo | grep -i "memtotal" | tr -s " " | cut -d ":" -f 2)
+  set mem_total_kb_num (echo $mem_total_kb | tr -s " " | cut -d " " -f 2)
+  set mem_total_gb (expr $mem_total_kb_num / 1000 / 1000)
+  set mem_total (echo {$mem_total_gb}G)
+else if test -f /usr/bin/lsmem
+  set mem_total (lsmem | grep -i "Total online memory:" | tr -s " " | cut -d ":" -f 2)
+  set mem_total (echo {$mem_total} | cut -f 2)
+else
+  set mem_total "Unknown"
+end
+
 set arch_system (uname -m)
-set hostname_host (hostname)
+set hostname_host $hostname
 set session_type {$XDG_SESSION_TYPE}
 
-alias grep='grep --color=auto'
-alias cat='batcat --style=plain --paging=never'
-alias ls='exa --group-directories-first'
-alias tree='exa -T'
 #echo ""
 #echo ""
 #screenfetch -p

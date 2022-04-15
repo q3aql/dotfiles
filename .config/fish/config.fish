@@ -28,7 +28,22 @@ else
   set os_system (uname -o)
 end
 set kernel (uname -r)
-if test -f /usr/bin/uptime
+if test -f /proc/uptime
+  set uptime_sec (cat /proc/uptime)
+  set uptime_sec_cut (echo $uptime_sec | tr -s " " | cut -d " " -f 1 | cut -d "." -f 1)
+  set uptime_min (expr $uptime_sec_cut / 60)
+  if test "$uptime_min" -le "59"
+    set uptime {$uptime_min}min
+  else
+    set uptime_hour (expr $uptime_min / 60)
+    if test "$uptime_hour" -le "23"
+      set uptime {$uptime_hour}h
+    else
+      set uptime_day (expr $uptime_hour / 24)
+      set uptime {$uptime_day}d
+    end
+  end
+else if test -f /usr/bin/uptime
   set uptime (uptime | tr -s " " | cut -d "," -f 1)
   set uptime (echo {$uptime} | cut -f 2)
 else

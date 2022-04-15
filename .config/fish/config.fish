@@ -21,7 +21,6 @@ alias l='ls -CF'
 # Load terminal
 echo ""
 echo -e -n "\e[32m# Preparing to start \e[0m\e[35mfish\e[0m \e[32mshell...\e[0m"
-
 if test -f /usr/bin/lsb_release
   set os_system (lsb_release -d 2> /dev/null | tr -s " " | cut -d ":" -f 2)
   set os_system (echo {$os_system} | cut -f 2)
@@ -39,7 +38,7 @@ end
 set shell (fish --version | cut -d " " -f 3)
 if test -f /usr/bin/xrandr
   set resolution (xrandr 2> /dev/null | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
-  if test -n "$resolution"
+  if test -z "$resolution"
     set resolution "No display"
   end
 else
@@ -69,7 +68,7 @@ else
 end
 set arch_system (uname -m)
 set hostname_host $hostname
-if test -n "$XDG_SESSION_TYPE"
+if test -z "$XDG_SESSION_TYPE"
   set session_type "tty"
 else
   set session_type {$XDG_SESSION_TYPE}

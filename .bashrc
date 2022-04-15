@@ -149,12 +149,13 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Load terminal
 echo ""
 echo -e -n "\e[32m# Preparing to start \e[0m\e[35mbash\e[0m \e[32mshell...\e[0m"
 #os_system="Devuan 4"
 os_system=$(lsb_release -d 2> /dev/null | tr -s " " | cut -d ":" -f 2)
 if [ -z "${os_system}" ] ; then
-  os_system="Unknown"
+  os_system=$(uname -o)
 else
   os_system=$(echo ${os_system})
 fi
@@ -182,14 +183,14 @@ elif [ -f /usr/bin/lscpu ] ; then
 else
   cpu_model="Unknown"
 fi
-if [ -f /usr/bin/lsmem ] ; then
-  mem_total=$(lsmem | grep "Total online memory:" | tr -s " " | cut -d ":" -f 2)
-  mem_total=$(echo ${mem_total})
-elif [ -f /proc/meminfo ] ; then
+if [ -f /proc/meminfo ] ; then
   mem_total_kb=$(cat /proc/meminfo | grep -i "memtotal" | tr -s " " | cut -d ":" -f 2)
-  mem_total_kb_num=$(echo ${mem_total_kb} | cut -d " " -f 1)
-  mem_total_gb=$(expr ${mem_total_kb_num} / 1024 / 1024)
-  mem_total=$(echo ${mem_total_gb})
+  mem_total_kb_num=$(echo ${mem_total_kb} | tr -s " " | cut -d " " -f 1)
+  mem_total_gb=$(expr ${mem_total_kb_num} / 1000 / 1000)
+  mem_total=$(echo ${mem_total_gb}G)
+elif [ -f /usr/bin/lsmem ] ; then
+  mem_total=$(lsmem | grep -i "total online memory:" | tr -s " " | cut -d ":" -f 2)
+  mem_total=$(echo ${mem_total})
 else
   mem_total="Unknown"
 fi

@@ -232,28 +232,59 @@ fi
 
 # some more ls aliases
 alias grep='grep --color=auto'
-alias cat='batcat --style=plain --paging=never'
-alias ls='exa --group-directories-first'
-alias tree='exa -T'
+if [ -f /usr/bin/batcat ] ; then
+  alias cat='batcat --style=plain --paging=never'
+elif [ -f /usr/bin/bat ] ; then
+  alias cat='bat --style=plain --paging=never'
+fi
+if [ -f /usr/bin/exa ] ; then
+  alias ls='exa --group-directories-first'
+  alias tree='exa -T'
+else
+  alias ls="ls --color=auto"
+fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Load terminal
+echo ""
+echo -e -n "\e[32m# Preparing to start \e[0m\e[35mzsh\e[0m \e[32mshell...\e[0m"
 os_system=$(uname -o)
 kernel=$(uname -r)
-uptime=$(uptime | tr -s " " | cut -d "," -f 1)
-uptime=$(echo ${uptime})
+uptime=$(uptime 2> /dev/null | tr -s " " | cut -d "," -f 1)
+if [ -z "${uptime}" ] ; then
+  uptime="Unknown"
+else
+  uptime=$(echo ${uptime})
+fi
 #shell="5.8" # Run zsh --version
 shell=$(zsh --version | cut -d " " -f 2)
 resolution=$(xrandr 2> /dev/null | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
 user_loaded=$(whoami)
 home_user="${HOME}"
-cpu_model=$(lscpu | grep "Model name:" | tr -s " " | cut -d ":" -f 2)
-cpu_model=$(echo ${cpu_model})
-mem_total=$(lsmem | grep "Total online memory:" | tr -s " " | cut -d ":" -f 2)
-mem_total=$(echo ${mem_total})
+if [ -f /proc/cpuinfo ] ; then
+  cpu_model=$(cat /proc/cpuinfo | grep -i "model name" | head -1 | tr -s " " | cut -d ":" -f 2)
+  cpu_model=$(echo ${cpu_model})
+elif [ -f /usr/bin/lscpu ] ; then
+  cpu_model=$(lscpu 2>/dev/null | grep -i "Model name:" | tr -s " " | cut -d ":" -f 2)
+  cpu_model=$(echo ${cpu_model})
+else
+  cpu_model="Unknown"
+fi
+if [ -f /proc/meminfo ] ; then
+  mem_total_kb=$(cat /proc/meminfo | grep -i "memtotal" | tr -s " " | cut -d ":" -f 2)
+  mem_total_kb_num=$(echo ${mem_total_kb} | tr -s " " | cut -d " " -f 2)
+  mem_total_gb=$(expr ${mem_total_kb_num} / 1000 / 1000)
+  mem_total=$(echo ${mem_total_gb}G)
+elif [ -f /usr/bin/lsmem ] ; then
+  mem_total=$(lsmem | grep -i "total online memory:" | tr -s " " | cut -d ":" -f 2)
+  mem_total=$(echo ${mem_total})
+else
+  mem_total="Unknown"
+fi
 arch_system=$(uname -m)
-hostname=$(hostname)
+hostname=${HOST}
 session_type="${XDG_SESSION_TYPE}"
 
 clear

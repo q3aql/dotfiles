@@ -261,6 +261,9 @@ fi
 #shell="5.8" # Run zsh --version
 shell=$(zsh --version | cut -d " " -f 2)
 resolution=$(xrandr 2> /dev/null | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
+if [ -z "${resolution}" ] ; then
+  resolution="No display"
+fi
 user_loaded=$(whoami)
 home_user="${HOME}"
 if [ -f /proc/cpuinfo ] ; then
@@ -285,7 +288,11 @@ else
 fi
 arch_system=$(uname -m)
 hostname=${HOST}
-session_type="${XDG_SESSION_TYPE}"
+if [ -z "${XDG_SESSION_TYPE}" ] ; then
+  session_type="tty"
+else
+  session_type="${XDG_SESSION_TYPE}"
+fi
 
 clear
 echo -e "                                       "

@@ -39,6 +39,9 @@ end
 set shell (fish --version | cut -d " " -f 3)
 if test -f /usr/bin/xrandr
   set resolution (xrandr 2> /dev/null | grep "*" | head -1  | tr -s " " | cut -d " " -f 2)
+  if test -n "$resolution"
+    set resolution "No display"
+  end
 else
   set resolution "No display"
 end
@@ -53,7 +56,6 @@ else if test -f /usr/bin/lscpu
 else
   set cpu_model "Unknown"
 end
-
 if test -f /proc/meminfo
   set mem_total_kb (cat /proc/meminfo | grep -i "memtotal" | tr -s " " | cut -d ":" -f 2)
   set mem_total_kb_num (echo $mem_total_kb | tr -s " " | cut -d " " -f 2)
@@ -65,10 +67,13 @@ else if test -f /usr/bin/lsmem
 else
   set mem_total "Unknown"
 end
-
 set arch_system (uname -m)
 set hostname_host $hostname
-set session_type {$XDG_SESSION_TYPE}
+if test -n "$XDG_SESSION_TYPE"
+  set session_type "tty"
+else
+  set session_type {$XDG_SESSION_TYPE}
+end
 
 #echo ""
 #echo ""

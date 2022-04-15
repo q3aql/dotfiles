@@ -212,6 +212,10 @@ export PS2="> "
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+if [ -f $HOME/.cargo/env ] ; then
+  . "$HOME/.cargo/env"
+fi
+
 # Detect prompt color
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;

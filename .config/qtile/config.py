@@ -31,6 +31,6 @@ dgroups_app_rules = []
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = True
-auto_fullscreen = False
+auto_fullscreen = True
 focus_on_window_activation = 'urgent'
 wmname = 'LG3D'

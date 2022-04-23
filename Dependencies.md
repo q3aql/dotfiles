@@ -21,7 +21,7 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
   xfce4-screenshooter xscreensaver alsa-utils pulseaudio-alsa light xorg-xbacklight \
   xorg-xrandr sway swaybg swayidle wofi meson waybar wayland-protocols xorg-xwayland \
   wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots pulseaudio \
-  alacritty
+  alacritty qtile
   ````
       
   ```shell
@@ -72,6 +72,15 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
   $ cd dotfiles
   $ chmod +x scripts/i3-gaps-install.sh
   $ sudo scripts/i3-gaps-install.sh
+  ````
+
+  * For install `qtile`, type this commands:
+  
+  ```shell
+  $ sudo apt install xserver-xorg xinit
+  $ sudo apt install libpangocairo-1.0-0
+  $ sudo apt install python3-pip python3-xcffib python3-cairocffi
+  $ pip install qtile
   ````
       
   * I use `Connman` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):

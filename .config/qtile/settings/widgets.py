@@ -22,15 +22,13 @@ def icon(fg='text', bg='dark', fontsize=16, text="?"):
         padding=3
     )
 
-
 def powerline(fg="light", bg="dark"):
     return widget.TextBox(
         **base(fg, bg),
         text="", # Icon: nf-oct-triangle_left
         fontsize=37,
-        padding=-2
+        padding=-2.1
     )
-
 
 def workspaces(): 
     return [
@@ -111,17 +109,19 @@ secondary_widgets = [
 
     separator(),
 
-    powerline('color1', 'dark'),
+    powerline('color2', 'dark'),
 
-    widget.CurrentLayoutIcon(**base(bg='color1'), scale=0.65),
+    widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
 
-    widget.CurrentLayout(**base(bg='color1'), padding=5),
+    widget.CurrentLayout(**base(bg='color2'), padding=5),
 
-    powerline('color2', 'color1'),
+    powerline('color1', 'color2'),
 
-    widget.Clock(**base(bg='color2'), format='%d/%m/%Y - %H:%M '),
+    icon(bg="color1", fontsize=17, text=' '), # Icon: nf-mdi-calendar_clock
 
-    powerline('dark', 'color2'),
+    widget.Clock(**base(bg='color1'), format='%d/%m/%Y - %H:%M '),
+
+    powerline('dark', 'color1'),
 ]
 
 widget_defaults = {

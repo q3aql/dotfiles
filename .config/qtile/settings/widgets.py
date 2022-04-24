@@ -96,7 +96,7 @@ primary_widgets = [
 
     icon(bg="color1", fontsize=17, text=' '), # Icon: nf-mdi-calendar_clock
 
-    widget.Clock(**base(bg='color1'), format='%d/%m/%Y - %H:%M '),
+    widget.Clock(**base(bg='color1'), format='%d/%m/%Y %H:%M '),
 
     powerline('dark', 'color1'),
 
@@ -118,7 +118,7 @@ secondary_widgets = [
 
     icon(bg="color1", fontsize=17, text=' '), # Icon: nf-mdi-calendar_clock
 
-    widget.Clock(**base(bg='color1'), format='%d/%m/%Y - %H:%M '),
+    widget.Clock(**base(bg='color1'), format='%d/%m/%Y %H:%M '),
 
     powerline('dark', 'color1'),
 ]

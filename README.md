@@ -42,6 +42,15 @@ dotfiles - My tiling Qtile, spectrwm, i3 & sway configurations (for Arch/Devuan/
       nm-applet
       ````
 
+  * **`Widget Network (Optional):`**
+  
+    * To display the connection information in the top bar you need to edit a file.
+    * Modify the following line with the interface of your computer (Use command `ifconfig` or `ip a`) in the file `~/.config/qtile/settings/widget.py`:
+    
+      ```shell
+      widget.Net(**base(bg='color3'), interface='wlan0'),
+      ````
+
   * **`Monitor & resolution:`**
   
     * The configuration load my monitor configuration:

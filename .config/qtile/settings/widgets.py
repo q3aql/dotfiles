@@ -78,6 +78,7 @@ primary_widgets = [
         update_interval=1800,
         #custom_command='checkupdates',
         custom_command='bash ~/.config/qtile/checkUpdates.sh',
+        execute='bash ~/.config/qtile/checkUpdates.sh',
     ),
 
     powerline('color3', 'color5'),

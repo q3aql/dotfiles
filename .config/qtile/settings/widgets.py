@@ -34,7 +34,7 @@ def workspaces():
         widget.GroupBox(
             **base(fg='light'),
             font='UbuntuMono Nerd Font',
-            fontsize=16,
+            fontsize=15,
             #font='Liberation Mono',
             #fontsize=14,
             margin_y=3,

@@ -69,12 +69,12 @@ primary_widgets = [
 
     separator(),
 
-    powerline('color4', 'dark'),
+    powerline('color5', 'dark'),
 
-    icon(bg="color4", text=' '), # Icon: nf-fa-download
+    icon(bg="color5", text=' '), # Icon: nf-fa-download
     
     widget.CheckUpdates(
-        background=colors['color4'],
+        background=colors['color5'],
         colour_have_updates=colors['text'],
         colour_no_updates=colors['text'],
         no_update_string='0',
@@ -83,7 +83,7 @@ primary_widgets = [
         custom_command='checkupdates',
     ),
 
-    powerline('color3', 'color4'),
+    powerline('color3', 'color5'),
 
     icon(bg="color3", text=' '),  # Icon: nf-fa-feed
     

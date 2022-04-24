@@ -9,10 +9,8 @@ def base(fg='text', bg='dark'):
         'background': colors[bg]
     }
 
-
 def separator():
     return widget.Sep(**base(), linewidth=0, padding=5)
-
 
 def icon(fg='text', bg='dark', fontsize=16, text="?"):
     return widget.TextBox(
@@ -78,7 +76,8 @@ primary_widgets = [
         no_update_string='0',
         display_format='{updates}',
         update_interval=1800,
-        custom_command='checkupdates',
+        #custom_command='checkupdates',
+        custom_command='bash ~/.config/qtile/checkUpdates.sh',
     ),
 
     powerline('color3', 'color5'),

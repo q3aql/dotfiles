@@ -15,5 +15,8 @@ fi
 # Install fonts
 mkdir -p /usr/share/fonts/truetype/mononoki/
 mkdir -p /usr/share/fonts/truetype/joypixels/
+mkdir -p /usr/share/fonts/truetype/ubuntumono/
 tar Jxvf joypixels-fonts.tar.xz -C /usr/share/fonts/truetype/joypixels/
 tar Jxvf mononoki-nerds-fonts.tar.xz -C /usr/share/fonts/truetype/mononoki/
+tar Jxvf mononoki-nerds-fonts.tar.xz -C /usr/share/fonts/truetype/mononoki/
+tar Jxvf ubuntumono-nerd-fonts.tar.xz -C /usr/share/fonts/truetype/ubuntumono/

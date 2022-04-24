@@ -1,5 +1,5 @@
-dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
-================================================================================
+dotfiles - My tiling Qtile, spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
+=======================================================================================
 
 ### My configurations:
 
@@ -55,6 +55,12 @@ dotfiles - My tiling spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
   wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
   libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin \
   xdg-desktop-portal-wlr wf-recorder weston
+  ````
+  
+  ```shell
+  $ git clone https://github.com/q3aql/dotfiles
+  $ cd dotfiles/fonts
+  $ sudo ./install-fonts.sh
   ````
       
   * For install `alacritty`, type this commands `(Optional)`:

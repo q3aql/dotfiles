@@ -4,6 +4,7 @@ dotfiles - My tiling sway configuration (for Arch/Devuan/Debian)
 ### My configurations:
 
 * [Qtile](README-qtile.md)
+* [Qtile (Widget)](README-qtile-widget.md)
 * [i3 + polybar](README-i3-polybar.md)
 * [i3 + i3status](README-i3.md)
 * [i3 + i3blocks](README-i3-i3blocks.md)

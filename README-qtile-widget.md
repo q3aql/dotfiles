@@ -1,5 +1,5 @@
-dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
-========================================================================
+dotfiles - My tiling Qtile (Widget Extra) configuration (for Arch/Devuan/Debian)
+================================================================================
 
 ### My configurations:
 
@@ -12,7 +12,7 @@ dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
 * [spectrwm](README-spectrwm.md)
 * [spectrwm + polybar](README-spectrwm-polybar.md)
 
-![i3-polybar](examples/i3wm-polybar.png)
+![qtile-widget](examples/qtile-widget.png)
 
 ### Installation:
 
@@ -29,7 +29,9 @@ dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
       $ cd dotfiles
       $ chmod +x install-config.sh
       $ ./install-config.sh
-      $ cp -rfv ~/.config/i3/config.polybar ~/.config/i3/config
+      $ sudo pip psutils
+      $ cd ~/.config/qtile/settings
+      $ cp -rfv widgets.py.advanced widgets.py
       ````
 
 ### Configuration:
@@ -37,59 +39,51 @@ dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer `Connman`, edit the file `~/.config/i3/config`:
+    * If you prefer `Connman`, edit the file `~/.config/qtile/autostart.sh`:
     
       ```shell
-      #exec --no-startup-id connman-gtk --tray &
-      exec --no-startup-id nm-applet &
+      #connman-gtk --tray &
+      nm-applet
       ````
 
   * **`Monitor & resolution:`**
   
     * The configuration load my monitor configuration:
-    * Use the command `xrandr` for show your config & edit the file `~/.config/i3/startxrandr.sh`:
+    * Use the command `xrandr` for show your config & edit the file `~/.config/qtile/startxrandr.sh`:
     
       ```shell
       sleep 2
-      xrandr --output DisplayPort-0 --mode 1280x1024 -r 75.02
+      xrandr --output DisplayPort-0 --mode 1920x1200 -r 59.95
       xrandr --output DisplayPort-1 --mode 1280x1024 -r 75.02 --rotate left --right-of DisplayPort-0
       ````
 
   * **`Wallpaper:`**
   
-    * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
-    * Edit  `~/.config/i3/config` for set your favorite wallpaper:
+    * By default, the config load wallpaper on `~/wallpapers/archlinux2.jpg`:
+    * Edit  `~/.config/qtile/autostart.sh` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
+      sleep 3 && nitrogen --head=0 --set-scaled ~/wallpapers/archlinux2.jpg
+      nitrogen --head=1 --set-zoom-fill ~/wallpapers/archlinux2.jpg
       ````
 
  * **`Set Screensaver (Optional):`**
 
     * The configuration file set `xautolock` with 20 minutes as screensaver:
-    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/i3/startscreensaver.sh`:
+    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/qtile/startscreensaver.sh`:
 
       ```shell
       # Basic configuration variables
       ScreensaverProgram="xautolock" # Options: xautolock or xscreensaver
       ScreensaverTime="20" # 20 minutes (only for xautolock)
       ````
-
-  * **`Enable Gaps (Optional):`**
-  
-    * My config work on vanilla i3wm and gaps are disabled.
-    * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:
-    
-      ```shell
-      #gaps inner 6
-      #gaps outer 2
-      ````
-
 ### Keys configuration:
 
 My list of extra combinations:
 
-    - Super + d = Open Dmenu
+    - Super + Tab = Next Layout
+    - Super + Shift + Tab = Previous Layout
+    - Super + Shift + f = Floating Window
     - Super + p = Open Rofi (run mode)
     - Super + q = Open Rofi (window mode)
     - Super + o = Open Rofi (drun mode)
@@ -102,13 +96,11 @@ My list of extra combinations:
     - Super + x = Open LXRandr
     - Super + u = Open Xterm
     - Super + i = Open LXAppearance
-    - Super + c = Open NetWorkManager
+    - Super + s = Open Screenshooter
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
-    - Super + Ctrl + Shift + e = Poweroff screen
-    - Super + Shift + e = Logout
-    - Super + Backspace = Open menu Logout/Lock/Reboot/Shutdown
+    - Super + Shift + q = Shutdown
 
 ### External links:
 

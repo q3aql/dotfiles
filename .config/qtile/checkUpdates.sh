@@ -13,8 +13,4 @@ if [ -f /usr/bin/pacman ] ; then
 # 30 * * * * root /usr/bin/aptitude update
 elif [ -f /usr/bin/aptitude ] ; then
   aptitude search "~U"
-
-# Disable for other distros
-else 
-  echo "0"
 fi

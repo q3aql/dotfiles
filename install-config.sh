@@ -11,6 +11,9 @@ cp -rf .conky* ${HOME}/
 cp -rf .config* ${HOME}/
 cp -rf .vim* ${HOME}/
 cp -rf .Xresources ${HOME}/
+rm -rfv ~/.local/share/dwm/autostart.sh 2> /dev/null
+mkdir -p ~/.local/share/dwm
+ln -s ~/.config/dwm/autostart.sh ~/.local/share/dwm
 echo "# Removing unnecesary files"
 sleep 2
 rm -rf ${HOME}/README.md

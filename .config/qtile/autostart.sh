@@ -19,7 +19,7 @@ sleep 3 && nitrogen --head=0 --set-scaled ~/wallpapers/archlinux2.jpg
 nitrogen --head=1 --set-zoom-fill ~/wallpapers/archlinux2.jpg
 
 # Configure screensaver
-~/.config/i3/startscreensaver.sh &
+~/.config/qtile/startscreensaver.sh &
 
 # Clipboard (Diodon)
 diodon &

@@ -211,7 +211,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_m, spawn, SHCMD("rofi -show") },
 
     // Terminal
-    { MODKEY, XK_Return, spawn, SHCMD("alacritty") },
+    { MODKEY, XK_Return, spawn, SHCMD("kitty") },
 
     // File explorer
     { MODKEY, XK_e, spawn, SHCMD("pcmanfm") },

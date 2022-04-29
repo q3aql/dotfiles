@@ -11,7 +11,7 @@ nm-applet &
 pnmixer -t &
 
 # Configure screens and resolution
-#~/.config/dwm/startxrandr.sh &
+~/.config/dwm/startxrandr.sh &
 
 # Load compton or picom
 #compton &
@@ -22,7 +22,7 @@ kitty &
 
 # Configure wallpaper
 sleep 3 && nitrogen --head=0 --set-scaled ~/wallpapers/archlinux2.jpg &
-nitrogen --head=1 --set-zoom-fill ~/wallpapers/archlinux2.jpg &
+sleep 3 && nitrogen --head=1 --set-zoom-fill ~/wallpapers/archlinux2.jpg &
 
 # Configure screensaver
 ~/.config/dwm/startscreensaver.sh &

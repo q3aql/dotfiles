@@ -1,11 +1,7 @@
-# Justine Smithies
-# https://github.com/justinesmithies/qtile-wayland-dotfiles
-
-# Mouse floating layouts.
-
 from libqtile.config import Drag, Click
 from libqtile.command import lazy
 from .keys import mod
+
 
 mouse = [
     Drag(
@@ -20,9 +16,5 @@ mouse = [
         lazy.window.set_size_floating(),
         start=lazy.window.get_size()
     ),
-    Click(
-        [mod],
-        "Button2",
-        lazy.window.bring_to_front()
-    )
+    Click([mod], "Button2", lazy.window.bring_to_front())
 ]

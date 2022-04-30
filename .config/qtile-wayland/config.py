@@ -5,7 +5,7 @@
 # https://github.com/justinesmithies/qtile-wayland-dotfiles
 
 from typing import List  # noqa: F401
-import hooks
+#import hooks
 from settings.keys import mod, keys, home
 from settings.workspaces import workspaces
 from settings.groups import groups

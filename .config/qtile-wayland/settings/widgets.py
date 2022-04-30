@@ -1,6 +1,3 @@
-# Justine Smithies
-# https://github.com/justinesmithies/qtile-wayland-dotfiles
-
 # Widgets setup
 # Get the icons at https://www.nerdfonts.com/cheat-sheet
 
@@ -12,7 +9,7 @@ from libqtile import widget
 #from colors import *
 from .theme import colors
 #from ordinaldate import custom_date
-from keys import terminal
+from .keys import terminal
 
 
 def base(fg='text', bg='dark'): 

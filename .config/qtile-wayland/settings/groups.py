@@ -5,9 +5,9 @@
 
 from libqtile.config import Key, Group
 from libqtile.command import lazy
-from keys import mod, keys
-from workspaces import workspaces
-from screens import connected_monitors
+from .keys import mod, keys
+from .workspaces import workspaces
+from .screens import connected_monitors
 
 groups = []
 for workspace in workspaces:

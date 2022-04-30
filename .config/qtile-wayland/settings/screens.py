@@ -6,15 +6,16 @@
 from libqtile.config import Screen
 from libqtile import bar
 from libqtile.log_utils import logger
-from widgets import primary_widgets, secondary_widgets
+from .widgets import primary_widgets, secondary_widgets
 import subprocess
 
 
 def status_bar(widgets):
-    return bar.Bar(widgets, 24, background="#000000AA", margin=[10, 16, 0, 16]) # Margin = N E S W
+    #return bar.Bar(widgets, 24, background="#000000AA", margin=[10, 16, 0, 16]) # Margin = N E S W
+    return bar.Bar(widgets, 24, background="#000000AA", margin=[0, 0, 0, 0]) # Margin = N E S W
 
 
-screens = [Screen(wallpaper='.cache/wallpaper', wallpaper_mode='fill', top=status_bar(primary_widgets))]
+screens = [Screen(wallpaper='~/wallpapers/archlinux2.jpg', wallpaper_mode='fill', top=status_bar(primary_widgets))]
 
 # xrandr = "xrandr | grep -w 'connected' | cut -d ' ' -f 2 | wc -l"
 
@@ -36,4 +37,4 @@ connected_monitors = 2
 
 if connected_monitors > 1:
     for _ in range(1, connected_monitors):
-        screens.append(Screen(wallpaper='.cache/wallpaper', wallpaper_mode='fill', top=status_bar(secondary_widgets)))
+        screens.append(Screen(wallpaper='~/wallpapers/archlinux2.jpg', wallpaper_mode='fill', top=status_bar(secondary_widgets)))

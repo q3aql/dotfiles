@@ -11,7 +11,7 @@ workspaces = [
         "name": "term",
         "key": "1",
         "matches": [
-            Match(wm_class='kitty'),
+            Match(wm_class='xterm'),
         ],
         "layout": "monadtall",
         "spawn": [],

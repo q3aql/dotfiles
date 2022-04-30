@@ -131,7 +131,7 @@ keys = [
     Key([mod], "g", lazy.spawn("geany")),
     Key([mod], "m", lazy.spawn("telegram")),
     Key([mod], "z", lazy.spawn("nitrogen")),
-    Key([mod], "u", lazy.spawn("xterm")),
+    Key([mod], "u", lazy.spawn("~/.config/qtile/xterm-wayland")),
     Key([mod], "t", lazy.spawn("rofi-theme-selector")),
     Key([mod], "i", lazy.spawn("lxappearance")),
 
@@ -143,10 +143,8 @@ keys = [
         lazy.next_layout(),
         desc="Toggle between layouts"
         ),
-    Key([mod], "w",
-        lazy.window.kill(),
-        desc="Kill focused window"
-        ),
+    Key([mod, "shift"], "q", lazy.window.kill()), 
+    Key([mod, "control"], "q", lazy.shutdown()),
 
     # Toggle bars
     Key([mod], "b",

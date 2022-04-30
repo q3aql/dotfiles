@@ -55,7 +55,7 @@ dotfiles - My tiling Qtile, spectrwm, i3 & sway configurations (for Arch/Devuan/
   sway swaybg swayidle wlr-randr wdisplays wofi meson waybar wl-clipboard \
   wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
   libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin \
-  xdg-desktop-portal-wlr wf-recorder weston
+  xdg-desktop-portal-wlr wf-recorder weston grim
   ````
   
   ```shell

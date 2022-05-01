@@ -2,8 +2,8 @@
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Noto Sans, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-family: UbuntuMono Nerd Font, Noto Sans, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
     min-height: 0;
 }
 
@@ -108,6 +108,11 @@ window#waybar.chromium {
     margin: 0 1px;
 }
 
+#custom-currentdate {
+    color: #C14F3F;
+    margin: 0 1px;
+}
+
 #custom-kernel {
     color: #51A6E3;
     margin: 0 1px;
@@ -120,6 +125,16 @@ window#waybar.chromium {
 
 #custom-memory {
     color: #CADD8A;
+    margin: 0 1px;
+}
+
+#custom-checkupdates {
+    color: #CADD8A;
+    margin: 0 1px;
+}
+
+#custom-getvolume {
+    color: #DDAA33;
     margin: 0 1px;
 }
 

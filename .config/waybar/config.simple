@@ -8,8 +8,7 @@
     "modules-left": ["sway/workspaces"],
     // "modules-center": ["sway/window"],
     //"modules-right": ["pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "sway/language", "battery", "battery#bat2", "clock", "tray"],
-    //"modules-right": ["custom/kernel",  "custom/cpu", "custom/memory", "custom/disk", "pulseaudio", "sway/language", "network", "custom/clock", "tray"],
-    "modules-right": ["custom/checkupdates", "custom/kernel",  "custom/cpu", "custom/memory", "custom/getvolume", "sway/language",  "custom/currentdate","tray"],
+    "modules-right": ["custom/kernel",  "custom/cpu", "custom/memory", "custom/disk", "pulseaudio", "sway/language", "network", "custom/clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -50,7 +49,7 @@
 	      "format": "{}",
 	      //"max-length": 12,
 	      "interval": 10,
-	      "exec": "~/.config/waybar/iscripts/kernel_version.sh",
+	      "exec": "~/.config/waybar/scripts/kernel_version.sh",
     },
 
     "custom/clock": {
@@ -60,46 +59,25 @@
 	      "exec": "date '+%h %d, %H:%M'",
     },
 
-    "custom/currentdate": {
-	      "format": "{}",
-	      //"max-length": 12,
-	      "interval": 2,
-	      "exec": "~/.config/waybar/iscripts/current_date.sh",
-    },
-
-    "custom/getvolume": {
-	      "format": "{}",
-	      //"max-length": 12,
-	      "interval": 2,
-	      "exec": "~/.config/waybar/iscripts/get_volume.sh",
-    },
-
-    "custom/checkupdates": {
-	      "format": "{}",
-	      //"max-length": 12,
-	      "interval": 1800,
-	      "exec": "~/.config/waybar/iscripts/checkUpdates.sh",
-    },
-
     "custom/cpu": {
 	      "format": "{}",
 	      //"max-length": 12,
 	      "interval": 2,
-	      "exec": "~/.config/waybar/iscripts/cpu_info.sh",
+	      "exec": "~/.config/waybar/scripts/cpu_info.sh",
     },
 
     "custom/memory": {
 	      "format": "{}",
 	      //"max-length": 12,
 	      "interval": 5,
-	      "exec": "~/.config/waybar/iscripts/mem_info.sh",
+	      "exec": "~/.config/waybar/scripts/mem_info.sh",
     },
 
     "custom/disk": {
 	      "format": "{}",
 	      //"max-length": 12,
 	      "interval": 10,
-	      "exec": "~/.config/waybar/iscripts/disk_info.sh",
+	      "exec": "~/.config/waybar/scripts/disk_info.sh",
     },
 
     "idle_inhibitor": {

@@ -29,6 +29,7 @@ dotfiles - My tiling sway configuration (for Arch/Devuan/Debian)
       $ cd dotfiles
       $ chmod +x install-config.sh
       $ ./install-config.sh
+      $ cp -rfv ~/.config/waybar/config.icons ~/.config/waybar/config
       ````
 
 ### Configuration:

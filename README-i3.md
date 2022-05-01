@@ -4,7 +4,7 @@ dotfiles - My tiling i3 configuration (for Arch/Devuan/Debian)
 ### My configurations:
 
 * [Qtile](README-qtile.md)
-* [i3(README-i3.md)
+* [i3](README-i3.md)
 * [Sway](README-sway.md)
 * [Spectrwm](README-spectrwm.md)
 

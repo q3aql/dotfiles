@@ -30,7 +30,7 @@ light-blue  = ${xrdb: color4}
 light-pink  = ${xrdb: color5}
 light-green = ${xrdb: color6}
 
-padding     = 2
+padding = 1
 
 [bar/mainbar-i3]
 monitor = ${env:MONITOR:}
@@ -46,12 +46,14 @@ radius = 0.0
 fixed-center = true
 
 ;background = ${glob.background}
-background = #222133
+;background = #222133
+background = #2b303b
 foreground = #ADBAC7
 underline = #664477
 
-line-size = 2
-line-color = #f004477
+line-size = 0
+;line-color = #f004477
+line-color = #9fa8af
 
 border-size = 0
 ;border-color = #664477
@@ -64,17 +66,19 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = "Noto Sans:size=10;0"
+font-0 = "UbuntuMono Nerd Font:size=11;0"
 font-1 = "FontAwesome:size=10;0"
 font-2 = "Noto Sans:size=10;0"
 font-3 = "Noto Sans Mono:size=10;0"
 
 modules-left = i3
 ; modules-center = calendar date 
-modules-right = kernel cpu meminfo diskinfo pulseaudio wlan eth0 date
+; modules-right = checkupdate kernel cpu meminfo diskinfo pulseaudio wlan eth0 date
+modules-right = checkupdate ikernel icpu imeminfo getvolume currentdate
 tray-position = right
-;tray-margin = 0
-tray-background = #222133 
+tray-margin = 0
+;tray-background = #222133 
+tray-background = #2b303b 
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -143,7 +147,7 @@ modules-right = kernel cpu meminfo diskinfo pulseaudio date
 ;tray-detached = false
 ;tray-offset-x = 0
 ;tray-offset-y = 0
-;tray-padding = 2
+tray-padding = 0
 ;tray-maxsize = 20
 ;tray-scale = 1.0
 tray-position = right
@@ -179,30 +183,37 @@ label-monitor = %name%
 
 label-active = %name%
 label-active-foreground = ${colors.foreground}
-label-active-background = ${colors.background}
-label-active-underline= #6790eb
-label-active-padding = 2
+;label-active-background = ${colors.background}
+label-active-background = #42516d
+label-active-underline= #dbdbdb
+label-active-padding = 1
 
 label-occupied = %name%
 label-occupied-background = ${colors.background}
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %name%
 label-urgent-foreground = ${colors.foreground}
 label-urgent-background = ${colors.alert}
 label-urgent-underline = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %name%
 label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
+label-empty-padding = 0
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
 [module/kernel]
 format-foreground = #51A6E3
 type = custom/script
-exec = ~/.config/polybar/kernel_version.sh
+exec = ~/.config/polybar/scripts/kernel_version.sh
+interval = 10
+
+[module/ikernel]
+format-foreground = #51A6E3
+type = custom/script
+exec = ~/.config/polybar/iscripts/kernel_version.sh
 interval = 10
 
 [module/cpu]
@@ -213,18 +224,52 @@ format-foreground = #B63CEC
 ; Seconds to sleep between updates
 ; Default: 1
 type = custom/script
-exec = ~/.config/polybar/cpu_info.sh
+exec = ~/.config/polybar/scripts/cpu_info.sh
 interval = 0.5
+
+[module/icpu]
+;type = internal/cpu
+format-foreground = #B63CEC
+;format = <label>
+;label = CPU %percentage%%
+; Seconds to sleep between updates
+; Default: 1
+type = custom/script
+exec = ~/.config/polybar/iscripts/cpu_info.sh
+interval = 0.5
+
+[module/checkupdate]
+type = custom/script
+interval = 1800
+exec = ~/.config/polybar/iscripts/checkUpdates.sh
+format-foreground = #CADD8A
+
+[module/imeminfo]
+type = custom/script
+exec = ~/.config/polybar/iscripts/mem_info.sh
+format-foreground = #CADD8A
 
 [module/meminfo]
 type = custom/script
-exec = ~/.config/polybar/mem_info.sh
+exec = ~/.config/polybar/scripts/mem_info.sh
 format-foreground = #CADD8A
 
 [module/diskinfo]
 type = custom/script
-exec = ~/.config/polybar/disk_info.sh
+exec = ~/.config/polybar/scripts/disk_info.sh
 format-foreground = #C14F3F
+
+[module/currentdate]
+type = custom/script
+interval = 10
+exec = ~/.config/polybar/iscripts/current_date.sh
+format-foreground = #C14F3F
+
+[module/getvolume]
+type = custom/script
+interval = 2
+exec = ~/.config/polybar/iscripts/get_volume.sh
+format-foreground = #DDAA33
 
 [module/i3]
 type = internal/i3
@@ -243,13 +288,14 @@ label-mode-background = ${glob.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %name%
 label-focused-foreground = ${colors.foreground}
-label-focused-background = ${colors.background}
-label-focused-underline = #6790eb
+;label-focused-background = ${colors.background}
+label-focused-background = #42516d
+label-focused-underline = #dbdbdb
 label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
 ;label-unfocused = %name%
-label-unfocused-padding = 1
+label-unfocused-padding = 0.5
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
@@ -267,7 +313,7 @@ label-urgent-padding = 1
 
 [module/wlan]
 type = internal/network
-interface = wlxc46e1f24d377
+interface = wlan0
 interval = 3.0
 
 format-connected = <label-connected>

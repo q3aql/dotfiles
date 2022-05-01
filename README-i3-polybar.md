@@ -29,7 +29,11 @@ dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
       $ cd dotfiles
       $ chmod +x install-config.sh
       $ ./install-config.sh
+      $ cd fonts
+      $ chmod +x install-fonts.sh
+      $ sudo ./install-fonts.sh
       $ cp -rfv ~/.config/i3/config.polybar ~/.config/i3/config
+      $ cp -rfv ~/.config/polybar/config.icons ~/.config/polybar/config
       ````
 
 ### Configuration:

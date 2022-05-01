@@ -1,5 +1,8 @@
+import psutil
+
 from libqtile import widget
 from .theme import colors
+from libqtile.widget import base
 
 # Get the icons at https://www.nerdfonts.com/cheat-sheet (you need a Nerd Font)
 
@@ -64,9 +67,7 @@ primary_widgets = [
     *workspaces(),
 
     separator(),
-
     powerline('color5', 'dark'),
-
     icon(bg="color5", text=' '), # Icon: nf-fa-download
     
     widget.CheckUpdates(
@@ -81,13 +82,46 @@ primary_widgets = [
         execute='bash ~/.config/qtile/checkUpdates.sh',
     ),
 
-    powerline('color3', 'color5'),
-
-    icon(bg="color3", text=' '),  # Icon: nf-fa-feed
+    powerline('color2', 'color5'),
+    icon(bg="color2", text=' '), # Icon: nf-fae-chipnf-fae-chip
     
-    widget.Net(**base(bg='color3'), interface='wlan0'),
+    widget.CPU(
+        background=colors['color2'],
+        foreground='222222',
+        update_interval=1.5,
+        format='{load_percent}% '
+    ),
 
-    powerline('color2', 'color3'),
+    widget.ThermalSensor(
+        background=colors['color2'],
+        foreground='222222',
+        update_interval=2.0,
+        tag_sensor="Tctl",
+    ),
+
+    powerline('color3', 'color2'),
+    icon(bg="color3", text=' '),  # Icon: nf-mdi-memory
+
+    widget.Memory(
+        background=colors['color3'],
+        foreground='222222',
+        measure_mem='G',
+        format='{MemUsed:.0f}{mm}/{MemTotal:.0f}{mm} ',
+        update_interval=2.0,
+    ),
+
+    powerline('color5', 'color3'),
+    icon(bg="color5", text=' '),  # Icon: nf-fa-volume_up
+
+    widget.Volume(
+        background=colors['color5'],
+        foreground='222222',
+        channel='Master',
+        fmt='{}',
+        update_interval=0.2,
+    ),
+
+    powerline('color2', 'color5'),
 
     widget.CurrentLayoutIcon(**base(bg='color2'), scale=0.65),
 

@@ -133,7 +133,7 @@ module-margin-left = 1
 module-margin-right = 0
 
 ;https://github.com/jaagr/polybar/wiki/Fonts
-font-0 = "Noto Sans:size=10;0"
+font-0 = "UbuntuMono Nerd Font:size=11;0"
 font-1 = "FontAwesome:size=10;0"
 font-2 = "Noto Sans:size=10;0"
 font-3 = "Noto Sans Mono:size=10;0"
@@ -142,7 +142,8 @@ font-3 = "Noto Sans Mono:size=10;0"
 modules-left = ewmh
 ;modules-center = kernel
 ;modules-right = pavolume memory2 cpu2 date
-modules-right = kernel cpu meminfo diskinfo pulseaudio date
+; modules-right = kernel cpu meminfo diskinfo pulseaudio date
+modules-right = checkupdate ikernelnum icpu imeminfo getvolume currentdate
 
 ;tray-detached = false
 ;tray-offset-x = 0
@@ -178,27 +179,27 @@ enable-scroll = true
 reverse-scroll = true
 
 #icon-5 = 6;
-format = <label-state>
-label-monitor = %name%
+;format = <label-state>
+;label-monitor = %name%
 
-label-active = %name%
+label-active = " %name% "
 label-active-foreground = ${colors.foreground}
 ;label-active-background = ${colors.background}
 label-active-background = #42516d
 label-active-underline= #dbdbdb
-label-active-padding = 1
+label-active-padding = 0
 
-label-occupied = %name%
+label-occupied = " %name% "
 label-occupied-background = ${colors.background}
-label-occupied-padding = 1
+label-occupied-padding = 0
 
-label-urgent = %name%
+label-urgent = " %name% "
 label-urgent-foreground = ${colors.foreground}
 label-urgent-background = ${colors.alert}
 label-urgent-underline = ${colors.alert}
-label-urgent-padding = 1
+label-urgent-padding = 0
 
-label-empty = %name%
+label-empty = " %name% "
 label-empty-foreground = ${colors.foreground}
 label-empty-padding = 0
 format-foreground = ${colors.foreground}
@@ -214,6 +215,12 @@ interval = 10
 format-foreground = #51A6E3
 type = custom/script
 exec = ~/.config/polybar/iscripts/kernel_version.sh
+interval = 10
+
+[module/ikernelnum]
+format-foreground = #51A6E3
+type = custom/script
+exec = ~/.config/polybar/iscripts/kernel_version_num.sh
 interval = 10
 
 [module/cpu]
@@ -279,34 +286,34 @@ type = internal/i3
 strip-wsnumbers = true
 
 ; Only show workspaces on the same output as the bar
- pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = ${glob.padding}
 label-mode-foreground = #664477
 label-mode-background = ${glob.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %name%
+label-focused = " %name% "
 label-focused-foreground = ${colors.foreground}
 ;label-focused-background = ${colors.background}
 label-focused-background = #42516d
 label-focused-underline = #dbdbdb
-label-focused-padding = 1
+label-focused-padding = 0
 
 ; unfocused = Inactive workspace on any monitor
-;label-unfocused = %name%
-label-unfocused-padding = 0.5
+label-unfocused = " %name% "
+label-unfocused-padding = 0
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %name%
+label-visible = " %name% "
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = 1
+label-visible-padding = 0
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %name%
+label-urgent = " %name% "
 label-urgent-foreground = ${glob.red}
-label-urgent-padding = 1
+label-urgent-padding = 0
 
 ; Separator in between workspaces
 ; label-separator = |

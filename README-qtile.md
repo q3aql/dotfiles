@@ -1,16 +1,12 @@
-dotfiles - My tiling Qtile configuration (for Arch/Devuan/Debian)
-=================================================================
+dotfiles - My tiling Qtile (Widget Extra) configuration (for Arch/Devuan/Debian)
+================================================================================
 
 ### My configurations:
 
 * [Qtile](README-qtile.md)
-* [Qtile (Widget)](README-qtile-widget.md)
-* [i3 + polybar](README-i3-polybar.md)
-* [i3 + i3status](README-i3.md)
-* [i3 + i3blocks](README-i3-i3blocks.md)
-* [sway](README-sway.md)
-* [spectrwm](README-spectrwm.md)
-* [spectrwm + polybar](README-spectrwm-polybar.md)
+* [i3(README-i3.md)
+* [Sway](README-sway.md)
+* [Spectrwm](README-spectrwm.md)
 
 ![qtile](examples/qtile.png)
 
@@ -29,6 +25,7 @@ dotfiles - My tiling Qtile configuration (for Arch/Devuan/Debian)
       $ cd dotfiles
       $ chmod +x install-config.sh
       $ ./install-config.sh
+      $ sudo pip psutils
       ````
 
 ### Configuration:
@@ -41,15 +38,6 @@ dotfiles - My tiling Qtile configuration (for Arch/Devuan/Debian)
       ```shell
       #connman-gtk --tray &
       nm-applet
-      ````
-
-  * **`Widget Network (Optional):`**
-  
-    * To display the connection information in the top bar you need to edit a file.
-    * Modify the following line with the interface of your computer (Use command `ifconfig` or `ip a`) in the file `~/.config/qtile/settings/widget.py`:
-    
-      ```shell
-      widget.Net(**base(bg='color3'), interface='wlan0'),
       ````
 
   * **`Monitor & resolution:`**

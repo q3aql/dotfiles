@@ -4,13 +4,9 @@ dotfiles - My tiling sway configuration (for Arch/Devuan/Debian)
 ### My configurations:
 
 * [Qtile](README-qtile.md)
-* [Qtile (Widget)](README-qtile-widget.md)
-* [i3 + polybar](README-i3-polybar.md)
-* [i3 + i3status](README-i3.md)
-* [i3 + i3blocks](README-i3-i3blocks.md)
-* [sway](README-sway.md)
-* [spectrwm](README-spectrwm.md)
-* [spectrwm + polybar](README-spectrwm-polybar.md)
+* [i3(README-i3.md)
+* [Sway](README-sway.md)
+* [Spectrwm](README-spectrwm.md)
 
 ![sway](examples/sway.png)
 

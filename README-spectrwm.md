@@ -1,16 +1,12 @@
-dotfiles - My tiling spectrwm configuration (for Arch/Devuan/Debian)
-====================================================================
+dotfiles - My tiling spectrwm + polybar configuration (for Arch/Devuan/Debian)
+==============================================================================
 
 ### My configurations:
 
 * [Qtile](README-qtile.md)
-* [Qtile (Widget)](README-qtile-widget.md)
-* [i3 + polybar](README-i3-polybar.md)
-* [i3 + i3status](README-i3.md)
-* [i3 + i3blocks](README-i3-i3blocks.md)
-* [sway](README-sway.md)
-* [spectrwm](README-spectrwm.md)
-* [spectrwm + polybar](README-spectrwm-polybar.md)
+* [i3(README-i3.md)
+* [Sway](README-sway.md)
+* [Spectrwm](README-spectrwm.md)
 
 ![spectrwm](examples/spectrwm.png)
 
@@ -102,7 +98,6 @@ My list of extra combinations:
     - Super + x = Close Window
     - Super + w = Minimize Window
     - Super + Shift + w = Maximize/Search Window
-    - Super + Shift + t = Show/Hide Tray (Run by default on Workspace 7)
     - Super + c = Open network configuration
     - Super + v = Open volume configuration (Pavucontrol)
     - Super + Return = Open terminal (Alacritty)

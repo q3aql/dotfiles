@@ -283,8 +283,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   position top
-  #i3bar_command $HOME/.config/polybar/launch.sh
-  status_command i3status
+  i3bar_command $HOME/.config/polybar/launch.sh
+  #status_command i3status
   #status_command i3blocks
   #tray_output DisplayPort-0
   colors {

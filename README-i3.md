@@ -1,18 +1,14 @@
-dotfiles - My tiling i3 + i3status configuration (for Arch/Devuan/Debian)
-=========================================================================
+dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
+========================================================================
 
 ### My configurations:
 
 * [Qtile](README-qtile.md)
-* [Qtile (Widget)](README-qtile-widget.md)
-* [i3 + polybar](README-i3-polybar.md)
-* [i3 + i3status](README-i3.md)
-* [i3 + i3blocks](README-i3-i3blocks.md)
-* [sway](README-sway.md)
-* [spectrwm](README-spectrwm.md)
-* [spectrwm + polybar](README-spectrwm-polybar.md)
+* [i3(README-i3.md)
+* [Sway](README-sway.md)
+* [Spectrwm](README-spectrwm.md)
 
-![i3-i3status](examples/i3wm-i3status.png)
+![i3](examples/i3.png)
 
 ### Installation:
 
@@ -56,11 +52,11 @@ dotfiles - My tiling i3 + i3status configuration (for Arch/Devuan/Debian)
 
   * **`Wallpaper:`**
   
-    * By default, the config load wallpaper on `~/wallpapers/dark-city.jpg`:
+    * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
     * Edit  `~/.config/i3/config` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jpg"
+      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
       ````
 
  * **`Set Screensaver (Optional):`**
@@ -74,7 +70,7 @@ dotfiles - My tiling i3 + i3status configuration (for Arch/Devuan/Debian)
       ScreensaverTime="20" # 20 minutes (only for xautolock)
       ````
 
-* **`Enable Gaps (Optional):`**
+  * **`Enable Gaps (Optional):`**
   
     * My config work on vanilla i3wm and gaps are disabled.
     * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:

@@ -86,7 +86,6 @@ dotfiles - My tiling Dwm configuration (for Arch/Devuan/Debian)
       $ make clean
       $ cd ..
       $ sudo cp -rfv dwm.desktop /usr/share/xsessions/
-      $ ln -s ~/.config/dwm/autostart.sh ~/.local/share/dwm/autostart.sh
       ````
 
 ### Keys configuration:

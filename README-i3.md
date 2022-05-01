@@ -1,5 +1,5 @@
-dotfiles - My tiling i3 + polybar configuration (for Arch/Devuan/Debian)
-========================================================================
+dotfiles - My tiling i3 configuration (for Arch/Devuan/Debian)
+==============================================================
 
 ### My configurations:
 

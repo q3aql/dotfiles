@@ -1,5 +1,5 @@
-dotfiles - My tiling Qtile (Widget Extra) configuration (for Arch/Devuan/Debian)
-================================================================================
+dotfiles - My tiling Qtile configuration (for Arch/Devuan/Debian)
+=================================================================
 
 ### My configurations:
 

@@ -1,5 +1,5 @@
-dotfiles - My tiling spectrwm + polybar configuration (for Arch/Devuan/Debian)
-==============================================================================
+dotfiles - My tiling Spectrwm configuration (for Arch/Devuan/Debian)
+====================================================================
 
 ### My configurations:
 

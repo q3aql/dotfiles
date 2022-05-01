@@ -1,4 +1,4 @@
-dotfiles - My tiling Qtile, spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
+dotfiles - My tiling Qtile, Spectrwm, i3 & Sway configurations (for Arch/Devuan/Debian)
 =======================================================================================
 
 ### My configurations:

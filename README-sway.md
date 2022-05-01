@@ -1,4 +1,4 @@
-dotfiles - My tiling sway configuration (for Arch/Devuan/Debian)
+dotfiles - My tiling Sway configuration (for Arch/Devuan/Debian)
 ================================================================
 
 ### My configurations:

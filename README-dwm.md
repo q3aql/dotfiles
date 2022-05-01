@@ -76,16 +76,17 @@ dotfiles - My tiling Dwm configuration (for Arch/Devuan/Debian)
     * For build and install dwm, uses the following commands:
     
       ```shell
-      cd ~/.config/dwm
-      make
-      sudo make install
-      make clean
-      cd ~/.config/dwm/dwmblocks
-      make
-      sudo make install
-      make clean
-      cd ..
-      cp -rfv dwm.desktop /usr/share/xsessions/
+      $ cd ~/.config/dwm
+      $ make
+      $ sudo make install
+      $ make clean
+      $ cd ~/.config/dwm/dwmblocks
+      $ make
+      $ sudo make install
+      $ make clean
+      $ cd ..
+      $ sudo cp -rfv dwm.desktop /usr/share/xsessions/
+      $ ln -s autostart.sh ~/.local/share/dwm/autostart.sh
       ````
 
 ### Keys configuration:

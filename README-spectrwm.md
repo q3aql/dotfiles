@@ -6,6 +6,7 @@ dotfiles - My tiling Spectrwm configuration (for Arch/Devuan/Debian)
 * [Qtile](README-qtile.md)
 * [i3](README-i3.md)
 * [Sway](README-sway.md)
+* [Dwm](README-dwm.md)
 * [Spectrwm](README-spectrwm.md)
 
 ![spectrwm](examples/spectrwm.png)

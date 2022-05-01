@@ -17,12 +17,10 @@ pnmixer -t &
 #compton &
 #sleep 15 && picom &
 
-kitty &
-kitty &
-
 # Configure wallpaper
-sleep 3 && nitrogen --head=0 --set-scaled ~/wallpapers/archlinux2.jpg &
-sleep 3 && nitrogen --head=1 --set-zoom-fill ~/wallpapers/archlinux2.jpg &
+wallpaper_path="${HOME}/wallpapers/archlinux3.png"
+#sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} &
+sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} ; nitrogen --head=1 --set-zoom-fill ${wallpaper_path} &
 
 # Configure screensaver
 ~/.config/dwm/startscreensaver.sh &

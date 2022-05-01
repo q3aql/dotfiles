@@ -6,6 +6,7 @@ dotfiles - My tiling Qtile configuration (for Arch/Devuan/Debian)
 * [Qtile](README-qtile.md)
 * [i3](README-i3.md)
 * [Sway](README-sway.md)
+* [Dwm](README-dwm.md)
 * [Spectrwm](README-spectrwm.md)
 
 ![qtile](examples/qtile.png)
@@ -94,7 +95,7 @@ My list of extra combinations:
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
-    - Super + Shift + q = Shutdown
+    - Super + Shift + q = Kill
 
 ### External links:
 

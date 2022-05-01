@@ -1,5 +1,5 @@
-dotfiles - My tiling i3 configuration (for Arch/Devuan/Debian)
-==============================================================
+dotfiles - My tiling Dwm configuration (for Arch/Devuan/Debian)
+===============================================================
 
 ### My configurations:
 
@@ -9,7 +9,7 @@ dotfiles - My tiling i3 configuration (for Arch/Devuan/Debian)
 * [Dwm](README-dwm.md)
 * [Spectrwm](README-spectrwm.md)
 
-![i3](examples/i3.png)
+![dwm](examples/dwm.png)
 
 ### Installation:
 
@@ -33,37 +33,37 @@ dotfiles - My tiling i3 configuration (for Arch/Devuan/Debian)
   * **`Network Manager (Connman or NetWorkManager):`**
   
     * By default is enabled `NetWorkManager` as network manager:
-    * If you prefer `Connman`, edit the file `~/.config/i3/config`:
+    * If you prefer `Connman`, edit the file `~/.config/dwm/autostart.sh`:
     
       ```shell
-      #exec --no-startup-id connman-gtk --tray &
-      exec --no-startup-id nm-applet &
+      #connman-gtk --tray &
+      nm-applet &
       ````
 
   * **`Monitor & resolution:`**
   
     * The configuration load my monitor configuration:
-    * Use the command `xrandr` for show your config & edit the file `~/.config/i3/startxrandr.sh`:
+    * Use the command `xrandr` for show your config & edit the file `~/.config/dwm/startxrandr.sh`:
     
       ```shell
-      sleep 2
-      xrandr --output DisplayPort-0 --mode 1280x1024 -r 75.02
+      xrandr --output DP-1 --mode 1920x1200 -r 59.95
       xrandr --output DisplayPort-1 --mode 1280x1024 -r 75.02 --rotate left --right-of DisplayPort-0
       ````
 
   * **`Wallpaper:`**
   
     * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
-    * Edit  `~/.config/i3/config` for set your favorite wallpaper:
+    * Edit  `~/.config/dwm/autostart.sh` for set your favorite wallpaper:
     
       ```shell
-      exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/abstract.png"
+      wallpaper_path="${HOME}/wallpapers/archlinux3.png"
+      sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} &
       ````
 
  * **`Set Screensaver (Optional):`**
 
     * The configuration file set `xautolock` with 20 minutes as screensaver:
-    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/i3/startscreensaver.sh`:
+    * You can change the program between `xautolock` and `xscreensaver` editing the file `~/.config/dwm/startscreensaver.sh`:
 
       ```shell
       # Basic configuration variables
@@ -71,40 +71,47 @@ dotfiles - My tiling i3 configuration (for Arch/Devuan/Debian)
       ScreensaverTime="20" # 20 minutes (only for xautolock)
       ````
 
-  * **`Enable Gaps (Optional):`**
+  * **`Build and install:`**
   
-    * My config work on vanilla i3wm and gaps are disabled.
-    * You can enable it editing 2 lines on file `~/.config/i3/config` and pressing `Win+Shift+r`:
+    * For build and install dwm, uses the following commands:
     
       ```shell
-      #gaps inner 6
-      #gaps outer 2
+      cd ~/.config/dwm
+      make
+      sudo make install
+      make clean
+      cd ~/.config/dwm/dwmblocks
+      make
+      sudo make install
+      make clean
+      cd ..
+      cp -rfv dwm.desktop /usr/share/xsessions/
       ````
 
 ### Keys configuration:
 
 My list of extra combinations:
 
-    - Super + d = Open Dmenu
+    - Super + Tab = Next Layout
+    - Super + Shift + Tab = Previous Layout
+    - Super + Shift + f = Floating Window
     - Super + p = Open Rofi (run mode)
     - Super + q = Open Rofi (window mode)
     - Super + o = Open Rofi (drun mode)
     - Super + b = Open Firefox
     - Super + n = Open PCManFM
     - Super + t = Open Rofi Theme Selector
-    - Super + g = Open Geany
+    - Super + e = Open Geany
     - Super + m = Open Telegram 
     - Super + z = Open Nitrogen 
     - Super + x = Open LXRandr
     - Super + u = Open Xterm
     - Super + i = Open LXAppearance
-    - Super + c = Open NetWorkManager
+    - Super + s = Open Screenshooter
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
-    - Super + Ctrl + Shift + e = Poweroff screen
-    - Super + Shift + e = Logout
-    - Super + Backspace = Open menu Logout/Lock/Reboot/Shutdown
+    - Super + Shift + q = Kill
 
 ### External links:
 

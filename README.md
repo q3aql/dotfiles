@@ -1,11 +1,12 @@
-dotfiles - My tiling Qtile, spectrwm, i3 & sway configurations (for Arch/Devuan/Debian)
-=======================================================================================
+dotfiles - My tiling Qtile, Spectrwm, i3, Dwm & Sway configurations (for Arch/Devuan/Debian)
+============================================================================================
 
 ### My configurations:
 
 * [Qtile](README-qtile.md)
 * [i3](README-i3.md)
 * [Sway](README-sway.md)
+* [Dwm](README-dwm.md)
 * [Spectrwm](README-spectrwm.md)
 
 ![qtile](examples/qtile.png)

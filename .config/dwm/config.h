@@ -15,13 +15,13 @@ static const int systraypinningfailfirst = 1;
 // 0 means no systray
 static const int showsystray = 1;
 // 0 means no bar 
-static const int showbar = 1;
+static const int showbar = 5;
 // 0 means bottom bar 
-static const int topbar = 1;
+static const int topbar = 5;
 
 // ---------------------------------- Fonts ------------------------------------
 
-static const char *fonts[] = { "UbuntuMono Nerd Font:size=14:weight=bold:antialias=true:autohint:true" };
+static const char *fonts[] = { "UbuntuMono Nerd Font:size=12:weight=bold:antialias=true:autohint:true" };
 static const char dmenufont[] = "UbuntuMono Nerd Font:size=12:antialias=true:autohint=true";
 
 // ---------------------------------- Colors -----------------------------------
@@ -104,10 +104,10 @@ static const int resizehints = 1; // 1 means respect size hints in tiled resizal
 static const Layout layouts[] = {
     // symbol   arrange function
     { "[]",     tile }, // first entry is default 
-    { "[F]",    NULL }, // no layout function means floating behavior 
-    { "[M]",    monocle },
+    //{ "[M]",    monocle },
     { "[C]",    tcl },
-    { "[G]",    grid },
+    { "[F]",    NULL }, // no layout function means floating behavior 
+    //{ "[G]",    grid },
     { NULL,     NULL },
 };
 
@@ -179,7 +179,7 @@ static Key keys[] = {
     { MODKEY, XK_Right, schemeCycle, {0} },
 
     // Kill window
-    { MODKEY, XK_w, killclient, {0} },
+    { MODKEY|ShiftMask, XK_q, killclient, {0} },
 
     // Restart dwm
     { MODKEY|ControlMask, XK_r, quit, {1} },
@@ -204,27 +204,21 @@ static Key keys[] = {
     // dmenu
     { MODKEY|ShiftMask, XK_Return, spawn, {.v = dmenucmd } },
 
-    // rofi
-    { MODKEY, XK_m, spawn, SHCMD("rofi -show drun") },
-
-    // Window nav (rofi)
-    { MODKEY|ShiftMask, XK_m, spawn, SHCMD("rofi -show") },
-
-    // Terminal
+    { MODKEY, XK_o, spawn, SHCMD("rofi -show drun") },
+    { MODKEY, XK_p, spawn, SHCMD("rofi -show run") },
+    { MODKEY|ShiftMask, XK_w, spawn, SHCMD("rofi -show") },
     { MODKEY, XK_Return, spawn, SHCMD("kitty") },
-
-    // File explorer
-    { MODKEY, XK_e, spawn, SHCMD("pcmanfm") },
-
-    // Browser
+    { MODKEY, XK_n, spawn, SHCMD("pcmanfm") },
     { MODKEY, XK_b, spawn, SHCMD("firefox") },
-
-    // Redshift
-    { MODKEY, XK_r, spawn, SHCMD("redshift -O 2400") },
-    { MODKEY|ShiftMask, XK_r, spawn, SHCMD("redshift -x") },
+    { MODKEY, XK_e, spawn, SHCMD("geany") },
+    { MODKEY, XK_m, spawn, SHCMD("telegram") },
+    { MODKEY, XK_z, spawn, SHCMD("nitrogen") },
+    { MODKEY, XK_u, spawn, SHCMD("xterm") },
+    { MODKEY, XK_t, spawn, SHCMD("rofi-theme-selector") },
+    { MODKEY, XK_i, spawn, SHCMD("lxappearance") },
 
     // Screenshot
-    { MODKEY, XK_s, spawn, SHCMD("scrot") },
+    { MODKEY, XK_s, spawn, SHCMD("xfce4-screenshooter") },
     { MODKEY|ShiftMask, XK_s, spawn, SHCMD("scrot -s") },
 
     // ----------------- Hardware ------------------

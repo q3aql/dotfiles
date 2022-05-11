@@ -26,7 +26,7 @@ dotfiles - My tiling Qtile configuration (for Arch/Devuan/Debian)
       $ cd dotfiles
       $ chmod +x install-config.sh
       $ ./install-config.sh
-      $ sudo pip psutils
+      $ sudo pip install psutils
       ````
 
 ### Configuration:

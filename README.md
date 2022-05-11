@@ -26,7 +26,7 @@ dotfiles - My tiling Qtile, Spectrwm, i3, Dwm & Sway configurations (for Arch/De
       $ cd dotfiles
       $ chmod +x install-config.sh
       $ ./install-config.sh
-      $ sudo pip psutils
+      $ sudo pip install psutils
       ````
 
 ### Configuration:

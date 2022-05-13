@@ -61,7 +61,11 @@ keys = [Key(key[0], key[1], *key[2:]) for key in [
     ([mod], "z", lazy.spawn("nitrogen")),
     ([mod], "u", lazy.spawn("xterm")),
     ([mod], "t", lazy.spawn("rofi-theme-selector")),
+    ([mod], "c", lazy.spawn("dmenu_run")),
+    ([mod], "d", lazy.spawn("dmenu_run")),
+    ([mod], "x", lazy.spawn("lxrandr")),
     ([mod], "i", lazy.spawn("lxappearance")),
+    ([mod], "v", lazy.spawn("pavucontrol")),
 
     # Terminal
     ([mod], "Return", lazy.spawn("kitty")),

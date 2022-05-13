@@ -82,6 +82,7 @@ My list of extra combinations:
     - Super + p = Open Rofi (run mode)
     - Super + q = Open Rofi (window mode)
     - Super + o = Open Rofi (drun mode)
+    - Super + d = Open Dmenu
     - Super + b = Open Firefox
     - Super + n = Open PCManFM
     - Super + t = Open Rofi Theme Selector
@@ -91,11 +92,13 @@ My list of extra combinations:
     - Super + x = Open LXRandr
     - Super + u = Open Xterm
     - Super + i = Open LXAppearance
+    - Super + x = Open LXRandr
+    - Super + v = Open Pavucontrol
     - Super + s = Open Screenshooter
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
-    - Super + Shift + q = Shutdown
+    - Super + Shift + q = Kill
 
 ### External links:
 

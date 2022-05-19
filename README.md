@@ -80,7 +80,6 @@ My list of extra combinations:
     - Super + Shift + Tab = Previous Layout
     - Super + Shift + f = Floating Window
     - Super + p = Open Rofi (run mode)
-    - Super + q = Open Rofi (window mode)
     - Super + o = Open Rofi (drun mode)
     - Super + d = Open Dmenu
     - Super + b = Open Firefox
@@ -92,7 +91,6 @@ My list of extra combinations:
     - Super + x = Open LXRandr
     - Super + u = Open Xterm
     - Super + i = Open LXAppearance
-    - Super + x = Open LXRandr
     - Super + v = Open Pavucontrol
     - Super + s = Open Screenshooter
     - Volume-Up = Volume +5

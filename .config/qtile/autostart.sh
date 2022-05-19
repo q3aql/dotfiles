@@ -23,3 +23,6 @@ nitrogen --head=1 --set-zoom-fill ~/wallpapers/archlinux2.jpg
 
 # Clipboard (Diodon)
 diodon &
+
+# Load Conky
+sleep 10 && conky -c ~/.config/conky/conkyrc_qtile &

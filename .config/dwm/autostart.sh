@@ -27,3 +27,6 @@ sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} ; nitrogen --head=1 
 
 # Clipboard (Diodon)
 diodon &
+
+# Load Conky
+sleep 10 && conky -c ~/.config/conky/conkyrc_dwm &

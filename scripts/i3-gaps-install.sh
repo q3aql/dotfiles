@@ -114,9 +114,3 @@ else
   i3_gaps_install_stable_deb
 fi
 
-
-
-
-
-
-

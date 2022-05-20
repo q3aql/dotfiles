@@ -1,0 +1,18 @@
+window {
+        background-color: rgba (30, 30, 46, 0.0);
+        font-family: UbuntuMono Nerd Font;
+        font-size: 12px;
+}
+
+#box-outer {
+        /* Define attributes of the box surrounding icons here */
+        background-color: rgba (30, 30, 46, 0.0);
+        font-family: UbuntuMono Nerd Font;
+        font-size: 12px;
+}
+
+#box-inner {
+        background-color: rgba (30, 30, 46, 0.0);
+        font-family: UbuntuMono Nerd Font;
+        font-size: 12px;
+}

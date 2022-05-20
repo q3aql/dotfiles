@@ -48,6 +48,7 @@ exec --no-startup-id diodon &
 
 # Load Conky
 #exec --no-startup-id sleep 10 && conky -c ~/.config/conky/conkyrc_sway &
+exec --no-startup-id sleep 10 && nwg-wrapper -s conky_sway.sh -r 2000 -p right -mr 15 -mt 10 -mb 80
 
 # Use pactl to adjust volume in PulseAudio.
 #set $refresh_i3status killall -SIGUSR1 i3status

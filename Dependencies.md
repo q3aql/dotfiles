@@ -29,6 +29,7 @@ dotfiles - My tiling Qtile, Spectrwm, i3 , Dwm & Sway configurations (for Arch/D
   $ cd pacaur
   $ makepkg -si
   $ pacaur -S pnmixer polybar nerd-fonts-complete wdisplays wlr-randr-git
+  $ pacaur -S nwg-wrapper
   ````
       
   * I use `iwd` instead of `NetWorkManager` (`don't install if you prefer or use NetWorkManager`):
@@ -59,6 +60,8 @@ dotfiles - My tiling Qtile, Spectrwm, i3 , Dwm & Sway configurations (for Arch/D
   $ git clone https://github.com/q3aql/dotfiles
   $ cd dotfiles/fonts
   $ sudo ./install-fonts.sh
+  $ cd ../scripts
+  $ sudo ./nwg-wrapper-install.sh
   ````
       
   * For install `alacritty`, type this commands `(Optional)`:

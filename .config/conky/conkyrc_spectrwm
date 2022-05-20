@@ -1,0 +1,122 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+	
+	update_interval = 1,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	out_to_console = false,
+	override_utf8_locale = true,
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 32768,
+	imlib_cache_size = 0,
+	background = true,
+	border_inner_margin = 0,
+	border_outer_margin = 0,
+	xinerama_head = 0,
+	alignment = 'top_right',
+	gap_x = 21,
+	gap_y = 56,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	use_xft = true,
+	font = 'UbuntuMono Nerd Font:size=12',
+	xftalpha = 0.8,
+	uppercase = false,
+	default_color = 'aaaaaa',
+	own_window_colour = '#000000',
+	minimum_width = 300, minimum_height = 0,
+	maximum_width = 300,
+	alignment = 'top_right',
+	own_window = true,
+	own_window_argb_value = 200,
+	own_window_argb_visual = true,
+	own_window_class = "Conky",
+	own_window_type = "override",
+	--own_window_hints = "undecorated,below,sticky,skip_taskbar,skip_pager",
+	own_window_transparent = false,
+	own_window_colour="1e1e2e",
+};
+
+conky.text = [[
+
+${color 3b8af6}   SYSTEM INFO ${hr 1}${color}
+###############
+
+${color a73cd9}   ${color}${color e14141}Kernel:${color}${color e25ee6} ${execi 60 ${HOME}/.config/conky/scripts/kernel_version.sh}${color}
+${color c91c49}   ${color}${color e14141}Time:${color}${color 379838} ${execi 10 ${HOME}/.config/conky/scripts/current_date.sh}${color}
+${color cf9c19}   ${color}${color e14141}Uptime:${color}${color cf9c19} ${execi 30 ${HOME}/.config/conky/scripts/show_uptime.sh}${color}
+${color f7d273}   ${color}${color e14141}Volume:${color}${color f7d273} ${execi 1 ${HOME}/.config/conky/scripts/get_volume.sh}${color}
+${color 4b8af4}   ${color}${color e14141}Disk:${color}${color 2aabcf} ${execi 10 ${HOME}/.config/conky/scripts/disk_info.sh}${color}
+${color 379838}   ${color}${color e14141}Memory:${color}${color de6028} ${execi 10 ${HOME}/.config/conky/scripts/mem_info.sh}${color}
+${color b92258}   ${color}${color e14141}CPU:${color}${color e25ee6} ${execi 2 ${HOME}/.config/conky/scripts/cpu_info.sh}${color}
+${color a73cd9} ﬙  ${color}${color e14141}GPU:${color}${color e25ee6} ${execi 2 ${HOME}/.config/conky/scripts/gpu_info.sh}${color}
+${color 298329}   ${color}${color e14141}Updates:${color}${color 379838} ${execi 120 ${HOME}/.config/conky/scripts/checkUpdates.sh}${color}
+
+${color e86441}   SPECTRWM KEYBINDINGS ${hr 1}${color}
+#####################
+
+${color 4b8af4}   ${color}${color 379838}Super +   ${color}${color 9ca8ce}= Kitty${color}
+${color 4b8af4}   ${color}${color 379838}Super + space ${color}${color 9ca8ce}= Next Layout${color}
+${color 4b8af4}   ${color}${color 379838}Super + t ${color}${color 9ca8ce}= Float Window${color}
+${color 4b8af4}   ${color}${color 379838}Super + p ${color}${color 9ca8ce}= Rofi (Run Mode)${color}
+${color 4b8af4}   ${color}${color 379838}Super + o ${color}${color 9ca8ce}= Rofi (Drun Mode)${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + w ${color}${color 9ca8ce}= Rofi (Window Mode)${color}
+${color 4b8af4}   ${color}${color 379838}Super + d ${color}${color 9ca8ce}= Rofi Theme${color}
+${color 4b8af4}   ${color}${color 379838}Super + b ${color}${color 9ca8ce}= Mozilla Firefox${color}
+${color 4b8af4}   ${color}${color 379838}Super + n ${color}${color 9ca8ce}= PCManFM${color}
+${color 4b8af4}   ${color}${color 379838}Super + g ${color}${color 9ca8ce}= Geany${color}
+${color 4b8af4}   ${color}${color 379838}Super + m ${color}${color 9ca8ce}= Telegram${color}
+${color 4b8af4}   ${color}${color 379838}Super + z ${color}${color 9ca8ce}= Nitrogen${color}
+${color 4b8af4}   ${color}${color 379838}Super + x ${color}${color 9ca8ce}= LXRandr${color}
+${color 4b8af4}   ${color}${color 379838}Super + u ${color}${color 9ca8ce}= Xterm${color}
+${color 4b8af4}   ${color}${color 379838}Super + i ${color}${color 9ca8ce}= LXAppearance${color}
+${color 4b8af4}   ${color}${color 379838}Super + s ${color}${color 9ca8ce}= Screenshooter${color}
+${color 4b8af4}   ${color}${color 379838}ﱛ  ${color}${color 9ca8ce}= Volume +5${color}
+${color 4b8af4}   ${color}${color 379838}ﱜ  ${color}${color 9ca8ce}= Volume -5${color}
+${color 4b8af4}   ${color}${color 379838}ﱝ  ${color}${color 9ca8ce}= Mute Volume${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + x ${color}${color 9ca8ce}= Kill Window${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + w ${color}${color 9ca8ce}= Minimize${color}
+${color 4b8af4}   ${color}${color 379838}Super + j ${color}${color 9ca8ce}= Focus Left${color}
+${color 4b8af4}   ${color}${color 379838}Super + k ${color}${color 9ca8ce}= Focus Previous${color}
+${color 4b8af4}   ${color}${color 379838}Super + h ${color}${color 9ca8ce}= Resize Less${color}
+${color 4b8af4}   ${color}${color 379838}Super + l ${color}${color 9ca8ce}= Resize More${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + e ${color}${color 9ca8ce}= Fullscreen${color}
+${color 4b8af4}   ${color}${color 379838}Super + דּ  + וּ  + e ${color}${color 9ca8ce}= Screen-off${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + j ${color}${color 9ca8ce}= Switch Next${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + k ${color}${color 9ca8ce}= Switch Previous${color}
+${color 4b8af4}   ${color}${color 379838}Super + 1-9 ${color}${color 9ca8ce}= Select Workspace${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + r ${color}${color 9ca8ce}= Config reload${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + t ${color}${color 9ca8ce}= Polybar reload${color}
+${color 4b8af4}   ${color}${color 379838}Super + delete ${color}${color 9ca8ce}= Screen-off${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + delete ${color}${color 9ca8ce}= Logout${color}
+
+]];

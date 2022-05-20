@@ -96,12 +96,12 @@ dotfiles - My tiling Spectrwm configuration (for Arch/Devuan/Debian)
 My list of extra combinations:
 
     - Super + d = Open Rofi Theme selector
-    - Super + x = Close Window
+    - Super + Shift + x = Close Window
     - Super + w = Minimize Window
     - Super + Shift + w = Maximize/Search Window
     - Super + c = Open network configuration
     - Super + v = Open volume configuration (Pavucontrol)
-    - Super + Return = Open terminal (Alacritty)
+    - Super + Return = Open terminal (Kitty)
     - Super + n = Open PCManFM
     - Super + p = Open Rofi (exec program)
     - Super + o = Open Rofi (exec menu program)

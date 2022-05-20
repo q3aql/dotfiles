@@ -49,6 +49,12 @@ exec --no-startup-id "sleep 3 && nitrogen --set-scaled ~/wallpapers/dark-city.jp
 # Configure screensaver
 exec --no-startup-id ~/.config/i3/startscreensaver.sh &
 
+# Clipboard (Diodon)
+exec --no-startup-id diodon &
+
+# Load Conky
+exec --no-startup-id sleep 10 && conky -c ~/.config/conky/conkyrc_i3 &
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status

@@ -81,40 +81,44 @@ ${color b92258}   ${color}${color e14141}CPU:${color}${color e25ee6} ${execi 
 ${color a73cd9} ﬙  ${color}${color e14141}GPU:${color}${color e25ee6} ${execi 2 ${HOME}/.config/conky/scripts/gpu_info.sh}${color}
 ${color 298329}   ${color}${color e14141}Updates:${color}${color 379838} ${execi 120 ${HOME}/.config/conky/scripts/checkUpdates.sh}${color}
 
-${color e86441}   QTILE KEYBINDINGS ${hr 1}${color}
+${color e86441}   SWAY KEYBINDINGS ${hr 1}${color}
 #####################
 
 ${color 4b8af4}   ${color}${color 379838}Super +   ${color}${color 9ca8ce}= Kitty${color}
-${color 4b8af4}   ${color}${color 379838}Super +   ${color}${color 9ca8ce}= Next Layout${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  +   ${color}${color 9ca8ce}= Previous Layout${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  + f ${color}${color 9ca8ce}= Floating Window${color}
-${color 4b8af4}   ${color}${color 379838}Super + p ${color}${color 9ca8ce}= Rofi (Run Mode)${color}
-${color 4b8af4}   ${color}${color 379838}Super + o ${color}${color 9ca8ce}= Rofi (Drun Mode)${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + space ${color}${color 9ca8ce}= Float Window${color}
+${color 4b8af4}   ${color}${color 379838}Super + f ${color}${color 9ca8ce}= Fullscreen${color}
+${color 4b8af4}   ${color}${color 379838}Super + p ${color}${color 9ca8ce}= Wofi (Run Mode)${color}
+${color 4b8af4}   ${color}${color 379838}Super + o ${color}${color 9ca8ce}= Wofi (Drun Mode)${color}
+${color 4b8af4}   ${color}${color 379838}Super + q ${color}${color 9ca8ce}= Rofi (Window Mode)${color}
 ${color 4b8af4}   ${color}${color 379838}Super + d ${color}${color 9ca8ce}= Dmenu${color}
 ${color 4b8af4}   ${color}${color 379838}Super + b ${color}${color 9ca8ce}= Mozilla Firefox${color}
 ${color 4b8af4}   ${color}${color 379838}Super + n ${color}${color 9ca8ce}= PCManFM${color}
-${color 4b8af4}   ${color}${color 379838}Super + t ${color}${color 9ca8ce}= Rofi Theme${color}
+${color 4b8af4}   ${color}${color 379838}Super + t ${color}${color 9ca8ce}= Wl-Screenshooter${color}
 ${color 4b8af4}   ${color}${color 379838}Super + g ${color}${color 9ca8ce}= Geany${color}
 ${color 4b8af4}   ${color}${color 379838}Super + m ${color}${color 9ca8ce}= Telegram${color}
-${color 4b8af4}   ${color}${color 379838}Super + z ${color}${color 9ca8ce}= Nitrogen${color}
-${color 4b8af4}   ${color}${color 379838}Super + x ${color}${color 9ca8ce}= LXRandr${color}
+${color 4b8af4}   ${color}${color 379838}Super + z ${color}${color 9ca8ce}= Wf-Recorder${color}
+${color 4b8af4}   ${color}${color 379838}Super + x ${color}${color 9ca8ce}= Wdisplays${color}
 ${color 4b8af4}   ${color}${color 379838}Super + u ${color}${color 9ca8ce}= Xterm${color}
 ${color 4b8af4}   ${color}${color 379838}Super + i ${color}${color 9ca8ce}= LXAppearance${color}
-${color 4b8af4}   ${color}${color 379838}Super + v ${color}${color 9ca8ce}= Pavucontrol${color}
-${color 4b8af4}   ${color}${color 379838}Super + s ${color}${color 9ca8ce}= Screenshooter${color}
+${color 4b8af4}   ${color}${color 379838}Super + c ${color}${color 9ca8ce}= NetworkManager${color}
+${color 4b8af4}   ${color}${color 379838}Super + h ${color}${color 9ca8ce}= Set Horizontal${color}
+${color 4b8af4}   ${color}${color 379838}Super + v ${color}${color 9ca8ce}= Set Vertical${color}
 ${color 4b8af4}   ${color}${color 379838}ﱛ  ${color}${color 9ca8ce}= Volume +5${color}
 ${color 4b8af4}   ${color}${color 379838}ﱜ  ${color}${color 9ca8ce}= Volume -5${color}
 ${color 4b8af4}   ${color}${color 379838}ﱝ  ${color}${color 9ca8ce}= Mute Volume${color}
 ${color 4b8af4}   ${color}${color 379838}Super + וּ  + q ${color}${color 9ca8ce}= Kill Window${color}
-${color 4b8af4}   ${color}${color 379838}Super + h ${color}${color 9ca8ce}= Focus Left${color}
-${color 4b8af4}   ${color}${color 379838}Super + l ${color}${color 9ca8ce}= Focus Right${color}
-${color 4b8af4}   ${color}${color 379838}Super + j ${color}${color 9ca8ce}= Focus Up${color}
+${color 4b8af4}   ${color}${color 379838}Super + j ${color}${color 9ca8ce}= Focus Left${color}
+${color 4b8af4}   ${color}${color 379838}Super + ; ${color}${color 9ca8ce}= Focus Right${color}
+${color 4b8af4}   ${color}${color 379838}Super + l ${color}${color 9ca8ce}= Focus Up${color}
 ${color 4b8af4}   ${color}${color 379838}Super + k ${color}${color 9ca8ce}= Focus Down${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  + h ${color}${color 9ca8ce}= Resize Less${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  + l ${color}${color 9ca8ce}= Resize More${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  + j ${color}${color 9ca8ce}= Switch Right${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  + k ${color}${color 9ca8ce}= Switch Left${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + e ${color}${color 9ca8ce}= Logout${color}
+${color 4b8af4}   ${color}${color 379838}Super + דּ  + וּ  + l ${color}${color 9ca8ce}= Screen-off${color}
+${color 4b8af4}   ${color}${color 379838}Super + r ${color}${color 9ca8ce}= Resize Window${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + j ${color}${color 9ca8ce}= Switch Left${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + ; ${color}${color 9ca8ce}= Switch Right${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + l ${color}${color 9ca8ce}= Switch Up${color}
+${color 4b8af4}   ${color}${color 379838}Super + וּ  + k ${color}${color 9ca8ce}= Switch Down${color}
 ${color 4b8af4}   ${color}${color 379838}Super + 1-9 ${color}${color 9ca8ce}= Select Workspace${color}
-${color 4b8af4}   ${color}${color 379838}Super + וּ  + 1-9 ${color}${color 9ca8ce}= Move Workspace${color}
+${color 4b8af4}   ${color}${color 379838}Super +   ${color}${color 9ca8ce}= Menu Logout${color}
 
 ]];

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Load top bar (Optional)
-#dwmblocks &
-
 # Network applet
 #connman-gtk --tray &
 nm-applet &
@@ -27,6 +24,9 @@ sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} ; nitrogen --head=1 
 
 # Clipboard (Diodon)
 diodon &
+
+# Status bar
+~/.config/dwm/scripts/status_bar.sh &
 
 # Load Conky
 sleep 10 && conky -c ~/.config/conky/conkyrc_dwm &

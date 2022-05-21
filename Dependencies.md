@@ -20,7 +20,7 @@ dotfiles - My tiling Qtile, Spectrwm, i3 , Dwm & Sway configurations (for Arch/D
   xfce4-screenshooter xscreensaver alsa-utils pulseaudio-alsa light xorg-xbacklight \
   xorg-xrandr sway swaybg swayidle wofi meson waybar wayland-protocols xorg-xwayland \
   wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots pulseaudio \
-  alacritty qtile python-pip
+  alacritty qtile python-pip xorg-xsetroot 
   ````
       
   ```shell

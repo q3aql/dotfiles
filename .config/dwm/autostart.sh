@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Load top bar
-dwmblocks &
+# Load top bar (Optional)
+#dwmblocks &
 
 # Network applet
 #connman-gtk --tray &

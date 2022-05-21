@@ -112,5 +112,7 @@ ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + j ${color}${color 9ca
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + k ${color}${color 9ca8ce}= Switch Left${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + 1-9 ${color}${color 9ca8ce}= Select Workspace${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + 1-9 ${color}${color 9ca8ce}= Move Workspace${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + Ctrl + r ${color}${color 9ca8ce}= Restart${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + Ctrl + q ${color}${color 9ca8ce}= Quit${color}
 
 ]];

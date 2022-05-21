@@ -80,12 +80,6 @@ dotfiles - My tiling Dwm configuration (for Arch/Devuan/Debian)
       $ make
       $ sudo make install
       $ make clean
-      $ cd ~/.config/dwm/dwmblocks
-      $ make
-      $ sudo make install
-      $ make clean
-      $ cd ..
-      $ sudo cp -rfv dwm.desktop /usr/share/xsessions/
       ````
 
 ### Keys configuration:
@@ -112,6 +106,8 @@ My list of extra combinations:
     - Volume-Down = Volume -5
     - VolumeMute = Mute Volume
     - Super + Shift + q = Kill
+    - Super + Ctrl + r = Restart Dwm
+    - Super + Ctrl + q = Close session
 
 ### External links:
 

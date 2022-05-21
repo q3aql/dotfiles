@@ -87,6 +87,8 @@ ${color 3b8af6}   DWM KEYBINDINGS ${hr 1}${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super +   ${color}${color 9ca8ce}= Kitty${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super +   ${color}${color 9ca8ce}= Next Layout${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  +   ${color}${color 9ca8ce}= Previous Layout${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + i  ${color}${color 9ca8ce}= Window Layout${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + i  ${color}${color 9ca8ce}= Window Layout${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + f ${color}${color 9ca8ce}= Floating Window${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + p ${color}${color 9ca8ce}= Rofi (Run Mode)${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + o ${color}${color 9ca8ce}= Rofi (Drun Mode)${color}
@@ -98,7 +100,7 @@ ${color 4b8af4}   ${color}${color e25ee6}Super + e ${color}${color 9ca8ce}= G
 ${color 4b8af4}   ${color}${color e25ee6}Super + m ${color}${color 9ca8ce}= Telegram${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + z ${color}${color 9ca8ce}= Nitrogen${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + u ${color}${color 9ca8ce}= Xterm${color}
-${color 4b8af4}   ${color}${color e25ee6}Super + i ${color}${color 9ca8ce}= LXAppearance${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + a ${color}${color 9ca8ce}= LXAppearance${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + s ${color}${color 9ca8ce}= Screenshooter${color}
 ${color 4b8af4}   ${color}${color e25ee6}ﱛ  ${color}${color 9ca8ce}= Volume +5${color}
 ${color 4b8af4}   ${color}${color e25ee6}ﱜ  ${color}${color 9ca8ce}= Volume -5${color}
@@ -112,6 +114,8 @@ ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + j ${color}${color 9ca
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + k ${color}${color 9ca8ce}= Switch Left${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + 1-9 ${color}${color 9ca8ce}= Select Workspace${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + 1-9 ${color}${color 9ca8ce}= Move Workspace${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + , ${color}${color 9ca8ce}= Select Monitor${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + , ${color}${color 9ca8ce}= Move Monitor${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + Ctrl + r ${color}${color 9ca8ce}= Restart${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + Ctrl + q ${color}${color 9ca8ce}= Quit${color}
 

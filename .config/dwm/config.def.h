@@ -38,9 +38,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-  { "mpv",     NULL,       NULL,       0,            1,           -1 },
-  { "Ristrettoy",     NULL,       NULL,       0,            1,           -1 },
-  { "VLC",     NULL,       NULL,       0,            1,           -1 },
+  { "mpv",          NULL,       NULL,       0,            1,           -1 },
+  { "Ristrettoy",   NULL,       NULL,       0,            1,           -1 },
+  { "VLC",          NULL,       NULL,       0,            1,           -1 },
 	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -96,8 +96,8 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_b, togglebar, {0} },
 
     // Move windows in current stack
-	  { MODKEY, XK_j, focusstack, {.i = +1 } },
-	  { MODKEY, XK_k, focusstack, {.i = -1 } },
+    { MODKEY, XK_j, focusstack, {.i = +1 } },
+    { MODKEY, XK_k, focusstack, {.i = -1 } },
 
     // Cycle layouts
     { MODKEY, XK_Tab, cyclelayout, {.i = +1 } },
@@ -152,7 +152,7 @@ static Key keys[] = {
     { MODKEY, XK_z, spawn, SHCMD("nitrogen") },
     { MODKEY, XK_u, spawn, SHCMD("xterm") },
     { MODKEY, XK_t, spawn, SHCMD("rofi-theme-selector") },
-    { MODKEY, XK_i, spawn, SHCMD("lxappearance") },
+    { MODKEY, XK_a, spawn, SHCMD("lxappearance") },
 
     // Screenshot
     { MODKEY, XK_s, spawn, SHCMD("xfce4-screenshooter") },

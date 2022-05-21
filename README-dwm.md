@@ -89,6 +89,8 @@ My list of extra combinations:
     - Super + Tab = Next Layout
     - Super + Shift + Tab = Previous Layout
     - Super + Shift + f = Floating Window
+    - Super + i = Next Window Layout
+    - Super + Shift + i = Previous Window Layout
     - Super + p = Open Rofi (run mode)
     - Super + q = Open Rofi (window mode)
     - Super + o = Open Rofi (drun mode)
@@ -100,7 +102,7 @@ My list of extra combinations:
     - Super + z = Open Nitrogen 
     - Super + x = Open LXRandr
     - Super + u = Open Xterm
-    - Super + i = Open LXAppearance
+    - Super + a = Open LXAppearance
     - Super + s = Open Screenshooter
     - Volume-Up = Volume +5
     - Volume-Down = Volume -5

@@ -52,11 +52,11 @@ dotfiles - My tiling Dwm configuration (for Arch/Devuan/Debian)
 
   * **`Wallpaper:`**
   
-    * By default, the config load wallpaper on `~/wallpapers/abstract.png`:
+    * By default, the config load wallpaper on `~/wallpapers/awesome.jpg`:
     * Edit  `~/.config/dwm/autostart.sh` for set your favorite wallpaper:
     
       ```shell
-      wallpaper_path="${HOME}/wallpapers/archlinux3.png"
+      wallpaper_path="${HOME}/wallpapers/awesome.jpg"
       sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} &
       ````
 

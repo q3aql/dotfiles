@@ -18,7 +18,7 @@ pnmixer -t &
 #sleep 15 && picom &
 
 # Configure wallpaper
-wallpaper_path="${HOME}/wallpapers/archlinux3.png"
+wallpaper_path="${HOME}/wallpapers/awesome.jpg"
 #sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} &
 sleep 5 && nitrogen --head=0 --set-scaled ${wallpaper_path} ; nitrogen --head=1 --set-zoom-fill ${wallpaper_path} &
 

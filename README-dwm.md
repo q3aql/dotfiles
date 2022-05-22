@@ -94,6 +94,7 @@ My list of extra combinations:
     - Super + p = Open Rofi (run mode)
     - Super + q = Open Rofi (window mode)
     - Super + o = Open Rofi (drun mode)
+    - Super + Shift + Enter = Open Dmenu
     - Super + b = Open Firefox
     - Super + n = Open PCManFM
     - Super + t = Open Rofi Theme Selector

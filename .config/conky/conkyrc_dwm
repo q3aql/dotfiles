@@ -87,12 +87,12 @@ ${color 3b8af6}   DWM KEYBINDINGS ${hr 1}${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super +   ${color}${color 9ca8ce}= Kitty${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super +   ${color}${color 9ca8ce}= Next Layout${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  +   ${color}${color 9ca8ce}= Previous Layout${color}
-${color 4b8af4}   ${color}${color e25ee6}Super + i  ${color}${color 9ca8ce}= Window Layout${color}
-${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + i  ${color}${color 9ca8ce}= Window Layout${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + i ${color}${color 9ca8ce}= Window Layout${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + i ${color}${color 9ca8ce}= Window Layout${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + וּ  + f ${color}${color 9ca8ce}= Floating Window${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + p ${color}${color 9ca8ce}= Rofi (Run Mode)${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + o ${color}${color 9ca8ce}= Rofi (Drun Mode)${color}
-${color 4b8af4}   ${color}${color e25ee6}Super + d ${color}${color 9ca8ce}= Dmenu${color}
+${color 4b8af4}   ${color}${color e25ee6}Super + וּ  +   ${color}${color 9ca8ce}= Dmenu${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + b ${color}${color 9ca8ce}= Mozilla Firefox${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + n ${color}${color 9ca8ce}= PCManFM${color}
 ${color 4b8af4}   ${color}${color e25ee6}Super + t ${color}${color 9ca8ce}= Rofi Theme${color}

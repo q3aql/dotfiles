@@ -1,15 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
-dmenu_path_output() {
-  cachedir="${XDG_CACHE_HOME:-"$HOME/.cache"}"
-  cache="$cachedir/dmenu_run"
-  [ ! -e "$cachedir" ] && mkdir -p "$cachedir"
-  IFS=:
-  if stest -dqr -n "$cache" $PATH; then
-	  stest -flx $PATH | sort -u | tee "$cache"
-  else
-	  cat "$cache"
-  fi
+list_binaries() {
+  binaries=0
+  path_binaries=${PATH}
+  count_path=1
+  while [ ${binaries} -eq 0 ] ; do
+    current_path=$(echo ${path_binaries} | cut -d ":" -f ${count_path})
+    if [ -z "${current_path}" ] ; then
+      binaries=1
+    else
+      ls -1 ${current_path}/
+      count_path=$(expr ${count_path} + 1)
+    fi
+  done 
 }
 
-dmenu_path_output | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+list_binaries_icons() {
+  list_binaries | while read current_binary ; do
+    echo "  ${current_binary}"
+  done
+}
+
+#list_output=$(list_binaries | dmenu "$@")
+list_output=$(list_binaries_icons | dmenu "$@")
+${list_output}

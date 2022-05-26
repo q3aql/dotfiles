@@ -5,11 +5,17 @@ desktop_files_home="${HOME}/.local/share/applications"
 
 list_desktop_files() {
   if [ -d "${desktop_files}" ] ; then
-    ls -1 "${desktop_files}"
+    ls -1 "${desktop_files}/" | grep ".desktop"
   fi
   if [ -d "${desktop_files_home}" ] ; then
-    ls -1 "${desktop_files_home}"
+    ls -1 "${desktop_files_home}/" | grep ".desktop"
   fi
+}
+
+list_desktop_icons() {
+  list_desktop_files | while read desktop_file ; do
+    echo "  ${desktop_file}"
+  done
 }
 
 rundesk () {
@@ -30,7 +36,8 @@ else
   runDesktop="rundesk"
 fi
 
-list_output=$(list_desktop_files | dmenu "$@")
+#list_output=$(list_desktop_files | dmenu "$@")
+list_output=$(list_desktop_icons | dmenu "$@")
 if [ -f "${desktop_files}/${list_output}" ] ; then
   ${runDesktop} "${desktop_files}/${list_output}"
 elif [ -f "${desktop_files_home}/${list_output}" ] ; then

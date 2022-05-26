@@ -1,0 +1,38 @@
+#!/bin/bash
+
+desktop_files="/usr/share/applications"
+desktop_files_home="${HOME}/.local/share/applications"
+
+list_desktop_files() {
+  if [ -d "${desktop_files}" ] ; then
+    ls -1 "${desktop_files}"
+  fi
+  if [ -d "${desktop_files_home}" ] ; then
+    ls -1 "${desktop_files_home}"
+  fi
+}
+
+rundesk () {
+  if [ -z ${1} ] ; then
+    echo "No file entry"
+  else
+    if [ -f "${1}" ] ; then
+      eval "$(awk -F= '$1=="Exec"{$1=""; print}' "$1")"
+    else
+      echo "File does not exist"
+    fi
+  fi
+}
+
+if [ -f /usr/bin/dex ] ; then
+  runDesktop="dex"
+else
+  runDesktop="rundesk"
+fi
+
+list_output=$(list_desktop_files | dmenu "$@")
+if [ -f "${desktop_files}/${list_output}" ] ; then
+  ${runDesktop} "${desktop_files}/${list_output}"
+elif [ -f "${desktop_files_home}/${list_output}" ] ; then
+  ${runDesktop} "${desktop_files_home}/${list_output}"
+fi

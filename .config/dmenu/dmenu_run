@@ -24,6 +24,6 @@ list_binaries_icons() {
 #list_output=$(list_binaries | dmenu "$@")
 #${list_output}
 
-list_output=$(list_binaries_icons | dmenu "$@")
+list_output=$(list_binaries_icons | dmenu "$@" -p " run:")
 run_output=$(echo "${list_output}" | cut -c4-999)
 ${run_output}

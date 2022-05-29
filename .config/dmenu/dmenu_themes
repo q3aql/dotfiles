@@ -1,0 +1,62 @@
+#!/bin/bash
+
+####################################################################
+# dmenu_themes - dmenu script that simulates 'rofi-theme-selector' #
+#                                                                  #
+# Author: q3aql <q3aql@duck.com>                                   #
+# Last update: 29-05-2022                                          #
+####################################################################
+
+main_folder="/opt/dmenu-scripts/"
+folder_themes="/opt/dmenu-scripts/themes"
+
+if [ -f /usr/bin/kitty ] ; then
+  termrun="kitty --title dmenu_themes -c=/opt/dmenu-scripts/scripts/kitty.conf -e" 
+else
+  xrdb -load /opt/dmenu-scripts/scripts/Xresources
+  termrun="xterm -T dmenu_themes -e"  
+fi
+
+show_icon_tree() {
+  ls -1 ${folder_themes} | while read current ; do
+    if [ -f "${folder_themes}/${current}" ] ; then
+      echo "  ${current}"
+    else
+      echo "  ${current}"
+    fi
+  done
+}
+
+remove_icon() {
+  entry="${@}"
+  remove_icon_space=0
+  read_entry=$(echo "${entry}" | grep "  ")
+  if ! [ -z "${read_entry}" ] ; then
+    remove_icon_space=1
+  fi
+  if [ ${remove_icon_space} -eq 1 ] ; then
+    show_output=$(echo "${entry}" | cut -c4-999 | tr -s " " | cut -c2-999)
+    echo "${show_output}"
+  else
+   echo "${entry}"
+  fi 
+}
+
+function load_theme() {
+  file_icon=$(show_icon_tree | dmenu -p " Theme:")
+  file=$(remove_icon "${file_icon}")
+  if [ -z "${file}" ] ; then
+    echo "# Theme selector canceled"
+  else
+    if [ -f /usr/bin/sudo ] ; then
+      ${termrun} sudo ${main_folder}/scripts/build-theme.sh "${file}"
+      load_theme
+    else
+      ${termrun} su -c ${main_folder}/scripts/build-theme.sh "${file}"
+    fi
+  fi
+}
+
+# Run main function for load theme
+load_theme
+

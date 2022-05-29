@@ -20,7 +20,7 @@ dotfiles - My tiling Qtile, Spectrwm, i3 , Dwm & Sway configurations (for Arch/D
   xfce4-screenshooter xscreensaver alsa-utils pulseaudio-alsa light xorg-xbacklight \
   xorg-xrandr sway swaybg swayidle wofi meson waybar wayland-protocols xorg-xwayland \
   wf-recorder xdg-desktop-portal-wlr wl-clipboard grim slurp jq wlroots pulseaudio \
-  alacritty qtile python-pip xorg-xsetroot dex 
+  alacritty qtile python-pip xorg-xsetroot dex xorg-xlsclients 
   ````
       
   ```shell
@@ -53,7 +53,7 @@ dotfiles - My tiling Qtile, Spectrwm, i3 , Dwm & Sway configurations (for Arch/D
   sway swaybg swayidle wlr-randr wdisplays wofi meson waybar wl-clipboard \
   wayland-protocols libwlroots6 libcairo2 libpango-1.0-0 libgdk-pixbuf2.0-0 \
   libpcre++0v5 libjson-c5 xwayland libwayland-egl1-mesa libwayland-bin \
-  xdg-desktop-portal-wlr wf-recorder weston grim dex
+  xdg-desktop-portal-wlr wf-recorder weston grim dex x11-utils
   ````
   
   ```shell

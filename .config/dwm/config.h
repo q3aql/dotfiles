@@ -146,6 +146,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_w, spawn, SHCMD("rofi -show") },
     { MODKEY, XK_Return, spawn, SHCMD("kitty") },
     { MODKEY, XK_n, spawn, SHCMD("pcmanfm") },
+    { MODKEY, XK_f, spawn, SHCMD("/usr/bin/dmenu_fbrun") },
     { MODKEY, XK_b, spawn, SHCMD("firefox") },
     { MODKEY, XK_e, spawn, SHCMD("geany") },
     { MODKEY, XK_m, spawn, SHCMD("telegram") },

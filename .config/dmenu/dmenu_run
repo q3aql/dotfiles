@@ -1,5 +1,12 @@
 #!/bin/bash
 
+############################################################
+# dmenu_run - dmenu script that simulates 'rofi -show run' #
+#                                                          #
+# Author: q3aql <q3aql@duck.com>                           #
+# Last update: 29-05-2022                                  #
+############################################################
+
 list_binaries() {
   binaries=0
   path_binaries=${PATH}
@@ -9,8 +16,13 @@ list_binaries() {
     if [ -z "${current_path}" ] ; then
       binaries=1
     else
-      ls -1 ${current_path}/
-      count_path=$(expr ${count_path} + 1)
+      # Extra code
+      if [ "${current_path}" == "/bin" ] ; then
+        count_path=$(expr ${count_path} + 1)
+      else
+        ls -1 ${current_path}/
+        count_path=$(expr ${count_path} + 1)
+      fi
     fi
   done 
 }
@@ -20,9 +32,6 @@ list_binaries_icons() {
     echo "  ${current_binary}"
   done
 }
-
-#list_output=$(list_binaries | dmenu "$@")
-#${list_output}
 
 list_output=$(list_binaries_icons | dmenu "$@" -p " run:")
 run_output=$(echo "${list_output}" | cut -c4-999)

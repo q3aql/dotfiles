@@ -1,0 +1,61 @@
+#!/bin/bash
+
+######################################################################
+# dmenu_fbrun - dmenu script that simulates 'rofi -show filebrowser' #
+#                                                                    #
+# Author: q3aql <q3aql@duck.com>                                     #
+# Last update: 29-05-2022                                            #
+######################################################################
+
+show_icon_tree() {
+  ls -1 | while read current ; do
+    if [ -f "${current}" ] ; then
+      echo "  ${current}"
+    elif [ -d "${current}" ] ; then
+      echo "  ${current}"
+    else
+      echo "  ${current}"
+    fi
+  done
+}
+
+remove_icon() {
+  entry="${@}"
+  remove_icon_space=0
+  read_entry=$(echo "${entry}" | grep "  ")
+  if ! [ -z "${read_entry}" ] ; then
+    remove_icon_space=1
+  fi
+  read_entry=$(echo "${entry}" | grep "  ")
+  if ! [ -z "${read_entry}" ] ; then
+    remove_icon_space=1
+  fi
+  read_entry=$(echo "${entry}" | grep "  ")
+  if ! [ -z "${read_entry}" ] ; then
+    remove_icon_space=1
+  fi
+  if [ ${remove_icon_space} -eq 1 ] ; then
+    show_output=$(echo "${entry}" | cut -c4-999 | tr -s " " | cut -c2-999)
+    echo "${show_output}"
+  else
+   echo "${entry}"
+  fi 
+}
+
+file=1
+while [ "${file}" ]; do
+  file_icon=$(show_icon_tree | dmenu -p " filebrowser: $(basename $(pwd))")
+  file=$(remove_icon "${file_icon}")
+  echo "# ${file} #"
+  if [ -e "${file}" ]; then
+    owd=$(pwd)
+    if [ -d "${file}" ]; then
+      cd "${file}"
+    else [ -f "${file}" ]
+      if which xdg-open &> /dev/null; then
+        exec xdg-open "${owd}/${file}" &
+        unset file
+      fi
+    fi
+  fi
+done

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+##############################################################
+# dmenu_drun - dmenu script that simulates 'rofi -show drun' #
+#                                                            #
+# Author: q3aql <q3aql@duck.com>                             #
+# Last update: 29-05-2022                                    #
+##############################################################
+
 desktop_files="/usr/share/applications"
 desktop_files_home="${HOME}/.local/share/applications"
 
@@ -35,13 +42,6 @@ if [ -f /usr/bin/dex ] ; then
 else
   runDesktop="rundesk"
 fi
-
-#list_output=$(list_desktop_files | dmenu "$@")
-#if [ -f "${desktop_files}/${list_output}" ] ; then
-#  ${runDesktop} "${desktop_files}/${list_output}"
-#elif [ -f "${desktop_files_home}/${list_output}" ] ; then
-#  ${runDesktop} "${desktop_files_home}/${list_output}"
-#fi
 
 list_output=$(list_desktop_icons | dmenu "$@" -p " drun:")
 run_output=$(echo ${list_output} | cut -c 4-999)

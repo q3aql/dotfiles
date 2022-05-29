@@ -1,25 +1,34 @@
 #!/bin/bash
 
-# Search through open programs and switch to their tag
-application=$(
-  # List all running programs
-  xlsclients |\
-  # Fix Virtualbox and LibreOffice
-  sed -e 's/.*VirtualBox/foobar  virtualbox/g' -e 's/.*soffice/foobar  libreoffice/g' |\
-  # Remove flash from results
-  grep -v "plugin-container" |\
-  # Show only app-names
-  cut -d" " -f3 |\
-  # Pipe to dmenu ($@ to include font settings from dwm/config.h)
-  dmenu -i -p " window:" $@
-)
+################################################################
+# dmenu_wrun - dmenu script that simulates 'rofi -show window' #
+#                                                              #
+# Author: q3aql <q3aql@duck.com>                               #
+# Last update: 29-05-2022                                      #
+################################################################
 
-# Switch to chosen application
-case $application in
-  gimp | truecrypt)
-    xdotool search --onlyvisible -classname "$application" windowactivate &> /dev/null
-  ;;
-  *)
-    xdotool search ".*${application}.*" windowactivate &> /dev/null
-  ;;
-esac
+list_applications() {
+  list_raw=$(xlsclients | cut -d " " -f 3 | sed -e 's/soffice/libreoffice/g')
+  for process in ${list_raw}; do
+    echo "${process}"
+  done
+}
+
+list_applications_icons() {
+  list_applications | while read current_app ; do
+    echo "  ${current_app}"
+  done
+}
+
+list_output=$(list_applications_icons | dmenu "$@" -p " window:")
+run_output=$(echo ${list_output} | cut -c 4-999)
+if [ "${run_output}" == "gimp" ] ; then
+  xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null
+elif [ "${run_output}" == "gimp-2.10" ] ; then
+  xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null
+elif [ "${run_output}" == "truecrypt" ] ; then
+  xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null
+else
+  xdotool search ".*${run_output}.*" windowactivate &> /dev/null
+fi
+

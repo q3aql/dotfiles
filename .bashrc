@@ -148,6 +148,12 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias ports='netstat -tulanp'
+alias wget="wget --progress=dot:mega"
+alias df='df -hT --exclude=devtmpfs --exclude=tmpfs'
+alias mountt="mount | column -t | sort | egrep '^/dev'"
+alias cdr='cd "$(cat ~/.pwdremember)"'
+alias pwdr='pwd > ~/.pwdremember'
 
 # Load terminal
 echo ""

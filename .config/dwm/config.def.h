@@ -47,7 +47,7 @@ static const Rule rules[] = {
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -146,12 +146,14 @@ static Key keys[] = {
     { MODKEY|ShiftMask, XK_w, spawn, SHCMD("rofi -show") },
     { MODKEY, XK_Return, spawn, SHCMD("kitty") },
     { MODKEY, XK_n, spawn, SHCMD("pcmanfm") },
+    { MODKEY, XK_f, spawn, SHCMD("/usr/bin/dmenu_fbrun") },
     { MODKEY, XK_b, spawn, SHCMD("firefox") },
     { MODKEY, XK_e, spawn, SHCMD("geany") },
     { MODKEY, XK_m, spawn, SHCMD("telegram") },
     { MODKEY, XK_z, spawn, SHCMD("nitrogen") },
     { MODKEY, XK_u, spawn, SHCMD("xterm") },
     { MODKEY, XK_t, spawn, SHCMD("rofi-theme-selector") },
+    { MODKEY|ShiftMask, XK_t, spawn, SHCMD("/usr/bin/dmenu_themes") },
     { MODKEY, XK_a, spawn, SHCMD("lxappearance") },
 
     // Screenshot

@@ -1,0 +1,703 @@
+diff -uraN st-0.8.5/autocomplete.h st-autocomplete/autocomplete.h
+--- st-0.8.5/autocomplete.h	1970-01-01 04:00:00.000000000 +0400
++++ st-autocomplete/autocomplete.h	2022-03-13 02:45:34.586842452 +0400
+@@ -0,0 +1,16 @@
++# ifndef __ST_AUTOCOMPLETE_H
++# define __ST_AUTOCOMPLETE_H
++
++enum {
++	ACMPL_DEACTIVATE,
++	ACMPL_WORD,
++	ACMPL_WWORD,
++	ACMPL_FUZZY_WORD,
++	ACMPL_FUZZY_WWORD,
++	ACMPL_FUZZY,
++	ACMPL_SUFFIX,
++	ACMPL_SURROUND,
++	ACMPL_UNDO,
++};
++
++# endif // __ST_AUTOCOMPLETE_H
+diff -uraN st-0.8.5/config.def.h st-autocomplete/config.def.h
+--- st-0.8.5/config.def.h	2022-03-13 02:45:34.586842452 +0400
++++ st-autocomplete/config.def.h	2022-03-13 02:45:34.586842452 +0400
+@@ -170,6 +170,8 @@
+  */
+ static uint forcemousemod = ShiftMask;
+ 
++#include "autocomplete.h"
++
+ /*
+  * Internal mouse shortcuts.
+  * Beware that overloading Button1 will disable the selection.
+@@ -187,6 +189,8 @@
+ #define MODKEY Mod1Mask
+ #define TERMMOD (ControlMask|ShiftMask)
+ 
++#define ACMPL_MOD ControlMask|Mod1Mask
++
+ static Shortcut shortcuts[] = {
+ 	/* mask                 keysym          function        argument */
+ 	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
+@@ -201,6 +205,14 @@
+ 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
+ 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
+ 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
++	{ ACMPL_MOD,            XK_slash,       autocomplete,   { .i = ACMPL_WORD        } },
++	{ ACMPL_MOD,            XK_period,      autocomplete,   { .i = ACMPL_FUZZY_WORD  } },
++	{ ACMPL_MOD,            XK_comma,       autocomplete,   { .i = ACMPL_FUZZY       } },
++	{ ACMPL_MOD,            XK_apostrophe,  autocomplete,   { .i = ACMPL_SUFFIX      } },
++	{ ACMPL_MOD,            XK_semicolon,   autocomplete,   { .i = ACMPL_SURROUND    } },
++	{ ACMPL_MOD,            XK_bracketright,autocomplete,   { .i = ACMPL_WWORD       } },
++	{ ACMPL_MOD,            XK_bracketleft, autocomplete,   { .i = ACMPL_FUZZY_WWORD } },
++	{ ACMPL_MOD,            XK_equal,       autocomplete,   { .i = ACMPL_UNDO        } },
+ };
+ 
+ /*
+diff -uraN st-0.8.5/Makefile st-autocomplete/Makefile
+--- st-0.8.5/Makefile	2022-03-13 02:45:34.586842452 +0400
++++ st-autocomplete/Makefile	2022-03-13 02:45:34.586842452 +0400
+@@ -44,6 +44,8 @@
+ 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+ 	cp -f st $(DESTDIR)$(PREFIX)/bin
+ 	chmod 755 $(DESTDIR)$(PREFIX)/bin/st
++	cp -f st-autocomplete $(DESTDIR)$(PREFIX)/bin
++	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-autocomplete
+ 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
+ 	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
+ 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
+@@ -52,6 +54,7 @@
+ 
+ uninstall:
+ 	rm -f $(DESTDIR)$(PREFIX)/bin/st
++	rm -f $(DESTDIR)$(PREFIX)/bin/st-autocomplete
+ 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+ 
+ .PHONY: all options clean dist install uninstall
+diff -uraN st-0.8.5/st-autocomplete st-autocomplete/st-autocomplete
+--- st-0.8.5/st-autocomplete	1970-01-01 04:00:00.000000000 +0400
++++ st-autocomplete/st-autocomplete	2022-03-27 22:57:29.018288223 +0400
+@@ -0,0 +1,310 @@
++#!/usr/bin/perl
++#########################################################################
++# Copyright (C) 2012-2017  Wojciech Siewierski                          #
++#                                                                       #
++# This program is free software: you can redistribute it and/or modify  #
++# it under the terms of the GNU General Public License as published by  #
++# the Free Software Foundation, either version 3 of the License, or     #
++# (at your option) any later version.                                   #
++#                                                                       #
++# This program is distributed in the hope that it will be useful,       #
++# but WITHOUT ANY WARRANTY; without even the implied warranty of        #
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         #
++# GNU General Public License for more details.                          #
++#                                                                       #
++# You should have received a copy of the GNU General Public License     #
++# along with this program.  If not, see <http://www.gnu.org/licenses/>. #
++#########################################################################
++
++my ($cmd, $cursor_row, $cursor_column) = @ARGV;
++
++my $lines = [];
++my $lines1 = [];
++
++my $last_line = -1;
++my $lines_before_cursor = 0;
++
++while (<stdin>)
++{
++	$last_line++;
++
++	s/[^[:print:]]/?/g;
++
++	if ($last_line < $cursor_row)
++	{
++		unshift @{$lines1}, $_;
++		$lines_before_cursor++;
++	}
++	else
++	{
++		unshift @{$lines}, $_;
++	}
++}
++
++foreach (@{$lines1})
++{
++	unshift @{$lines}, $_;
++}
++
++my $cursor_row_in = $cursor_row;
++
++$cursor_row = $last_line;
++
++
++$self = {};
++
++# A reference to a function that transforms the completed word
++# into a regex matching the completions. Usually generated by
++# generate_matcher().
++#
++# For example
++#   $fun = generate_matcher(".*");
++#   $fun->("foo");
++# would return "f.*o.*o"
++#
++# In other words, indirectly decides which characters can
++# appear in the completion.
++my $matcher;
++
++# A regular expression matching a character before each match.
++# For example, it you want to match the text after a
++# whitespace, set it to "\s".
++my $char_class_before;
++
++# A regular expression matching every character in the entered
++# text that will be used to find matching completions. Usually
++# "\w" or similar.
++my $char_class_to_complete;
++
++# A regular expression matching every allowed last character
++# of the completion (uses greedy matching).
++my $char_class_at_end;
++
++if ($cmd eq 'word-complete') {
++	# Basic word completion. Completes the current word
++	# without any special matching.
++	$char_class_before      = '[^-\w]';
++	$matcher                = sub { quotemeta shift }; # identity
++	$char_class_at_end      = '[-\w]';
++	$char_class_to_complete = '[-\w]';
++} elsif ($cmd eq 'WORD-complete') {
++	# The same as above but in the Vim meaning of a "WORD" --
++	# whitespace delimited.
++	$char_class_before      = '\s';
++	$matcher                = sub { quotemeta shift };
++	$char_class_at_end      = '\S';
++	$char_class_to_complete = '\S';
++} elsif ($cmd eq 'fuzzy-word-complete' ||
++		 $cmd eq 'skeleton-word-complete') {
++	# Fuzzy completion of the current word.
++	$char_class_before      = '[^-\w]';
++	$matcher                = generate_matcher('[-\w]*');
++	$char_class_at_end      = '[-\w]';
++	$char_class_to_complete = '[-\w]';
++} elsif ($cmd eq 'fuzzy-WORD-complete') {
++	# Fuzzy completion of the current WORD.
++	$char_class_before      = '\s';
++	$matcher                = generate_matcher('\S*');
++	$char_class_at_end      = '\S';
++	$char_class_to_complete = '\S';
++} elsif ($cmd eq 'fuzzy-complete' ||
++		 $cmd eq 'skeleton-complete') {
++	# Fuzzy completion of an arbitrary text.
++	$char_class_before      = '\W';
++	$matcher                = generate_matcher('.*?');
++	$char_class_at_end      = '\w';
++	$char_class_to_complete = '\S';
++} elsif ($cmd eq 'suffix-complete') {
++	# Fuzzy completion of an completing suffixes, like
++	# completing test=hello from /blah/hello.
++	$char_class_before      = '\S';
++	$matcher                = generate_matcher('\S*');
++	$char_class_at_end      = '\S';
++	$char_class_to_complete = '\S';
++} elsif ($cmd eq 'surround-complete') {
++	# Completing contents of quotes and braces.
++
++	# Here we are using three named groups: s, b, p for quotes, braces
++	# and parenthesis.
++	$char_class_before      = '((?<q>["\'`])|(?<b>\[)|(?<p>\())';
++
++	$matcher                = generate_matcher('.*?');
++
++	# Here we match text till enclosing pair, using perl conditionals in
++	# regexps (?(condition)yes-expression|no-expression).
++	# \0 is used to hack concatenation with '*' later in the code.
++	$char_class_at_end      = '.*?(.(?=(?(<b>)\]|((?(<p>)\)|\g{q})))))\0';
++	$char_class_to_complete = '\S';
++}
++
++
++# use the last used word or read the word behind the cursor
++my $word_to_complete = read_word_at_coord($self, $cursor_row, $cursor_column,
++										  $char_class_to_complete);
++
++print stdout "$word_to_complete\n";
++
++if ($word_to_complete) {
++	while (1) {
++		# ignore the completed word itself
++		$self->{already_completed}{$word_to_complete} = 1;
++
++		# continue the last search or start from the current row
++		my $completion = find_match($self,
++									$word_to_complete,
++									$self->{next_row} // $cursor_row,
++									$matcher->($word_to_complete),
++									$char_class_before,
++									$char_class_at_end);
++		if ($completion) {
++			print stdout $completion."\n".join ("\n", @{$self->{highlight}})."\n";
++		}
++		else {
++			last;
++		}
++	}
++}
++
++######################################################################
++
++sub highlight_match {
++    my ($self, $linenum, $completion) = @_;
++
++    # clear_highlight($self);
++
++    my $line = @{$lines}[$linenum];
++    my $re = quotemeta $completion;
++
++    $line =~ /$re/;
++
++    my $beg = $-[0];
++    my $end = $+[0];
++
++	if ($linenum >= $lines_before_cursor)
++	{
++		$lline = $last_line - $lines_before_cursor;
++		$linenum -= $lines_before_cursor;
++		$linenum = $lline - $linenum;
++		$linenum += $lines_before_cursor;
++	}
++
++
++    $self->{highlight} = [$linenum, $beg, $end];
++}
++
++######################################################################
++
++sub read_word_at_coord {
++    my ($self, $row, $col, $char_class) = @_;
++
++    $_ = substr(@{$lines} [$row], 0, $col); # get the current line up to the cursor...
++    s/.*?($char_class*)$/$1/;               # ...and read the last word from it
++    return $_;
++}
++
++######################################################################
++
++# Returns a function that takes a string and returns that string with
++# this function's argument inserted between its every two characters.
++# The resulting string is used as a regular expression matching the
++# completion candidates.
++sub generate_matcher {
++    my $regex_between = shift;
++
++    sub {
++        $_ = shift;
++
++        # sorry for this lispy code, I couldn't resist ;)
++        (join "$regex_between",
++         (map quotemeta,
++          (split //)))
++    }
++}
++
++######################################################################
++
++# Checks whether the completion found by find_match() was already
++# found and if it was, calls find_match() again to find the next
++# completion.
++#
++# Takes all the arguments that find_match() would take, to make a
++# mutually recursive call.
++sub skip_duplicates {
++    my ($self, $word_to_match, $current_row, $regexp, $char_class_before, $char_class_at_end) = @_;
++    my $completion;
++
++	if ($current_row <= $lines_before_cursor)
++	{
++		$completion = shift @{$self->{matches_in_row}}; # get the leftmost one
++	}
++	else
++	{
++		$completion = pop @{$self->{matches_in_row}}; # get the leftmost one
++	}
++
++    # check for duplicates
++    if (exists $self->{already_completed}{$completion}) {
++        # skip this completion
++        return find_match(@_);
++    } else {
++        $self->{already_completed}{$completion} = 1;
++
++		highlight_match($self,
++						$self->{next_row}+1,
++						$completion);
++
++        return $completion;
++    }
++}
++
++######################################################################
++
++# Finds the next matching completion in the row current row or above
++# while skipping duplicates using skip_duplicates().
++sub find_match {
++    my ($self, $word_to_match, $current_row, $regexp, $char_class_before, $char_class_at_end) = @_;
++    $self->{matches_in_row} //= [];
++
++    # cycle through all the matches in the current row if not starting a new search
++    if (@{$self->{matches_in_row}}) {
++        return skip_duplicates($self, $word_to_match, $current_row, $regexp, $char_class_before, $char_class_at_end);
++    }
++
++
++    my $i;
++    # search through all the rows starting with current one or one above the last checked
++    for ($i = $current_row; $i >= 0; --$i) {
++        my $line = @{$lines}[$i];   # get the line of text from the row
++
++        # if ($i == $cursor_row) {
++        #     $line = substr $line, 0, $cursor_column;
++        # }
++
++        $_ = $line;
++
++        # find all the matches in the current line
++        my $match;
++        push @{$self->{matches_in_row}}, $+{match} while ($_, $match) = /
++                                                                         (.*${char_class_before})
++                                                                         (?<match>
++                                                                             ${regexp}
++                                                                             ${char_class_at_end}*
++                                                                         )
++                                                                     /ix;
++        # corner case: match at the very beginning of line
++        push @{$self->{matches_in_row}}, $+{match} if $line =~ /^(${char_class_before}){0}(?<match>$regexp$char_class_at_end*)/i;
++
++        if (@{$self->{matches_in_row}}) {
++            # remember which row should be searched next
++            $self->{next_row} = --$i;
++
++            # arguments needed for find_match() mutual recursion
++            return skip_duplicates($self, $word_to_match, $i, $regexp, $char_class_before, $char_class_at_end);
++        }
++    }
++
++    # # no more possible completions, revert to the original word
++    # undo_completion($self) if $i < 0;
++
++    return undef;
++}
+diff -uraN st-0.8.5/st.c st-autocomplete/st.c
+--- st-0.8.5/st.c	2022-03-13 02:45:34.586842452 +0400
++++ st-autocomplete/st.c	2022-03-27 22:28:39.041693478 +0400
+@@ -17,6 +17,7 @@
+ #include <unistd.h>
+ #include <wchar.h>
+ 
++#include "autocomplete.h"
+ #include "st.h"
+ #include "win.h"
+ 
+@@ -2569,6 +2570,8 @@
+ 		return;
+ 	}
+ 
++	autocomplete ((const Arg []) { ACMPL_DEACTIVATE });
++
+ 	/*
+ 	 * slide screen to keep cursor where we expect it -
+ 	 * tscrollup would work here, but we can optimize to
+@@ -2688,3 +2691,256 @@
+ 	tfulldirt();
+ 	draw();
+ }
++
++void autocomplete (const Arg * arg)
++{
++	static _Bool active = 0;
++
++	int acmpl_cmdindex = arg -> i;
++
++	static int acmpl_cmdindex_prev;
++
++	if (active == 0)
++		acmpl_cmdindex_prev = acmpl_cmdindex;
++
++	static const char * const (acmpl_cmd []) = {
++		[ACMPL_DEACTIVATE]	= "__DEACTIVATE__",
++		[ACMPL_WORD]		= "word-complete",
++		[ACMPL_WWORD]		= "WORD-complete",
++		[ACMPL_FUZZY_WORD]	= "fuzzy-word-complete",
++		[ACMPL_FUZZY_WWORD]	= "fuzzy-WORD-complete",
++		[ACMPL_FUZZY]		= "fuzzy-complete",
++		[ACMPL_SUFFIX]		= "suffix-complete",
++		[ACMPL_SURROUND]	= "surround-complete",
++		[ACMPL_UNDO]		= "__UNDO__",
++	};
++
++	static char acmpl [1000];		// ACMPL_ISSUE: why 1000?
++
++	static FILE * acmpl_exec = NULL;
++	static int acmpl_status;
++
++	static const char * stbuffile;
++	static char target [1000];		// ACMPL_ISSUE: why 1000? dynamically allocate char array of size term.col
++	static size_t targetlen;
++
++	static char completion [1000] = {0};		// ACMPL_ISSUE: why 1000? dynamically allocate char array of size term.col
++	static size_t complen_prev = 0;		// NOTE: always clear this variable after clearing completion
++
++	static int cx, cy;
++
++	// ACMPL_ISSUE: crashes when term.row is too small
++
++// Check for deactivation
++
++	if (acmpl_cmdindex == ACMPL_DEACTIVATE)
++	{
++
++//     Deactivate autocomplete mode keeping current completion
++
++		if (active)
++		{
++			active = 0;
++			pclose (acmpl_exec);
++			remove (stbuffile);
++
++			if (complen_prev)
++			{
++				selclear ();
++				complen_prev = 0;
++			}
++		}
++
++		return;
++	}
++
++// Check for undo
++
++	if (acmpl_cmdindex == ACMPL_UNDO)
++	{
++
++//     Deactivate autocomplete mode recovering target
++
++		if (active)
++		{
++			active = 0;
++			pclose (acmpl_exec);
++			remove (stbuffile);
++
++			if (complen_prev)
++			{
++				selclear ();
++				for (size_t i = 0; i < complen_prev; i++)
++					ttywrite ((char []) { '\b' }, 1, 1);	// ACMPL_ISSUE: I'm not sure that this is the right way
++				complen_prev = 0;
++				ttywrite (target, targetlen, 0);		// ACMPL_ISSUE: I'm not sure that this is a right solution
++			}
++		}
++
++		return;
++	}
++
++// Check for command change
++
++	if (acmpl_cmdindex != acmpl_cmdindex_prev)
++	{
++
++//     If command is changed, goto acmpl_begin avoiding rewriting st buffer
++
++		if (active)
++		{
++			acmpl_cmdindex_prev = acmpl_cmdindex;
++
++			goto acmpl_begin;
++		}
++	}
++
++// If not active
++
++	if (active == 0)
++	{
++		acmpl_cmdindex_prev = acmpl_cmdindex;
++		cx = term.c.x;
++		cy = term.c.y;
++
++//     Write st buffer to a temp file
++
++		stbuffile = tmpnam (NULL);		// ACMPL_ISSUE: check for return value ...
++										// ACMPL_ISSUE: use coprocesses instead of temp files
++
++		FILE * stbuf = fopen (stbuffile, "w"); // ACMPL_ISSUE: check for opening error ...
++		char * stbufline = malloc (term.col + 2); // ACMPL_ISSUE: check for allocating error ...
++
++		int cxp = 0;
++
++		for (size_t y = 0; y < term.row; y++)
++		{
++			if (y == term.c.y) cx += cxp * term.col;
++
++			size_t x = 0;
++			for (; x < term.col; x++)
++				utf8encode (term.line [y] [x].u, stbufline + x);
++			if (term.line [y] [x - 1].mode & ATTR_WRAP)
++			{
++				x--;
++				if (y <= term.c.y) cy--;
++				cxp++;
++			}
++			else
++			{
++				stbufline [x] = '\n';
++				cxp = 0;
++			}
++			stbufline [x + 1] = 0;
++			fputs (stbufline, stbuf);
++		}
++
++		free (stbufline);
++		fclose (stbuf);
++
++acmpl_begin:
++
++//     Run st-autocomplete
++
++		sprintf (
++			acmpl,
++			"cat %100s | st-autocomplete %500s %d %d",	// ACMPL_ISSUE: why 100 and 500?
++			stbuffile,
++			acmpl_cmd [acmpl_cmdindex],
++			cy,
++			cx
++		);
++
++		acmpl_exec = popen (acmpl, "r");		// ACMPL_ISSUE: popen isn't defined by The Standard. Does it work in BSDs for example?
++												// ACMPL_ISSUE: check for popen error ...
++
++//     Read the target, targetlen
++
++		fscanf (acmpl_exec, "%500s\n", target); // ACMPL_ISSUE: check for scanning error ...
++		targetlen = strlen (target);
++	}
++
++// Read a completion if exists (acmpl_status)
++
++	unsigned line, beg, end;
++
++	acmpl_status = fscanf (acmpl_exec, "%500[^\n]\n%u\n%u\n%u\n", completion, & line, & beg, & end);
++												// ACMPL_ISSUE: why 500? use term.col instead
++
++// Exit if no completions found
++
++	if (active == 0 && acmpl_status == EOF)
++	{
++
++//    Close st-autocomplete and exit without activating the autocomplete mode
++
++		pclose (acmpl_exec);
++		remove (stbuffile);
++		return;
++	}
++
++// If completions found, enable autocomplete mode and autocomplete the target
++
++	active = 1;
++
++// Clear target before first completion
++
++	if (complen_prev == 0)
++	{
++		for (size_t i = 0; i < targetlen; i++)
++			ttywrite ((char []) { '\b' }, 1, 1);	// ACMPL_ISSUE: I'm not sure that this is a right solution
++	}
++
++// Clear previuos completion if this is not the first
++
++	else
++	{
++		selclear ();
++		for (size_t i = 0; i < complen_prev; i++)
++			ttywrite ((char []) { '\b' }, 1, 1);	// ACMPL_ISSUE: I'm not sure that this is a right solution
++		complen_prev = 0;
++	}
++
++// If no more completions found, reset and restart
++
++	if (acmpl_status == EOF)
++	{
++		active = 0;
++		pclose (acmpl_exec);
++		ttywrite (target, targetlen, 0);
++		goto acmpl_begin;
++	}
++
++// Count wrapped lines before the current line
++
++	int wl = 0;
++
++	int tl = line;
++
++	for (int l = 0; l < tl; l++)
++		if (term.line [l] [term.col - 1].mode & ATTR_WRAP)
++		{
++			wl++;
++			tl++;
++		}
++
++// Autcomplete
++
++	complen_prev = strlen (completion);
++	ttywrite (completion, complen_prev, 0);
++
++	if (line == cy && beg > cx)
++	{
++		beg += complen_prev - targetlen;
++		end += complen_prev - targetlen;
++
++		// ACMPL_ISSUE: highlignthing doesn't work when "line == cy && beg > cx",
++		//				but coordinates are correct...
++	}
++
++	end--;
++
++	selstart (beg % term.col, line + wl + beg / term.col, 0);
++	selextend (end % term.col, line + wl + end / term.col, 1, 0);
++	xsetsel (getsel ());
++}
+diff -uraN st-0.8.5/st.h st-autocomplete/st.h
+--- st-0.8.5/st.h	2022-03-13 02:45:34.586842452 +0400
++++ st-autocomplete/st.h	2022-03-13 02:45:34.586842452 +0400
+@@ -77,6 +77,8 @@
+ 	const char *s;
+ } Arg;
+ 
++void autocomplete (const Arg *);
++
+ void die(const char *, ...);
+ void redraw(void);
+ void draw(void);
+diff -uraN st-0.8.5/x.c st-autocomplete/x.c
+--- st-0.8.5/x.c	2022-03-13 02:45:34.586842452 +0400
++++ st-autocomplete/x.c	2022-03-13 02:45:34.590175835 +0400
+@@ -1834,11 +1834,20 @@
+ 	/* 1. shortcuts */
+ 	for (bp = shortcuts; bp < shortcuts + LEN(shortcuts); bp++) {
+ 		if (ksym == bp->keysym && match(bp->mod, e->state)) {
++			if (bp -> func != autocomplete)
++				autocomplete ((const Arg []) { ACMPL_DEACTIVATE });
+ 			bp->func(&(bp->arg));
+ 			return;
+ 		}
+ 	}
+ 
++	if (!(
++		len == 0 &&
++		e -> state & ~ignoremod		// ACMPL_ISSUE: I'm not sure that this is the right way
++				| ACMPL_MOD == ACMPL_MOD
++	))
++		autocomplete ((const Arg []) { ACMPL_DEACTIVATE });
++
+ 	/* 2. custom keys from config.h */
+ 	if ((customkey = kmap(ksym, e->state))) {
+ 		ttywrite(customkey, strlen(customkey), 1);

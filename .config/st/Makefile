@@ -42,8 +42,11 @@ dist: clean
 
 install: st
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
 	cp -f st $(DESTDIR)$(PREFIX)/bin
+	cp -f st.desktop $(DESTDIR)$(PREFIX)/share/applications
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/st
+	chmod 755 $(DESTDIR)$(PREFIX)/share/applications/st.desktop
 	cp -f st-autocomplete $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-autocomplete
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
@@ -54,6 +57,7 @@ install: st
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/st
+	rm -f $(DESTDIR)$(PREFIX)/share/applications/st.desktop
 	rm -f $(DESTDIR)$(PREFIX)/bin/st-autocomplete
 	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
 

@@ -42,7 +42,7 @@ dist: clean
 
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	mkdir -p /usr/share/fonts/truetype/ubuntumono/
+	cp -f dmenu dmenu_drun dmenu_run dmenu_wrun dmenu_fbrun dmenu_themes dmenu_cmd stest $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_drun
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_run

@@ -4,13 +4,33 @@
 # dmenu_drun - dmenu script that simulates 'rofi -show drun' #
 #                                                            #
 # Author: q3aql <q3aql@duck.com>                             #
-# Last update: 29-05-2022                                    #
+# Last update: 10-07-2022                                    #
 ##############################################################
 
+# Configuration variables
+load_theme_path="${HOME}/.dmenu"
+load_themes="${load_theme_path}/themes"
+load_theme_file="${load_theme_path}/load_theme"
 desktop_files="/usr/share/applications"
 desktop_files_home="${HOME}/.local/share/applications"
 
-list_desktop_files() {
+function load_theme() {
+  if [ -f "${load_theme_file}" ] ; then
+    source "${load_theme_file}"
+  else
+    mkdir -p "${load_theme_path}"
+    mkdir -p "${load_themes}"
+    echo "#!/bin/bash" > ${load_theme_file}
+    echo "" >> ${load_theme_file}
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_theme_file}
+    echo "NBCOLOR=\"#1f1f35\"" >> ${load_theme_file}
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_theme_file}
+    echo "SBCOLOR=\"#664477\"" >> ${load_theme_file}
+    source "${load_theme_file}"
+  fi
+}
+
+function list_desktop_files() {
   if [ -d "${desktop_files}" ] ; then
     ls -1 "${desktop_files}/" | grep ".desktop"
   fi
@@ -19,7 +39,7 @@ list_desktop_files() {
   fi
 }
 
-list_desktop_icons() {
+function list_desktop_icons() {
   list_desktop_files | while read current_desktop ; do
     echo "  ${current_desktop}"
   done
@@ -30,7 +50,7 @@ rundesk () {
     echo "No file entry"
   else
     if [ -f "${1}" ] ; then
-      eval "$(awk -F= '$1=="Exec"{$1=""; print}' "$1")"
+      eval "$(awk -F= '$1=="Exec"{$1=""; print}' "$1" | head -1)"
     else
       echo "File does not exist"
     fi
@@ -43,7 +63,8 @@ else
   runDesktop="rundesk"
 fi
 
-list_output=$(list_desktop_icons | dmenu "$@" -p " drun:")
+load_theme
+list_output=$(list_desktop_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " drun:")
 run_output=$(echo ${list_output} | cut -c 4-999)
 system_file=$(echo -n ${desktop_files}/ ; echo ${run_output})
 home_file=$(echo -n ${desktop_files_home}/ ; echo ${run_output})

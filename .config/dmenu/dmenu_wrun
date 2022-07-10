@@ -4,23 +4,45 @@
 # dmenu_wrun - dmenu script that simulates 'rofi -show window' #
 #                                                              #
 # Author: q3aql <q3aql@duck.com>                               #
-# Last update: 29-05-2022                                      #
+# Last update: 10-07-2022                                      #
 ################################################################
 
-list_applications() {
+# Configuration variables
+load_theme_path="${HOME}/.dmenu"
+load_themes="${load_theme_path}/themes"
+load_theme_file="${load_theme_path}/load_theme"
+
+function load_theme() {
+  if [ -f "${load_theme_file}" ] ; then
+    source "${load_theme_file}"
+  else
+    mkdir -p "${load_theme_path}"
+    mkdir -p "${load_themes}"
+    echo "#!/bin/bash" > ${load_theme_file}
+    echo "" >> ${load_theme_file}
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_theme_file}
+    echo "NBCOLOR=\"#1f1f35\"" >> ${load_theme_file}
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_theme_file}
+    echo "SBCOLOR=\"#664477\"" >> ${load_theme_file}
+    source "${load_theme_file}"
+  fi
+}
+
+function list_applications() {
   list_raw=$(xlsclients | cut -d " " -f 3 | sed -e 's/soffice/libreoffice/g')
   for process in ${list_raw}; do
     echo "${process}"
   done
 }
 
-list_applications_icons() {
+function list_applications_icons() {
   list_applications | while read current_app ; do
     echo "  ${current_app}"
   done
 }
 
-list_output=$(list_applications_icons | dmenu "$@" -p " window:")
+load_theme
+list_output=$(list_applications_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " window:")
 run_output=$(echo ${list_output} | cut -c 4-999)
 if [ "${run_output}" == "gimp" ] ; then
   xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null

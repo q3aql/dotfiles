@@ -28,34 +28,6 @@ function load_theme() {
   fi
 }
 
-function list_binaries() {
-  binaries=0
-  path_binaries=${PATH}
-  count_path=1
-  while [ ${binaries} -eq 0 ] ; do
-    current_path=$(echo ${path_binaries} | cut -d ":" -f ${count_path})
-    if [ -z "${current_path}" ] ; then
-      binaries=1
-    else
-      # Extra code / When /bin is the same that /usr/bin/
-      bin_same=$(ls -la ${current_path} | grep "> usr/bin")
-      if [ -z "${bin_same}" ] ; then
-        ls -1 ${current_path}/
-        count_path=$(expr ${count_path} + 1)
-      else
-        count_path=$(expr ${count_path} + 1)
-      fi
-    fi
-  done 
-}
-
-function list_binaries_icons() {
-  list_binaries | while read current_binary ; do
-    echo "  ${current_binary}"
-  done
-}
-
 load_theme
-list_output=$(list_binaries_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " run:")
-run_output=$(echo "${list_output}" | cut -c4-999)
-${run_output}
+command_run=$(echo > /dev/null | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p "  command:")
+${command_run}

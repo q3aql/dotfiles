@@ -4,10 +4,31 @@
 # dmenu_fbrun - dmenu script that simulates 'rofi -show filebrowser' #
 #                                                                    #
 # Author: q3aql <q3aql@duck.com>                                     #
-# Last update: 29-05-2022                                            #
+# Last update: 10-07-2022                                            #
 ######################################################################
 
-show_icon_tree() {
+# Configuration variables
+load_theme_path="${HOME}/.dmenu"
+load_themes="${load_theme_path}/themes"
+load_theme_file="${load_theme_path}/load_theme"
+
+function load_theme() {
+  if [ -f "${load_theme_file}" ] ; then
+    source "${load_theme_file}"
+  else
+    mkdir -p "${load_theme_path}"
+    mkdir -p "${load_themes}"
+    echo "#!/bin/bash" > ${load_theme_file}
+    echo "" >> ${load_theme_file}
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_theme_file}
+    echo "NBCOLOR=\"#1f1f35\"" >> ${load_theme_file}
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_theme_file}
+    echo "SBCOLOR=\"#664477\"" >> ${load_theme_file}
+    source "${load_theme_file}"
+  fi
+}
+
+function show_icon_tree() {
   ls -1 | while read current ; do
     if [ -f "${current}" ] ; then
       echo "  ${current}"
@@ -19,7 +40,7 @@ show_icon_tree() {
   done
 }
 
-remove_icon() {
+function remove_icon() {
   entry="${@}"
   remove_icon_space=0
   read_entry=$(echo "${entry}" | grep "  ")
@@ -42,9 +63,10 @@ remove_icon() {
   fi 
 }
 
+load_theme
 file=1
 while [ "${file}" ]; do
-  file_icon=$(show_icon_tree | dmenu -p " filebrowser: $(basename $(pwd))")
+  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " filebrowser: $(basename $(pwd))")
   file=$(remove_icon "${file_icon}")
   echo "# ${file} #"
   if [ -e "${file}" ]; then

@@ -4,22 +4,172 @@
 # dmenu_themes - dmenu script that simulates 'rofi-theme-selector' #
 #                                                                  #
 # Author: q3aql <q3aql@duck.com>                                   #
-# Last update: 29-05-2022                                          #
+# Last update: 10-07-2022                                          #
 ####################################################################
 
-main_folder="/opt/dmenu-scripts/"
-folder_themes="/opt/dmenu-scripts/themes"
+# Configuration variables
+load_theme_path="${HOME}/.dmenu"
+load_themes="${load_theme_path}/themes"
+load_theme_file="${load_theme_path}/load_theme"
 
-if [ -f /usr/bin/kitty ] ; then
-  termrun="kitty --title dmenu_themes -c=/opt/dmenu-scripts/scripts/kitty.conf -e" 
-else
-  xrdb -load /opt/dmenu-scripts/scripts/Xresources
-  termrun="xterm -T dmenu_themes -e"  
-fi
+function load_theme() {
+  if [ -f "${load_theme_file}" ] ; then
+    source "${load_theme_file}"
+  else
+    mkdir -p "${load_theme_path}"
+    mkdir -p "${load_themes}"
+    echo "#!/bin/bash" > ${load_theme_file}
+    echo "" >> ${load_theme_file}
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_theme_file}
+    echo "NBCOLOR=\"#1f1f35\"" >> ${load_theme_file}
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_theme_file}
+    echo "SBCOLOR=\"#664477\"" >> ${load_theme_file}
+    source "${load_theme_file}"
+  fi
+}
 
-show_icon_tree() {
-  ls -1 ${folder_themes} | while read current ; do
-    if [ -f "${folder_themes}/${current}" ] ; then
+function load_themes_files() {
+  count_themes=$(ls -1 "${load_themes}/" | wc -l)
+  if [ ${count_themes} -lt 18 ] ; then
+    # Default Purple
+    echo "#!/bin/bash" > ${load_themes}/default-purple
+    echo "" >> ${load_themes}/default-purple
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/default-purple
+    echo "NBCOLOR=\"#1f1f35\"" >> ${load_themes}/default-purple
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_themes}/default-purple
+    echo "SBCOLOR=\"#664477\"" >> ${load_themes}/default-purple
+    # Cool Green
+    echo "#!/bin/bash" > ${load_themes}/cool-green
+    echo "" >> ${load_themes}/cool-green
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/cool-green
+    echo "NBCOLOR=\"#253829\"" >> ${load_themes}/cool-green
+    echo "SFCOLOR=\"#202118\"" >> ${load_themes}/cool-green
+    echo "SBCOLOR=\"#98c379\"" >> ${load_themes}/cool-green
+    # Dark Grey
+    echo "#!/bin/bash" > ${load_themes}/dark-grey
+    echo "" >> ${load_themes}/dark-grey
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/dark-grey
+    echo "NBCOLOR=\"#0f101a\"" >> ${load_themes}/dark-grey
+    echo "SFCOLOR=\"#0f101a\"" >> ${load_themes}/dark-grey
+    echo "SBCOLOR=\"#f1ffff\"" >> ${load_themes}/dark-grey
+    # Dracula
+    echo "#!/bin/bash" > ${load_themes}/dracula
+    echo "" >> ${load_themes}/dracula
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/dracula
+    echo "NBCOLOR=\"#292d3e\"" >> ${load_themes}/dracula
+    echo "SFCOLOR=\"#292d3e\"" >> ${load_themes}/dracula
+    echo "SBCOLOR=\"#a77ac4\"" >> ${load_themes}/dracula
+    # Material Darker
+    echo "#!/bin/bash" > ${load_themes}/material-darker
+    echo "" >> ${load_themes}/material-darker
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/material-darker
+    echo "NBCOLOR=\"#212121\"" >> ${load_themes}/material-darker
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_themes}/material-darker
+    echo "SBCOLOR=\"#a151d3\"" >> ${load_themes}/material-darker
+    # Material Darker
+    echo "#!/bin/bash" > ${load_themes}/material-darker
+    echo "" >> ${load_themes}/material-darker
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/material-darker
+    echo "NBCOLOR=\"#212121\"" >> ${load_themes}/material-darker
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_themes}/material-darker
+    echo "SBCOLOR=\"#a151d3\"" >> ${load_themes}/material-darker
+    # Monokai
+    echo "#!/bin/bash" > ${load_themes}/monokai
+    echo "" >> ${load_themes}/monokai
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/monokai
+    echo "NBCOLOR=\"#1e1e2e\"" >> ${load_themes}/monokai
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_themes}/monokai
+    echo "SBCOLOR=\"#a32852\"" >> ${load_themes}/monokai
+    # Monokai Pro
+    echo "#!/bin/bash" > ${load_themes}/monokai-pro
+    echo "" >> ${load_themes}/monokai-pro
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/monokai-pro
+    echo "NBCOLOR=\"#2d2a2e\"" >> ${load_themes}/monokai-pro
+    echo "SFCOLOR=\"#2d2a2e\"" >> ${load_themes}/monokai-pro
+    echo "SBCOLOR=\"#a9dc76\"" >> ${load_themes}/monokai-pro
+    # Nice Blue
+    echo "#!/bin/bash" > ${load_themes}/nice-blue
+    echo "" >> ${load_themes}/nice-blue
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/nice-blue
+    echo "NBCOLOR=\"#1b214a\"" >> ${load_themes}/nice-blue
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_themes}/nice-blue
+    echo "SBCOLOR=\"#3e4474\"" >> ${load_themes}/nice-blue
+    # Nord
+    echo "#!/bin/bash" > ${load_themes}/nord
+    echo "" >> ${load_themes}/nord
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/nord
+    echo "NBCOLOR=\"#212121\"" >> ${load_themes}/nord
+    echo "SFCOLOR=\"#292d3e\"" >> ${load_themes}/nord
+    echo "SBCOLOR=\"#81a1c1\"" >> ${load_themes}/nord
+    # Nord Wave
+    echo "#!/bin/bash" > ${load_themes}/nord-wave
+    echo "" >> ${load_themes}/nord-wave
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/nord-wave
+    echo "NBCOLOR=\"#212121\"" >> ${load_themes}/nord-wave
+    echo "SFCOLOR=\"#292d3e\"" >> ${load_themes}/nord-wave
+    echo "SBCOLOR=\"#ebcb8b\"" >> ${load_themes}/nord-wave
+    # Onedark
+    echo "#!/bin/bash" > ${load_themes}/onedark
+    echo "" >> ${load_themes}/onedark
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/onedark
+    echo "NBCOLOR=\"#1e2127\"" >> ${load_themes}/onedark
+    echo "SFCOLOR=\"#202118\"" >> ${load_themes}/onedark
+    echo "SBCOLOR=\"#98c379\"" >> ${load_themes}/onedark
+    # Orange
+    echo "#!/bin/bash" > ${load_themes}/orange
+    echo "" >> ${load_themes}/orange
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/orange
+    echo "NBCOLOR=\"#22222c\"" >> ${load_themes}/orange
+    echo "SFCOLOR=\"#22222c\"" >> ${load_themes}/orange
+    echo "SBCOLOR=\"#d05a1f\"" >> ${load_themes}/orange
+    # Psychedelic
+    echo "#!/bin/bash" > ${load_themes}/psychedelic
+    echo "" >> ${load_themes}/psychedelic
+    echo "NFCOLOR=\"#98c379\"" >> ${load_themes}/psychedelic
+    echo "NBCOLOR=\"#212121\"" >> ${load_themes}/psychedelic
+    echo "SFCOLOR=\"#ef3a03\"" >> ${load_themes}/psychedelic
+    echo "SBCOLOR=\"#5457a9\"" >> ${load_themes}/psychedelic
+    # Red Sea
+    echo "#!/bin/bash" > ${load_themes}/red-sea
+    echo "" >> ${load_themes}/red-sea
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/red-sea
+    echo "NBCOLOR=\"#941835\"" >> ${load_themes}/red-sea
+    echo "SFCOLOR=\"#292d3e\"" >> ${load_themes}/red-sea
+    echo "SBCOLOR=\"#c62570\"" >> ${load_themes}/red-sea
+    # Rosepine
+    echo "#!/bin/bash" > ${load_themes}/rosepine
+    echo "" >> ${load_themes}/rosepine
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/rosepine
+    echo "NBCOLOR=\"#1f1d29\"" >> ${load_themes}/rosepine
+    echo "SFCOLOR=\"#292d3e\"" >> ${load_themes}/rosepine
+    echo "SBCOLOR=\"#eabbb9\"" >> ${load_themes}/rosepine
+    # Sunset
+    echo "#!/bin/bash" > ${load_themes}/sunset
+    echo "" >> ${load_themes}/sunset
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/sunset
+    echo "NBCOLOR=\"#9b3800\"" >> ${load_themes}/sunset
+    echo "SFCOLOR=\"#22222c\"" >> ${load_themes}/sunset
+    echo "SBCOLOR=\"#c59a4d\"" >> ${load_themes}/sunset
+    # White Heaven
+    echo "#!/bin/bash" > ${load_themes}/white-heaven
+    echo "" >> ${load_themes}/white-heaven
+    echo "NFCOLOR=\"#2d2d37\"" >> ${load_themes}/white-heaven
+    echo "NBCOLOR=\"#a9a8a7\"" >> ${load_themes}/white-heaven
+    echo "SFCOLOR=\"#a9a8a7\"" >> ${load_themes}/white-heaven
+    echo "SBCOLOR=\"#2d2d37\"" >> ${load_themes}/white-heaven
+    # White Wine
+    echo "#!/bin/bash" > ${load_themes}/white-wine
+    echo "" >> ${load_themes}/white-wine
+    echo "NFCOLOR=\"#861616\"" >> ${load_themes}/white-wine
+    echo "NBCOLOR=\"#a9a8a7\"" >> ${load_themes}/white-wine
+    echo "SFCOLOR=\"#a9a8a7\"" >> ${load_themes}/white-wine
+    echo "SBCOLOR=\"#861616\"" >> ${load_themes}/white-wine
+  fi
+}
+
+function show_icon_tree() {
+  ls -1 ${load_themes} | while read current ; do
+    if [ -f "${load_themes}/${current}" ] ; then
       echo "  ${current}"
     else
       echo "  ${current}"
@@ -27,7 +177,7 @@ show_icon_tree() {
   done
 }
 
-remove_icon() {
+function remove_icon() {
   entry="${@}"
   remove_icon_space=0
   read_entry=$(echo "${entry}" | grep "  ")
@@ -42,21 +192,20 @@ remove_icon() {
   fi 
 }
 
-function load_theme() {
-  file_icon=$(show_icon_tree | dmenu -p " Theme:")
+function load_theme_selector() {
+  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " Theme:")
   file=$(remove_icon "${file_icon}")
   if [ -z "${file}" ] ; then
     echo "# Theme selector canceled"
   else
-    if [ -f /usr/bin/sudo ] ; then
-      ${termrun} sudo ${main_folder}/scripts/build-theme.sh "${file}"
-      load_theme
-    else
-      ${termrun} su -c ${main_folder}/scripts/build-theme.sh "${file}"
-    fi
+    cp -rf ${load_themes}/${file} ${load_theme_file}
+    load_theme
+    load_theme_selector
   fi
 }
 
 # Run main function for load theme
 load_theme
+load_themes_files
+load_theme_selector
 

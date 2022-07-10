@@ -153,6 +153,7 @@ static Key keys[] = {
     { MODKEY, XK_z, spawn, SHCMD("nitrogen") },
     { MODKEY, XK_u, spawn, SHCMD("xterm") },
     { MODKEY, XK_t, spawn, SHCMD("rofi-theme-selector") },
+    { MODKEY, XK_c, spawn, SHCMD("/usr/bin/dmenu_cmd") },
     { MODKEY|ShiftMask, XK_t, spawn, SHCMD("/usr/bin/dmenu_themes") },
     { MODKEY, XK_a, spawn, SHCMD("lxappearance") },
 

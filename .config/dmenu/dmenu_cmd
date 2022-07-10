@@ -1,7 +1,8 @@
 #!/bin/bash
 
 ############################################################
-# dmenu_run - dmenu script that simulates 'rofi -show run' #
+# dmenu_cmd - dmenu script that simulates 'rofi -show run' #
+#             only insert command                          #
 #                                                          #
 # Author: q3aql <q3aql@duck.com>                           #
 # Last update: 10-07-2022                                  #

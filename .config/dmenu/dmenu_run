@@ -56,6 +56,6 @@ function list_binaries_icons() {
 }
 
 load_theme
-list_output=$(list_binaries_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " run:")
+list_output=$(list_binaries_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " run:")
 run_output=$(echo "${list_output}" | cut -c4-999)
 ${run_output}

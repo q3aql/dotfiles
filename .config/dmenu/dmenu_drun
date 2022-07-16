@@ -4,13 +4,14 @@
 # dmenu_drun - dmenu script that simulates 'rofi -show drun' #
 #                                                            #
 # Author: q3aql <q3aql@duck.com>                             #
-# Last update: 10-07-2022                                    #
+# Last update: 14-07-2022                                    #
 ##############################################################
 
 # Configuration variables
 load_theme_path="${HOME}/.dmenu"
 load_themes="${load_theme_path}/themes"
 load_theme_file="${load_theme_path}/load_theme"
+load_desktop_files="${HOME}/.dmenu/desktop"
 desktop_files="/usr/share/applications"
 desktop_files_home="${HOME}/.local/share/applications"
 
@@ -40,7 +41,8 @@ function list_desktop_files() {
 }
 
 function list_desktop_icons() {
-  list_desktop_files | while read current_desktop ; do
+  echo "  Scan New Desktop Files"
+  ls -1 "${load_desktop_files}/" | while read current_desktop ; do
     echo "  ${current_desktop}"
   done
 }
@@ -57,6 +59,32 @@ rundesk () {
   fi
 }
 
+function create_list_files() {
+  mkdir -p ${load_desktop_files}
+  if [ ! -f ${HOME}/.dmenu/read_list ] ; then
+    echo "0" > ${HOME}/.dmenu/read_list
+  fi
+  exec_list=$(cat ${HOME}/.dmenu/read_list)
+  if [ ${exec_list} -eq 0 ] ; then
+    rm -rf ${load_desktop_files}/*
+    list_desktop_files | while read current_file ; do
+      if [ -f "${desktop_files}/${current_file}" ] ; then
+        name_show=$(cat "${desktop_files}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        if [ ! -z "${name_show}" ] ; then
+          echo "${desktop_files}/${current_file}" > "${load_desktop_files}/${name_show}"
+        fi
+      fi
+      if [ -f "${desktop_files_home}/${current_file}" ] ; then
+        name_show=$(cat "${desktop_files_home}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        if [ ! -z "${name_show}" ] ; then 
+          echo "${desktop_files_home}/${current_file}" > "${load_desktop_files}/${name_show}"
+        fi
+      fi
+    done
+    echo "1" > ${HOME}/.dmenu/read_list 
+  fi
+}
+
 if [ -f /usr/bin/dex ] ; then
   runDesktop="dex"
 else
@@ -64,12 +92,16 @@ else
 fi
 
 load_theme
-list_output=$(list_desktop_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " drun:")
-run_output=$(echo ${list_output} | cut -c 4-999)
-system_file=$(echo -n ${desktop_files}/ ; echo ${run_output})
-home_file=$(echo -n ${desktop_files_home}/ ; echo ${run_output})
-if [ -f "${system_file}" ] ; then
-  ${runDesktop} "${system_file}"
-elif [ -f "${home_file}" ] ; then
-  ${runDesktop} "${home_file}"
+create_list_files
+list_output=$(list_desktop_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " drun:")
+run_output=$(echo ${list_output} | cut -c 5-999)
+if [ ! -z "${run_output}" ] ; then
+  if [ "${run_output}" == "Scan New Desktop Files" ] ; then
+    echo "0" > ${HOME}/.dmenu/read_list
+    create_list_files
+    $0
+  else
+    run_desktop_file=$(cat "${load_desktop_files}/${run_output}")
+    ${runDesktop} "${run_desktop_file}"
+  fi
 fi

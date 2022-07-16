@@ -30,5 +30,5 @@ function load_theme() {
 }
 
 load_theme
-command_run=$(echo > /dev/null | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " command:")
+command_run=$(echo > /dev/null | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " command:")
 ${command_run}

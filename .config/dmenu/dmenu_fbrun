@@ -66,7 +66,7 @@ function remove_icon() {
 load_theme
 file=1
 while [ "${file}" ]; do
-  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " filebrowser: $(basename $(pwd))")
+  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " filebrowser: $(basename $(pwd))")
   file=$(remove_icon "${file_icon}")
   echo "# ${file} #"
   if [ -e "${file}" ]; then

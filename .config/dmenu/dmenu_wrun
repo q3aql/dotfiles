@@ -4,7 +4,7 @@
 # dmenu_wrun - dmenu script that simulates 'rofi -show window' #
 #                                                              #
 # Author: q3aql <q3aql@duck.com>                               #
-# Last update: 10-07-2022                                      #
+# Last update: 16-07-2022                                      #
 ################################################################
 
 # Configuration variables
@@ -28,29 +28,29 @@ function load_theme() {
   fi
 }
 
-function list_applications() {
-  list_raw=$(xlsclients | cut -d " " -f 3 | sed -e 's/soffice/libreoffice/g')
-  for process in ${list_raw}; do
-    echo "${process}"
-  done
+function check_wmctrl() {
+  wmctrl -h &> /dev/null
+  error=$?
+  if [ ${error} -ne 0 ] ; then
+    echo "  Error: You need install 'wmctrl'" | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " window:"
+    exit
+  fi
 }
 
 function list_applications_icons() {
-  list_applications | while read current_app ; do
+  wmctrl -l | while read current_app ; do
     echo "  ${current_app}"
   done
 }
 
 load_theme
-list_output=$(list_applications_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " window:")
-run_output=$(echo ${list_output} | cut -c 4-999)
-if [ "${run_output}" == "gimp" ] ; then
-  xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null
-elif [ "${run_output}" == "gimp-2.10" ] ; then
-  xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null
-elif [ "${run_output}" == "truecrypt" ] ; then
-  xdotool search --onlyvisible -classname "${run_output}" windowactivate &> /dev/null
+check_wmctrl
+list_output=$(list_applications_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " window:")
+run_output=$(echo ${list_output} | cut -c 5-999)
+echo "# Selected: ${run_output}"
+run_output=$(echo "${run_output}" | cut -d " " -f 1)
+if [ -z "${run_output}" ] ; then
+  echo "# Selection window canceled"
 else
-  xdotool search ".*${run_output}.*" windowactivate &> /dev/null
+  wmctrl -ia "${run_output}" &> /dev/null
 fi
-

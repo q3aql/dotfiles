@@ -193,7 +193,7 @@ function remove_icon() {
 }
 
 function load_theme_selector() {
-  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p " Theme:")
+  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " Theme:")
   file=$(remove_icon "${file_icon}")
   if [ -z "${file}" ] ; then
     echo "# Theme selector canceled"
@@ -208,4 +208,3 @@ function load_theme_selector() {
 load_theme
 load_themes_files
 load_theme_selector
-

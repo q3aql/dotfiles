@@ -4,7 +4,7 @@
 # dmenu_drun - dmenu script that simulates 'rofi -show drun' #
 #                                                            #
 # Author: q3aql <q3aql@duck.com>                             #
-# Last update: 14-07-2022                                    #
+# Last update: 16-07-2022                                    #
 ##############################################################
 
 # Configuration variables
@@ -47,7 +47,7 @@ function list_desktop_icons() {
   done
 }
 
-rundesk () {
+function rundesk () {
   if [ -z ${1} ] ; then
     echo "No file entry"
   else

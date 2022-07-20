@@ -30,7 +30,7 @@ function load_theme() {
 
 function load_themes_files() {
   count_themes=$(ls -1 "${load_themes}/" | wc -l)
-  if [ ${count_themes} -lt 18 ] ; then
+  if [ ${count_themes} -lt 20 ] ; then
     # Default Purple
     echo "#!/bin/bash" > ${load_themes}/default-purple
     echo "" >> ${load_themes}/default-purple
@@ -164,6 +164,20 @@ function load_themes_files() {
     echo "NBCOLOR=\"#a9a8a7\"" >> ${load_themes}/white-wine
     echo "SFCOLOR=\"#a9a8a7\"" >> ${load_themes}/white-wine
     echo "SBCOLOR=\"#861616\"" >> ${load_themes}/white-wine
+    # Arc Dark
+    echo "#!/bin/bash" > ${load_themes}/arc-dark
+    echo "" >> ${load_themes}/arc-dark
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_themes}/arc-dark
+    echo "NBCOLOR=\"#2f3239\"" >> ${load_themes}/arc-dark
+    echo "SFCOLOR=\"#dddddd\"" >> ${load_themes}/arc-dark
+    echo "SBCOLOR=\"#217dd0\"" >> ${load_themes}/arc-dark
+    # Gruvbox Dark
+    echo "#!/bin/bash" > ${load_themes}/gruvbox-dark
+    echo "" >> ${load_themes}/gruvbox-dark
+    echo "NFCOLOR=\"#efe4c2\"" >> ${load_themes}/gruvbox-dark
+    echo "NBCOLOR=\"#2e281f\"" >> ${load_themes}/gruvbox-dark
+    echo "SFCOLOR=\"#efe4c2\"" >> ${load_themes}/gruvbox-dark
+    echo "SBCOLOR=\"#655a4b\"" >> ${load_themes}/gruvbox-dark
   fi
 }
 
@@ -193,7 +207,7 @@ function remove_icon() {
 }
 
 function load_theme_selector() {
-  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " Theme:")
+  file_icon=$(show_icon_tree | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 20 -p " Theme:")
   file=$(remove_icon "${file_icon}")
   if [ -z "${file}" ] ; then
     echo "# Theme selector canceled"

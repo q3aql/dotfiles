@@ -1,0 +1,90 @@
+#!/bin/bash
+
+#####################################################################
+# dmenu_close - dmenu script for poweroff/reboot/suspend and logout #
+#                                                                   #
+# Author: q3aql <q3aql@duck.com>                                    #
+# Last update: 29-07-2022                                           #
+#####################################################################
+
+# Configuration variables
+load_theme_path="${HOME}/.dmenu"
+load_themes="${load_theme_path}/themes"
+load_theme_file="${load_theme_path}/load_theme"
+
+function load_theme() {
+  if [ -f "${load_theme_file}" ] ; then
+    source "${load_theme_file}"
+  else
+    mkdir -p "${load_theme_path}"
+    mkdir -p "${load_themes}"
+    echo "#!/bin/bash" > ${load_theme_file}
+    echo "" >> ${load_theme_file}
+    echo "NFCOLOR=\"#bbbbbb\"" >> ${load_theme_file}
+    echo "NBCOLOR=\"#1f1f35\"" >> ${load_theme_file}
+    echo "SFCOLOR=\"#eeeeee\"" >> ${load_theme_file}
+    echo "SBCOLOR=\"#664477\"" >> ${load_theme_file}
+    source "${load_theme_file}"
+  fi
+}
+
+function load_session_options() {
+  echo "  Restart"
+  echo "  Shutdown"
+  echo "  Suspend"
+  dwm_session=$(ps -ef | grep " dwm" | grep -v "grep")
+  spectrwm_session=$(ps -ef | grep " spectrwm" | grep -v "grep")
+  qtile_session=$(ps -ef | grep " qtile" | grep -v "grep")
+  sway_session=$(ps -ef | grep " sway" | grep -v "grep")
+  i3_session=$(ps -ef | grep " i3" | grep -v "grep")
+  sessions_check="${dwm_session}${spectrwm_session}${qtile_session}${sway_session}${i3_session}"
+  if [ ! -z "${sessions_check}" ] ; then
+    echo "  Logout"
+  fi
+}
+
+function close_session() {
+  killall dwm
+  killall spectrwm
+  killall sway
+  killall i3
+  qtile_pid=$(ps -ef | grep " qtile" | grep -v "grep" | tr -s " " | cut -d " " -f 2 | head -1)
+  if [ ! -z ${qtile_pid} ] ; then
+    kill ${qtile_pid}
+  fi
+}
+
+function generate_spaces() {
+  num_spaces=${1}
+  count_spaces=1
+  while [ ${count_spaces} -le ${num_spaces} ] ; do
+    echo -n " "
+    count_spaces=$(expr ${count_spaces} + 1)
+  done
+}
+
+function run_action() {
+  load_theme
+  systemctl --version &> /dev/null
+  systemd_error=$?
+  if [ ${systemd_error} -eq 0 ] ; then
+    systemctl ${1}
+  else
+    echo > /dev/null | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -p "  You need SystemD for ${1} $(generate_spaces 60)"
+  fi
+}
+
+load_theme
+list_output=$(load_session_options | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p "  Session:")
+run_output=$(echo ${list_output} | cut -c 5-999)
+if [ ! -z "${run_output}" ] ; then
+  if [ "${run_output}" == "Restart" ] ; then
+    run_action "reboot"
+  elif [ "${run_output}" == "Shutdown" ] ; then
+    run_action "poweroff"
+  elif [ "${run_output}" == "Suspend" ] ; then
+    run_action "suspend"
+  elif [ "${run_output}" == "Logout" ] ; then
+    close_session
+  fi
+fi

@@ -4,7 +4,7 @@
 # dmenu_drun - dmenu script that simulates 'rofi -show drun' #
 #                                                            #
 # Author: q3aql <q3aql@duck.com>                             #
-# Last update: 20-07-2022                                    #
+# Last update: 29-07-2022                                    #
 ##############################################################
 
 # Configuration variables
@@ -16,6 +16,7 @@ desktop_files="/usr/share/applications"
 desktop_files_local="/usr/local/share/applications"
 desktop_files_home="${HOME}/.local/share/applications"
 desktop_files_flatpak="/var/lib/flatpak/exports/share/applications"
+desktop_files_snap="/var/lib/snapd/desktop/applications"
 
 function load_theme() {
   if [ -f "${load_theme_file}" ] ; then
@@ -46,12 +47,15 @@ function list_desktop_files() {
   if [ -d "${desktop_files_flatpak}" ] ; then
     ls -1 "${desktop_files_flatpak}/" | grep ".desktop"
   fi
+  if [ -d "${desktop_files_snap}" ] ; then
+    ls -1 "${desktop_files_snap}/" | grep ".desktop"
+  fi
 }
 
 function list_desktop_icons() {
-  echo "  Scan New Desktop Files"
+  echo "  Scan/Update Desktop Files"
   ls -1 "${load_desktop_files}/" | while read current_desktop ; do
-    echo "  ${current_desktop}"
+    echo "  ${current_desktop}"
   done
 }
 
@@ -97,7 +101,13 @@ function create_list_files() {
       if [ -f "${desktop_files_flatpak}/${current_file}" ] ; then
         name_show=$(cat "${desktop_files_flatpak}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
         if [ ! -z "${name_show}" ] ; then 
-          echo "${desktop_files_flatpak}/${current_file}" > "${load_desktop_files}/${name_show}"
+          echo "${desktop_files_flatpak}/${current_file}" > "${load_desktop_files}/${name_show} (Flatpak)"
+        fi
+      fi
+      if [ -f "${desktop_files_snap}/${current_file}" ] ; then
+        name_show=$(cat "${desktop_files_snap}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        if [ ! -z "${name_show}" ] ; then 
+          echo "${desktop_files_snap}/${current_file}" > "${load_desktop_files}/${name_show} (Snap)"
         fi
       fi
     done
@@ -116,7 +126,7 @@ create_list_files
 list_output=$(list_desktop_icons | dmenu -i -nb "${NBCOLOR}" -nf "${NFCOLOR}" -sb "${SBCOLOR}" -sf "${SFCOLOR}" -l 18 -p " drun:")
 run_output=$(echo ${list_output} | cut -c 5-999)
 if [ ! -z "${run_output}" ] ; then
-  if [ "${run_output}" == "Scan New Desktop Files" ] ; then
+  if [ "${run_output}" == "Scan/Update Desktop Files" ] ; then
     echo "0" > ${HOME}/.dmenu/read_list
     create_list_files
     $0

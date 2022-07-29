@@ -42,7 +42,9 @@ dist: clean
 
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f dmenu dmenu_drun dmenu_run dmenu_wrun dmenu_fbrun dmenu_themes dmenu_cmd stest $(DESTDIR)$(PREFIX)/bin
+	mkdir -p /usr/share/fonts/truetype/ubuntumono/
+	tar Jxvf fonts/ubuntumono-nerd-fonts.tar.xz -C /usr/share/fonts/truetype/ubuntumono/
+	cp -f dmenu dmenu_drun dmenu_run dmenu_wrun dmenu_fbrun dmenu_themes dmenu_cmd dmenu_close stest $(DESTDIR)$(PREFIX)/bin
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_drun
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_run
@@ -50,6 +52,7 @@ install: all
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_fbrun
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_themes
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_cmd
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_close
 	chmod 755 $(DESTDIR)$(PREFIX)/bin/stest
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
 	sed "s/VERSION/$(VERSION)/g" < dmenu.1 > $(DESTDIR)$(MANPREFIX)/man1/dmenu.1
@@ -65,6 +68,7 @@ uninstall:
 		$(DESTDIR)$(PREFIX)/bin/dmenu_fbrun\
 		$(DESTDIR)$(PREFIX)/bin/dmenu_themes\
 		$(DESTDIR)$(PREFIX)/bin/dmenu_cmd\
+		$(DESTDIR)$(PREFIX)/bin/dmenu_close\
 		$(DESTDIR)$(PREFIX)/bin/stest\
 		$(DESTDIR)$(MANPREFIX)/man1/dmenu.1\
 		$(DESTDIR)$(MANPREFIX)/man1/stest.1

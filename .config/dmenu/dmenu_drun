@@ -81,31 +81,31 @@ function create_list_files() {
     rm -rf ${load_desktop_files}/*
     list_desktop_files | while read current_file ; do
       if [ -f "${desktop_files}/${current_file}" ] ; then
-        name_show=$(cat "${desktop_files}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        name_show=$(cat "${desktop_files}/${current_file}" | grep "Name=" | grep -v "GenericName=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
         if [ ! -z "${name_show}" ] ; then
           echo "${desktop_files}/${current_file}" > "${load_desktop_files}/${name_show}"
         fi
       fi
       if [ -f "${desktop_files_local}/${current_file}" ] ; then
-        name_show=$(cat "${desktop_files_local}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        name_show=$(cat "${desktop_files_local}/${current_file}" | grep "Name=" | grep -v "GenericName=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
         if [ ! -z "${name_show}" ] ; then
           echo "${desktop_files_local}/${current_file}" > "${load_desktop_files}/${name_show}"
         fi
       fi
       if [ -f "${desktop_files_home}/${current_file}" ] ; then
-        name_show=$(cat "${desktop_files_home}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        name_show=$(cat "${desktop_files_home}/${current_file}" | grep "Name=" | grep -v "GenericName=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
         if [ ! -z "${name_show}" ] ; then 
           echo "${desktop_files_home}/${current_file}" > "${load_desktop_files}/${name_show}"
         fi
       fi
       if [ -f "${desktop_files_flatpak}/${current_file}" ] ; then
-        name_show=$(cat "${desktop_files_flatpak}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        name_show=$(cat "${desktop_files_flatpak}/${current_file}" | grep "Name=" | grep -v "GenericName=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
         if [ ! -z "${name_show}" ] ; then 
           echo "${desktop_files_flatpak}/${current_file}" > "${load_desktop_files}/${name_show} (Flatpak)"
         fi
       fi
       if [ -f "${desktop_files_snap}/${current_file}" ] ; then
-        name_show=$(cat "${desktop_files_snap}/${current_file}" | grep "Name=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
+        name_show=$(cat "${desktop_files_snap}/${current_file}" | grep "Name=" | grep -v "GenericName=" | head -1 | cut -d "=" -f 2 | sed 's/\//|/g')
         if [ ! -z "${name_show}" ] ; then 
           echo "${desktop_files_snap}/${current_file}" > "${load_desktop_files}/${name_show} (Snap)"
         fi
